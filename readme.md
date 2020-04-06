@@ -1,58 +1,88 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# 部署流程
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 拉取项目
 
-## About Laravel
+~~~git
+git clone https://github.com/xyfDoYourLove/GP_laravel-admin_vue.git
+~~~
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## 配置.env文件
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+复制.env.example文件
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+```
+cp .env.example .env
+```
 
-## Learning Laravel
+修改以下配置
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+```
+//配置应用url，本地环境是配置了虚拟端口，要保证能够url指到项目文件夹下的public文件夹，主要用于图片的显示等等
+APP_URL=http://admin.vue.xiao.com/  
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+// 数据库配置,分别为数据库名、用户名、密码，保证数据库没问题
+DB_DATABASE=admin_vue2
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Laravel Sponsors
+> 关于数据库，这里使用的是mysql5.7.26版本，默认已经修改了cofing/database的部分配置，无需再更改
+>
+> ```
+> 'charset' => 'utf8',
+> 'collation' => 'utf8_unicode_ci',
+> ```
+>
+> 新建数据库时与这里保持一致
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+> laravel这里默认的配置为utf8mb4 ,据说由于版本问题，默认的配置会导致在迁移数据库时报错
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+## 安装laravel依赖
 
-## Contributing
+~~~
+// 速度慢可以先全局配置阿里云镜像
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+// 安装依赖
+composer install   
+~~~
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 安装laravel-admin
 
-## Security Vulnerabilities
+~~~
+// 发布资源
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+// 安装依赖
+php artisan admin:install
+~~~
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 安装前端依赖
 
-## License
+~~~
+// npm速度慢的，自行全局更换淘宝镜像
+npm config set registry https://registry.npm.taobao.org
+// 安装前端依赖
+npm install
+~~~
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 生成应用密钥
+
+~~~
+php artisan key:generate
+~~~
+
+## 迁移数据库
+
+~~~
+// sql文件放在：项目文件夹/sql
+// 准备好数据库后直接转储sql文件即可
+~~~
+
+## 启动
+
+~~~
+// 编译前端资源
+npm run dev
+// 使用php内置服务器启动
+php artisan serve
+~~~
+
