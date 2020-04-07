@@ -4,6 +4,7 @@ namespace App\Admin\Actions\AdminUser;
 
 use App\Imports\AdminRoleUserImport;
 use App\Imports\AdminUsersImport;
+use App\Imports\StudentSquadImport;
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,6 +30,11 @@ class ImportUsers extends Action
             Excel::import(new AdminRoleUserImport(), $file);
         } catch (\Exception $e) {
 //            return $this->response()->error('导入用户与角色绑定信息错误：'.$e->getMessage());
+        }
+        try {
+            Excel::import(new StudentSquadImport(), $file);
+        } catch (\Exception $e) {
+//            return $this->response()->error('导入学生与班级绑定信息出错：'.$e->getMessage());
         }
 
         return $this->response()->topRight()->success('成功导入用户信息')->timeout(1000)->refresh();

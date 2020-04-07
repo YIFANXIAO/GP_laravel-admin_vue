@@ -27,7 +27,7 @@ class SquadController extends AdminController
     {
         $grid = new Grid(new Squad());
 
-        $grid->column('id', __('ID'))->hide();
+        $grid->column('id', __('ID'));
         $grid->column('profession.full_name', __('所属专业'));
         $grid->column('name', __('班级名称'));
         $grid->column('info', __('备忘'));
@@ -56,6 +56,7 @@ class SquadController extends AdminController
     {
         $show = new Show(Squad::findOrFail($id));
 
+//        $show->field('id', __('ID'));
         $show->field('name', __('班级名称'));
         $show->field('info', __('备忘'));
 

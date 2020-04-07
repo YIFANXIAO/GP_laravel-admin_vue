@@ -8,6 +8,10 @@ class StudentSquad extends Model
 {
     public $table = 'student_squad';
 
+    public $fillable = [
+        'student_id','squad_id','created_at','updated_at',
+    ];
+
     public function squad()
     {
         return $this->belongsTo(Squad::class, 'squad_id', 'id');
