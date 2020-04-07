@@ -209,7 +209,16 @@ return [
         'user_model'             =>  App\Models\AdminUser::class,
         'squad_model'            =>  App\Models\Squad::class,
 
-        'role_student'           => 'student'
+        // 课程、班级对应数据库表以及Model
+        'squads_courses_table'   => 'squads_courses',
+        'course_model'            =>  App\Models\Course::class,
+
+        // 课程、教师对应数据库表以及Model
+        'teachers_courses_table'   => 'teachers_courses',
+
+        // 标识学生这个角色的常量
+        'role_student'           => 'student',
+        'role_teacher'           => 'teacher',
 
     ],
 

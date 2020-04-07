@@ -30,4 +30,13 @@ class Squad extends Model
         return $this->hasMany(StudentSquad::class, 'squad_id', 'id');
     }
 
+    public function course(): BelongsToMany
+    {
+        $pivotTable = config('admin.database.squads_courses_table');
+
+        $relatedModel = config('admin.database.course_model');
+
+        return $this->belongsToMany($relatedModel, $pivotTable, 'squad_id', 'course_id');
+    }
+
 }

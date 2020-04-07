@@ -27,4 +27,25 @@ class AdminUserController extends Controller
 
         return $students_collection;
     }
+
+    public function getTeachers() {
+
+        $teachers = DB::table('admin_users')
+            ->whereIn('id', function ($query) {
+                $query->select('user_id');
+                $query->from('admin_role_users');
+                $query->where('role_id', function ($query) {
+                    $query->select('id');
+                    $query->from('admin_roles');
+                    $query->where('slug', config('admin.database.role_teacher'));
+                });
+            })
+            ->whereNotIn('id', function ($query) {
+                $query->select('teacher_id');
+                $query->from('teachers_courses');
+            });
+        $teachers_collection = $teachers->get(['id', DB::raw('name as text')]);
+
+        return $teachers_collection;
+    }
 }

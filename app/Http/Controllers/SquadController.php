@@ -7,12 +7,20 @@ use Illuminate\Support\Facades\DB;
 
 class SquadController extends Controller
 {
-    public function getSquads($squad_id) {
+    public function getCurrentSquads($squad_id) {
 
-        $squad = DB::table('squad')
+        $squads = DB::table('squad')
             ->where('id', $squad_id);
-        $squad_collection = $squad->get(['id', DB::raw('name as text')]);
+        $squads_collection = $squads->get(['id', DB::raw('name as text')]);
 
-        return $squad_collection;
+        return $squads_collection;
+    }
+
+    public function getSquads() {
+
+        $squads = DB::table('squad');
+        $squads_collection = $squads->get(['id', DB::raw('name as text')]);
+
+        return $squads_collection;
     }
 }

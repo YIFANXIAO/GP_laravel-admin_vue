@@ -39,4 +39,18 @@ class AdminUser extends Administrator
         return $this->hasMany(StudentSquad::class, 'student_id', 'id');
     }
 
+    public function courses(): BelongsToMany
+    {
+        $pivotTable = config('admin.database.teachers_courses_table');
+
+        $relatedModel = config('admin.database.course_model');
+
+        return $this->belongsToMany($relatedModel, $pivotTable, 'teacher_id', 'course_id');
+    }
+
+    public function teacherCourse()
+    {
+        return $this->hasMany(TeacherCourse::class, 'teacher_id', 'id');
+    }
+
 }

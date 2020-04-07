@@ -22,6 +22,10 @@ Route::group([
     $router->resource('professions', ProfessionController::class);
     $router->resource('squads', SquadController::class);
     $router->resource('student-squads', StudentSquadController::class);
+    $router->resource('courses', CourseController::class);
+    $router->resource('course-type-constants', CourseTypeConstantController::class);
+    $router->resource('squad-courses', SquadCourseController::class);
+    $router->resource('teacher-courses', TeacherCourseController::class);
 
 });
 

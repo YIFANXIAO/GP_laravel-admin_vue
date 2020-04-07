@@ -16,10 +16,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::any('/getTestList', 'TestController@getTestList');
+
+// laravel-admin后台使用的select框的调用函数路由
 Route::any('/getArticleList', 'ArticleController@getArticleList');
 Route::any('/getReplyUser/{article}/{admin_user}', 'CommentsController@getReplyUser');
 Route::any('/getPComments/{article}', 'CommentsController@getPComments');
-Route::any('/getSquads/{squad_id}', 'SquadController@getSquads');
+Route::any('/getCurrentSquads/{squad_id}', 'SquadController@getCurrentSquads');
+Route::any('/getSquads', 'SquadController@getSquads');
 Route::any('/getStudents', 'AdminUserController@getStudents');
-
+Route::any('/getTeachers', 'AdminUserController@getTeachers');
+Route::any('/getCourseTypes', 'CourseTypeController@getCourseTypes');
+Route::any('/getCurrentCourse/{course_id}', 'CourseController@getCurrentCourse');

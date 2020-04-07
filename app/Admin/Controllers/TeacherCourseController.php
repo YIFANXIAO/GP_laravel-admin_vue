@@ -2,22 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Squad;
-use App\Models\StudentSquad;
+use App\Models\TeacherCourse;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Illuminate\Support\Facades\DB;
 
-class StudentSquadController extends AdminController
+class TeacherCourseController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = '学生班级分配';
+    protected $title = '课程教师分配';
 
     /**
      * Make a grid builder.
@@ -26,12 +24,12 @@ class StudentSquadController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new StudentSquad());
+        $grid = new Grid(new TeacherCourse());
 
-        $grid->column('student_id', __('Student id'));
-        $grid->column('squad_id', __('Squad id'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('teacher_id', __('授课教师'));
+        $grid->column('course_id', __('课程'));
+        $grid->column('created_at', __('创建时间'));
+        $grid->column('updated_at', __('更新时间'));
 
         return $grid;
     }
@@ -44,12 +42,12 @@ class StudentSquadController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(StudentSquad::findOrFail($id));
+        $show = new Show(TeacherCourse::findOrFail($id));
 
-        $show->field('student_id', __('Student id'));
-        $show->field('squad_id', __('Squad id'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('teacher_id', __('授课教师'));
+        $show->field('course_id', __('课程'));
+        $show->field('created_at', __('创建时间'));
+        $show->field('updated_at', __('更新时间'));
 
         return $show;
     }
@@ -61,16 +59,16 @@ class StudentSquadController extends AdminController
      */
     protected function form()
     {
-        $belong_squad_id = \request()->get('squad_id');
+        $belong_course_id = \request()->get('course_id');
 
-        $form = new Form(new StudentSquad());
+        $form = new Form(new TeacherCourse());
 
-        $form->select('squad_id', __('班级'))
-            ->options('/api/getSquads/'.$belong_squad_id)
-            ->default($belong_squad_id)
+        $form->select('course_id', __('课程'))
+            ->options('/api/getCurrentCourse/'.$belong_course_id)
+            ->default($belong_course_id)
             ->readOnly();
-        $form->multipleSelect('student_id', __('学生'))
-            ->options('/api/getStudents');
+        $form->multipleSelect('teacher_id', __('授课教师'))
+            ->options('/api/getTeachers');
 
         $form->tools(function (Form\Tools $tools) {
             // 去掉`列表`按钮
@@ -88,12 +86,6 @@ class StudentSquadController extends AdminController
             $footer->disableEditingCheck();
             // 去掉`继续创建`checkbox
             $footer->disableCreatingCheck();
-
-        });
-
-        $form->saved(function (Form $form) use ($belong_squad_id) {
-            // 跳转页面
-            return redirect('/admin/squads/'.$belong_squad_id);
         });
 
         return $form;

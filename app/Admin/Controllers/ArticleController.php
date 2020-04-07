@@ -105,13 +105,13 @@ class ArticleController extends AdminController
                     $tools->disableEdit();
                     $tools->disableList();
                     $tools->disableDelete();
-                });;
+                });
         });
 
         $show->panel()
             ->tools(function ($tools) {
                 $tools->disableDelete();
-            });;
+            });
 
 
 
