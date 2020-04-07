@@ -19,6 +19,9 @@ Route::group([
     $router->resource('articles', ArticleController::class);
     $router->resource('comments', CommentController::class);
     $router->resource('labels', LabelController::class);
+    $router->resource('professions', ProfessionController::class);
+    $router->resource('squads', SquadController::class);
+    $router->resource('student-squads', StudentSquadController::class);
 
 });
 

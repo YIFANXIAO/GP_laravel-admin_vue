@@ -20,4 +20,6 @@ Route::any('/getTestList', 'TestController@getTestList');
 Route::any('/getArticleList', 'ArticleController@getArticleList');
 Route::any('/getReplyUser/{article}/{admin_user}', 'CommentsController@getReplyUser');
 Route::any('/getPComments/{article}', 'CommentsController@getPComments');
+Route::any('/getSquads/{squad_id}', 'SquadController@getSquads');
+Route::any('/getStudents', 'AdminUserController@getStudents');
 

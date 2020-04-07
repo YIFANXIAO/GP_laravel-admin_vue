@@ -204,6 +204,13 @@ return [
         'labels_model'             =>  App\Models\Labels::class,
         'articles_model'             =>  App\Models\Article::class,
 
+        // 用户、班级对应数据库表以及Model
+        'student_squad_table'    => 'student_squad',
+        'user_model'             =>  App\Models\AdminUser::class,
+        'squad_model'            =>  App\Models\Squad::class,
+
+        'role_student'           => 'student'
+
     ],
 
     /*

@@ -34,8 +34,11 @@ class AdminUserController extends UserController
         $userModel = config('admin.database.users_model');
         $grid = new Grid(new $userModel());
         $grid->column('id', 'ID')->sortable()->hide();
-        $grid->column('username', trans('admin.username'))->help('用户登录名，最好是英文或数字');
-        $grid->column('name', trans('admin.name'))->help('用于展示的用户名称，随意')->copyable();
+        $grid->column('username', trans('用户登录标识'))->help('用户登录名，最好是英文或数字');
+        $grid->column('name', trans('用户名称'))->help('用于展示的用户名称，随意')->copyable();
+
+//        $grid->column('squads', __('所属班级'))->pluck('name')->label();
+
         $grid->column('roles', trans('admin.roles'))->pluck('name')->label();
         $grid->column('created_at', trans('admin.created_at'));
         $grid->column('updated_at', trans('admin.updated_at'))->hide();
