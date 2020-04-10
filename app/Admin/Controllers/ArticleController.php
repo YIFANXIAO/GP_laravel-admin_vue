@@ -93,6 +93,12 @@ class ArticleController extends AdminController
             $comments->disableExport();
             $comments->disableColumnSelector();
 
+            $comments->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableEdit();
+//                $actions->disableDelete();
+            });
+
         });
 
         $show->adminUser('创建人', function ($adminUser) {

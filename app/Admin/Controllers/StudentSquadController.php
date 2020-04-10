@@ -66,10 +66,11 @@ class StudentSquadController extends AdminController
         $form = new Form(new StudentSquad());
 
         $form->select('squad_id', __('班级'))
-            ->options('/api/getSquads/'.$belong_squad_id)
+            ->options('/api/getCurrentSquads/'.$belong_squad_id)
             ->default($belong_squad_id)
             ->readOnly();
         $form->multipleSelect('student_id', __('学生'))
+            ->rules('required')
             ->options('/api/getStudents');
 
         $form->tools(function (Form\Tools $tools) {

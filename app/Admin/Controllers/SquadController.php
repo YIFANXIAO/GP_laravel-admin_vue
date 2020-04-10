@@ -95,6 +95,12 @@ class SquadController extends AdminController
             $students->disableExport();
             $students->disableColumnSelector();
 
+            $students->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableEdit();
+//                $actions->disableDelete();
+            });
+
         });
 
         return $show;

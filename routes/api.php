@@ -24,6 +24,7 @@ Route::any('/getPComments/{article}', 'CommentsController@getPComments');
 Route::any('/getCurrentSquads/{squad_id}', 'SquadController@getCurrentSquads');
 Route::any('/getSquads', 'SquadController@getSquads');
 Route::any('/getStudents', 'AdminUserController@getStudents');
-Route::any('/getTeachers', 'AdminUserController@getTeachers');
+Route::any('/getTeachers/{course_id}', 'AdminUserController@getTeachers');
+Route::any('/getTeachers', 'AdminUserController@getAllTeachers');
 Route::any('/getCourseTypes', 'CourseTypeController@getCourseTypes');
 Route::any('/getCurrentCourse/{course_id}', 'CourseController@getCurrentCourse');

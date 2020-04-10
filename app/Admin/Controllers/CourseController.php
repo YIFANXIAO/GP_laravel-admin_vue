@@ -80,7 +80,13 @@ class CourseController extends AdminController
             $teachers->column('teacher.name', '教师名称');
             $teachers->column('course.full_name', '教授课程')->label();
 
-//            $teachers->disableCreateButton();
+            $teachers->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableEdit();
+                $actions->disableDelete();
+            });
+
+            $teachers->disableCreateButton();
             $teachers->disableFilter();
             $teachers->disableExport();
             $teachers->disableColumnSelector();
@@ -96,6 +102,12 @@ class CourseController extends AdminController
             $squads->disableFilter();
             $squads->disableExport();
             $squads->disableColumnSelector();
+
+            $squads->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableEdit();
+//                $actions->disableDelete();
+            });
         });
 
         $show->panel()
@@ -128,6 +140,9 @@ class CourseController extends AdminController
             ->rules('required');
         $form->select('courses_type_id', __('课程类型'))
             ->options('/api/getCourseTypes')
+            ->rules('required');
+        $form->multipleSelect('teachers', __('授课教师'))
+            ->options('/api/getTeachers')
             ->rules('required');
         $form->multipleSelect('squads', __('教授班级'))
             ->options('/api/getSquads')

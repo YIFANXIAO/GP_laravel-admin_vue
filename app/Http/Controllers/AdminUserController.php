@@ -28,7 +28,7 @@ class AdminUserController extends Controller
         return $students_collection;
     }
 
-    public function getTeachers() {
+    public function getTeachers($course_id) {
 
         $teachers = DB::table('admin_users')
             ->whereIn('id', function ($query) {
@@ -40,9 +40,27 @@ class AdminUserController extends Controller
                     $query->where('slug', config('admin.database.role_teacher'));
                 });
             })
-            ->whereNotIn('id', function ($query) {
+            ->whereNotIn('id', function ($query) use ($course_id) {
                 $query->select('teacher_id');
                 $query->from('teachers_courses');
+                $query->where('course_id', $course_id);
+            });
+        $teachers_collection = $teachers->get(['id', DB::raw('name as text')]);
+
+        return $teachers_collection;
+    }
+
+    public function getAllTeachers() {
+
+        $teachers = DB::table('admin_users')
+            ->whereIn('id', function ($query) {
+                $query->select('user_id');
+                $query->from('admin_role_users');
+                $query->where('role_id', function ($query) {
+                    $query->select('id');
+                    $query->from('admin_roles');
+                    $query->where('slug', config('admin.database.role_teacher'));
+                });
             });
         $teachers_collection = $teachers->get(['id', DB::raw('name as text')]);
 
