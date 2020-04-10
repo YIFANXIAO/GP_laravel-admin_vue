@@ -15,4 +15,12 @@ class CourseController extends Controller
 
         return $course_collection;
     }
+
+    public function getCourses() {
+
+        $course = DB::table('courses');
+        $course_collection = $course->get(['id', DB::raw('full_name as text')]);
+
+        return $course_collection;
+    }
 }

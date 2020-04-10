@@ -37,4 +37,9 @@ class Course extends Model
         return $this->hasMany(TeacherCourse::class, 'course_id', 'id');
     }
 
+    public function formulaLeft()
+    {
+        return $this->hasMany(FormulaLeft::class, 'course_id', 'id');
+    }
+
 }

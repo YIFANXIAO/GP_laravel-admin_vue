@@ -26,6 +26,11 @@ Route::group([
     $router->resource('course-type-constants', CourseTypeConstantController::class);
     $router->resource('squad-courses', SquadCourseController::class);
     $router->resource('teacher-courses', TeacherCourseController::class);
+    $router->resource('formula-lefts', FormulaLeftController::class);
+    $router->resource('fractions', FractionController::class);
+    $router->resource('meta-cals', MetaCalController::class);
+    $router->resource('meta-cal-types', MetaCalTypeController::class);
+
 
 });
 

@@ -216,6 +216,11 @@ return [
         // 课程、教师对应数据库表以及Model
         'teachers_courses_table'   => 'teachers_courses',
 
+        // 公式左部、元计算项对应数据库表以及Model
+        'meta_cal_table'           => 'meta_cal',
+        'formula_model'            =>  App\Models\FormulaLeft::class,
+        'metaCalType_model'        =>  App\Models\MetaCalType::class,
+
         // 标识学生这个角色的常量
         'role_student'           => 'student',
         'role_teacher'           => 'teacher',
