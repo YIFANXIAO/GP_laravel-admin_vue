@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Fractions\ImportFractions;
 use App\Models\Fraction;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -53,8 +54,10 @@ class FractionController extends AdminController
 
         });
 
-        //        $grid->disableCreateButton();
-//        $grid->disableFilter();
+        $grid->tools(function (Grid\Tools $tools) {
+            $tools->append(new ImportFractions());
+        });
+
         $grid->disableExport();
         $grid->disableColumnSelector();
         $grid->perPages([10, 20, 30]);
@@ -181,7 +184,7 @@ class FractionController extends AdminController
                     'message' => '所选课程未录入根计算公式，请先录入',
                 ]);
                 return back()->with(compact('error'));
-            }else if ( $fractions->order >= $metaCal->number ) {
+            }else if ($fractions == null || $fractions->order >= $metaCal->number ) {
                 $error = new MessageBag([
                     'title'   => '出错了',
                     'message' => '当前学生的该项成绩已全部录入，请选择其他学生录入成绩',

@@ -16,7 +16,7 @@ class CreateCoursesTypesConstantTable extends Migration
         Schema::create('courses_types_constant', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('intro');
+            $table->string('intro')->nullable();
             $table->timestamps();
         });
     }

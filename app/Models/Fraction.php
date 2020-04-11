@@ -8,6 +8,10 @@ class Fraction extends Model
 {
     public $table = 'fraction';
 
+    public $fillable = [
+        'id','student_id','course_id','cal_type_id','order','fraction','created_at','updated_at',
+    ];
+
     public function student()
     {
         return $this->belongsTo(AdminUser::class, 'student_id', 'id');

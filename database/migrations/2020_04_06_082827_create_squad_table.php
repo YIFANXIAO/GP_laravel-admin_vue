@@ -17,9 +17,7 @@ class CreateSquadTable extends Migration
             $table->increments('id');
             $table->integer('profession_id');
             $table->string('name', 50);
-//            $table->string('grade', 50);
-//            $table->string('sequence', 50);
-            $table->string('info', 200);
+            $table->string('info', 200)->nullable();
             $table->timestamps();
         });
     }
