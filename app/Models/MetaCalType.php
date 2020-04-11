@@ -18,4 +18,14 @@ class MetaCalType extends Model
         return $this->belongsToMany($relatedModel, $pivotTable, 'cal_type_id', 'formula_id');
     }
 
+    public function metaCals()
+    {
+        return $this->hasMany(MetaCal::class, 'cal_type_id', 'id');
+    }
+
+    public function fractions()
+    {
+        return $this->hasMany(Fraction::class, 'courses_type_id', 'id');
+    }
+
 }

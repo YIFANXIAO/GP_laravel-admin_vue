@@ -39,6 +39,26 @@ class CourseController extends AdminController
         $grid->column('created_at', __('创建日期'))->hide();
         $grid->column('updated_at', __('更新日期'))->hide();
 
+        $grid->filter(function ($filter) {
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('full_name','课程全称');
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('attribute','属性');
+            });
+        });
+
+//        $grid->disableCreateButton();
+//        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableColumnSelector();
+
+        $grid->perPages([10, 20, 30]);
+
         return $grid;
     }
 
@@ -52,7 +72,6 @@ class CourseController extends AdminController
     {
         $show = new Show(Course::findOrFail($id));
 
-        $show->field('id', __('ID'));
         $show->field('full_name', __('课程全称'));
         $show->field('attribute', __('属性'));
         $show->field('credit', __('学分'));
@@ -90,6 +109,9 @@ class CourseController extends AdminController
             $teachers->disableFilter();
             $teachers->disableExport();
             $teachers->disableColumnSelector();
+
+            $teachers->perPages([10, 20]);
+
         });
 
         $show->squads('教授班级', function ($squads) {
@@ -98,16 +120,18 @@ class CourseController extends AdminController
             $squads->name('班级名称')->label();
             $squads->info('简介');
 
+            $squads->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableEdit();
+                $actions->disableDelete();
+            });
+
             $squads->disableCreateButton();
             $squads->disableFilter();
             $squads->disableExport();
             $squads->disableColumnSelector();
 
-            $squads->actions(function (Grid\Displayers\Actions $actions) {
-                $actions->disableView();
-                $actions->disableEdit();
-//                $actions->disableDelete();
-            });
+            $squads->perPages([10, 20]);
         });
 
         $show->panel()

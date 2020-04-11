@@ -35,12 +35,22 @@ class CourseTypeConstantController extends AdminController
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
-            $filter->like('name','类型名称');
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('name','类型名称');
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('intro','类型简介');
+            });
+
+
         });
 
-//        $grid->disableFilter();
         $grid->disableExport();
         $grid->disableColumnSelector();
+
+        $grid->perPages([10, 20, 30]);
 
         return $grid;
     }
@@ -55,11 +65,8 @@ class CourseTypeConstantController extends AdminController
     {
         $show = new Show(CourseTypeConstant::findOrFail($id));
 
-        $show->field('id', __('ID'));
         $show->field('name', __('类型名称'));
         $show->field('intro', __('类型简介'));
-        $show->field('created_at', __('创建时间'));
-        $show->field('updated_at', __('更新时间'));
 
         $show->panel()
             ->tools(function ($tools) {

@@ -29,15 +29,26 @@ class ProfessionController extends AdminController
         $grid->column('id', __('ID'))->hide();
         $grid->column('full_name', __('专业全称'));
         $grid->column('intro', __('简介'));
-        $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('更新时间'));
+        $grid->column('created_at', __('创建时间'))->hide();
+        $grid->column('updated_at', __('更新时间'))->hide();
 
+        $grid->disableExport();
         $grid->disableColumnSelector();
+
+        $grid->perPages([10, 20, 30]);
 
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
-            $filter->like('full_name','专业全称');
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('full_name','专业全称');
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('intro','简介');
+            });
+
         });
 
         return $grid;
@@ -56,8 +67,6 @@ class ProfessionController extends AdminController
 //        $show->field('id', __('Id'));
         $show->field('full_name', __('专业全称'));
         $show->field('intro', __('简介'));
-        $show->field('created_at', __('创建时间'));
-        $show->field('updated_at', __('更新时间'));
 
         $show->panel()
             ->tools(function ($tools) {

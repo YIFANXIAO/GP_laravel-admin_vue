@@ -71,7 +71,7 @@ class StudentSquadController extends AdminController
             ->readOnly();
         $form->multipleSelect('student_id', __('学生'))
             ->rules('required')
-            ->options('/api/getStudents');
+            ->options('/api/getAllocatedStudents');
 
         $form->tools(function (Form\Tools $tools) {
             // 去掉`列表`按钮

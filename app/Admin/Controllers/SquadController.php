@@ -27,12 +27,12 @@ class SquadController extends AdminController
     {
         $grid = new Grid(new Squad());
 
-        $grid->column('id', __('ID'));
+        $grid->column('id', __('ID'))->hide();
         $grid->column('profession.full_name', __('所属专业'));
-        $grid->column('name', __('班级名称'));
-        $grid->column('info', __('备忘'));
-        $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('更新时间'));
+        $grid->column('name', __('班级名称'))->label();
+        $grid->column('info', __('备忘'))->limit(30);
+        $grid->column('created_at', __('创建时间'))->hide();
+        $grid->column('updated_at', __('更新时间'))->hide();
 
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
@@ -41,7 +41,9 @@ class SquadController extends AdminController
             $filter->like('profession.full_name','所属专业');
         });
 
+        $grid->disableExport();
         $grid->disableColumnSelector();
+        $grid->perPages([10, 20, 30]);
 
         return $grid;
     }
@@ -56,14 +58,13 @@ class SquadController extends AdminController
     {
         $show = new Show(Squad::findOrFail($id));
 
-//        $show->field('id', __('ID'));
         $show->field('name', __('班级名称'));
         $show->field('info', __('备忘'));
 
         $show->panel()
             ->tools(function ($tools) {
                 $tools->disableDelete();
-            });;
+            });
 
         $show->profession('所属专业信息', function ($profession) {
             $profession->setResource('/admin/professions');
@@ -89,7 +90,7 @@ class SquadController extends AdminController
 
             $students->filter(function ($filter) {
                 $filter->disableIdFilter();
-                $filter->like('name', '学生名称');
+                $filter->like('student.name', '学生名称');
             });
 
             $students->disableExport();

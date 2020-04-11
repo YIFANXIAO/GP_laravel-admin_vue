@@ -29,6 +29,7 @@ class CommentController extends AdminController
         $grid->column('content', __('评论内容'));
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
+
         return $grid;
     }
 

@@ -23,4 +23,9 @@ class FormulaLeft extends Model
         return $this->belongsToMany($relatedModel, $pivotTable, 'formula_id', 'cal_type_id');
     }
 
+    public function metaCals()
+    {
+        return $this->hasMany(MetaCal::class, 'formula_id', 'id');
+    }
+
 }

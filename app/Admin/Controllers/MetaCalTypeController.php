@@ -29,7 +29,7 @@ class MetaCalTypeController extends AdminController
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('计算项名称'));
         $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('更新时间'));
+        $grid->column('updated_at', __('更新时间'))->hide();
 
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
@@ -41,6 +41,8 @@ class MetaCalTypeController extends AdminController
 //        $grid->disableFilter();
         $grid->disableExport();
         $grid->disableColumnSelector();
+
+        $grid->perPages([10, 20, 30]);
 
         return $grid;
     }
@@ -55,10 +57,8 @@ class MetaCalTypeController extends AdminController
     {
         $show = new Show(MetaCalType::findOrFail($id));
 
-        $show->field('id', __('ID'));
         $show->field('name', __('计算项名称'));
         $show->field('created_at', __('创建时间'));
-        $show->field('updated_at', __('更新时间'));
 
         $show->panel()
             ->tools(function ($tools) {

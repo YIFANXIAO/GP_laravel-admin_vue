@@ -53,4 +53,9 @@ class AdminUser extends Administrator
         return $this->hasMany(TeacherCourse::class, 'teacher_id', 'id');
     }
 
+    public function fractions()
+    {
+        return $this->hasMany(Fraction::class, 'student_id', 'id');
+    }
+
 }

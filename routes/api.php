@@ -23,11 +23,13 @@ Route::any('/getReplyUser/{article}/{admin_user}', 'CommentsController@getReplyU
 Route::any('/getPComments/{article}', 'CommentsController@getPComments');
 Route::any('/getCurrentSquads/{squad_id}', 'SquadController@getCurrentSquads');
 Route::any('/getSquads', 'SquadController@getSquads');
-Route::any('/getStudents', 'AdminUserController@getStudents');
+Route::any('/getAllocatedStudents', 'AdminUserController@getAllocatedStudents');
+Route::any('/getDesignatedStudents', 'AdminUserController@getDesignatedStudents');
 Route::any('/getTeachers/{course_id}', 'AdminUserController@getTeachers');
 Route::any('/getTeachers', 'AdminUserController@getAllTeachers');
 Route::any('/getCourseTypes', 'CourseTypeController@getCourseTypes');
 Route::any('/getCurrentCourse/{course_id}', 'CourseController@getCurrentCourse');
 Route::any('/getCourses', 'CourseController@getCourses');
-Route::any('/getPFormula', 'FormulaLeftController@getPFormula');
-Route::any('/getMetaCalTypes', 'MetaCalTypeController@getMetaCalTypes');
+Route::any('/getCreatPFormula', 'FormulaLeftController@getCreatPFormula');
+Route::any('/getEditPFormula', 'FormulaLeftController@getEditPFormula');
+Route::any('/getDesignatedMetaCalTypes', 'MetaCalTypeController@getDesignatedMetaCalTypes');

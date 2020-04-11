@@ -42,4 +42,9 @@ class Course extends Model
         return $this->hasMany(FormulaLeft::class, 'course_id', 'id');
     }
 
+    public function fractions()
+    {
+        return $this->hasMany(Fraction::class, 'course_id', 'id');
+    }
+
 }

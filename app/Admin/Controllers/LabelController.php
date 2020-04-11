@@ -27,10 +27,13 @@ class LabelController extends AdminController
         $grid = new Grid(new Labels());
 
         $grid->column('id', __('ID'))->hide();
-        $grid->column('content', __('标签内容'));
+        $grid->column('content', __('标签内容'))->label();
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
 
+        //        $grid->disableCreateButton();
+//        $grid->disableFilter();
+        $grid->disableExport();
         $grid->disableColumnSelector();
 
         return $grid;
@@ -46,23 +49,22 @@ class LabelController extends AdminController
     {
         $show = new Show(Labels::findOrFail($id));
 
-        $show->field('id', __('ID'));
         $show->field('content', __('标签内容'));
-        $show->field('created_at', __('创建时间'));
-        $show->field('updated_at', __('更新时间'));
 
-        $show->articles('文章', function ($articles) {
+        $show->articles('对应文章', function ($articles) {
 
             $articles->resource('/admin/articles');
 
+            $articles->column('adminUser.name', __('创建人'));
             $articles->title('标题');
-            $articles->intro('文章简介')->limit(50);
+            $articles->intro('文章简介')->limit(20);
 
             $articles->disableCreateButton();
             $articles->disableFilter();
             $articles->disableExport();
             $articles->disableColumnSelector();
 
+            $articles->perPages([10, 20, 30]);
         });
 
         $show->panel()
@@ -82,7 +84,7 @@ class LabelController extends AdminController
     {
         $form = new Form(new Labels());
 
-        $form->text('content', __('Content'));
+        $form->text('content', __('标签内容'));
 
         $form->footer(function ($footer) {
             // 去掉`查看`checkbox

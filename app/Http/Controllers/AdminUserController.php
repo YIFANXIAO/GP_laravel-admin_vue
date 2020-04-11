@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
 {
-    public function getStudents() {
+    // 查询当前未分配班级的学生
+    public function getAllocatedStudents() {
 
         $students = DB::table('admin_users')
             ->whereIn('id', function ($query) {
@@ -22,6 +23,35 @@ class AdminUserController extends Controller
             ->whereNotIn('id', function ($query) {
                 $query->select('student_id');
                 $query->from('student_squad');
+            });
+        $students_collection = $students->get(['id', DB::raw('name as text')]);
+
+        return $students_collection;
+    }
+
+    // 查询对应课程对应的班级的对应的学生角色的用户
+    public function getDesignatedStudents(Request $request) {
+
+        $course_id = $request->get('q');
+
+        $students = DB::table('admin_users')
+            ->whereIn('id', function ($query) {
+                $query->select('user_id');
+                $query->from('admin_role_users');
+                $query->whereIn('role_id', function ($query) {
+                    $query->select('id');
+                    $query->from('admin_roles');
+                    $query->where('slug', config('admin.database.role_student'));
+                });
+            })
+            ->whereIn('id', function ($query) use ($course_id) {
+                $query->select('student_id');
+                $query->from('student_squad');
+                $query->whereIn('squad_id', function ($query) use ($course_id) {
+                    $query->select('squad_id');
+                    $query->from('squads_courses');
+                    $query->where('course_id', $course_id);
+                });
             });
         $students_collection = $students->get(['id', DB::raw('name as text')]);
 

@@ -40,15 +40,23 @@ class AdminUserController extends UserController
 //        $grid->column('squads', __('所属班级'))->pluck('name')->label();
 
         $grid->column('roles', trans('admin.roles'))->pluck('name')->label();
-        $grid->column('created_at', trans('admin.created_at'));
+        $grid->column('created_at', trans('admin.created_at'))->hide();
         $grid->column('updated_at', trans('admin.updated_at'))->hide();
+
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
-            $filter->like('username','用户名');
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('username','用户登录名');
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('name','用户名');
+            });
+
         });
 
-        $grid->perPages([10, 20, 30]);
         $grid->actions(function (Actions $actions) {
             // 指定主键数据不可删除，即administrator用户
             if ($actions->getKey() == 1) {
@@ -60,6 +68,8 @@ class AdminUserController extends UserController
             $tools->append(new ImportUsers());
         });
 
+        $grid->disableColumnSelector();
+        $grid->perPages([10, 20, 30]);
         return $grid;
     }
 
@@ -74,8 +84,7 @@ class AdminUserController extends UserController
         $userModel = config('admin.database.users_model');
         $show = new Show($userModel::findOrFail($id));
 
-        $show->field('id', 'ID');
-        $show->field('username', trans('用户名'));
+        $show->field('username', trans('用户登录名'));
         $show->field('name', trans('名称'));
 
         $show->divider();
@@ -89,8 +98,11 @@ class AdminUserController extends UserController
         $show->field('avatar', trans('用户头像'))->unescape()->as(function ($avatar) {
             return "<img src='{$avatar}' height='20%' width='20%'/>";
         });
-        $show->field('created_at', trans('admin.created_at'));
-        $show->field('updated_at', trans('admin.updated_at'));
+
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableDelete();
+            });
 
         return $show;
     }
@@ -109,7 +121,7 @@ class AdminUserController extends UserController
         $connection = config('admin.database.connection');
 
         $form = new Form(new $userModel());
-        $form->text('username', trans('用户名'))
+        $form->text('username', trans('用户登录名'))
             ->help('登陆用户名，最好是英文或数字')
             ->autofocus()
             ->creationRules(['required', "unique:{$connection}.{$userTable}"])
@@ -130,8 +142,8 @@ class AdminUserController extends UserController
         $form->image('avatar', trans('admin.avatar'));
         $form->multipleSelect('roles', trans('admin.roles'))->options($roleModel::all()->pluck('name', 'id'));
         $form->multipleSelect('permissions', trans('admin.permissions'))->options($permissionModel::all()->pluck('name', 'id'));
-        $form->display('created_at', trans('admin.created_at'));
-        $form->display('updated_at', trans('admin.updated_at'));
+        $form->hidden('created_at', trans('admin.created_at'));
+        $form->hidden('updated_at', trans('admin.updated_at'));
 
         $form->saving(function (Form $form) {
             if ($form->password && $form->model()->password != $form->password) {

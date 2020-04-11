@@ -33,23 +33,37 @@ class ArticleController extends AdminController
         $grid = new Grid(new Article());
         $grid->quickSearch('title', 'intro');
 
-        $grid->column('id', __('ID'));
-        $grid->column('adminUser.username', __('创建人'));
+        $grid->column('id', __('ID'))->hide();
+        $grid->column('adminUser.name', __('创建人'));
         $grid->column('title',__('文章标题'));
-
         $grid->column('labels', trans('文章标签'))->pluck('content')->label();
-
-        $grid->column('intro', __('文章简介'));
+        $grid->column('intro', __('文章简介'))->limit(20);
         $grid->column('banner', __('封面图'))->hide();
         $grid->column('content', __('文章内容'))->hide();
-        $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('更新时间'));
+        $grid->column('created_at', __('创建时间'))->hide();
+        $grid->column('updated_at', __('更新时间'))->hide();
 
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
-            $filter->like('adminUser.username','创建人');
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('adminUser.username','创建人');
+                $filter->like('title','文章标题');
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->like('labels','文章标签');
+                $filter->like('intro','文章简介');
+            });
         });
+
+//        $grid->disableCreateButton();
+//        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableColumnSelector();
+
+        $grid->perPages([10, 20, 30]);
 
         return $grid;
     }
@@ -64,30 +78,19 @@ class ArticleController extends AdminController
     {
         $show = new Show(Article::findOrFail($id));
 
-        $show->field('id', __('ID'));
-
         $show->field('title', __('文章标题'));
         $show->field('labels', trans('文章标签'))->as(function ($labels) {
             return $labels->pluck('content');
         })->label();
         $show->field('intro', __('文章简介'));
         $show->field('banner', __('封面图'))->image();
-//        $show->field('content', __('文章内容'));
-        $show->field('created_at', __('创建时间'));
-        $show->field('updated_at', __('更新时间'));
 
         $show->comments('评论', function ($comments) use ($id) {
-
             $comments->resource('/admin/comments');
 
             $comments->user()->name("发布用户");
             $comments->reply_user()->name("回复用户");
             $comments->content('评论内容')->limit(20);
-
-            $comments->filter(function ($filter) {
-                $filter->disableIdFilter();
-                $filter->like('content', '评论内容');
-            });
 
             $comments->disableFilter();
             $comments->disableExport();
@@ -101,7 +104,7 @@ class ArticleController extends AdminController
 
         });
 
-        $show->adminUser('创建人', function ($adminUser) {
+        $show->adminUser('创建用户', function ($adminUser) {
             $adminUser->setResource('admin/auth/users');
             $adminUser->username('创建用户');
             $adminUser->name('用户名');
