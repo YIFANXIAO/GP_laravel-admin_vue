@@ -17,8 +17,8 @@ class CreateMetaCalTable extends Migration
             $table->integer('formula_id');
             $table->integer('cal_type_id');
             $table->index(['formula_id', 'cal_type_id']);
-            $table->integer('number')->default(1);
-            $table->double('proportion')->default(0.0);
+            $table->string('number')->default('1');
+            $table->string('proportion')->default('0.0');
             $table->timestamps();
         });
     }
