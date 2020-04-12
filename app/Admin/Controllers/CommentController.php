@@ -5,16 +5,47 @@ namespace App\Admin\Controllers;
 use App\Models\AdminUser;
 use App\Models\Article;
 use App\Models\Comments;
-use Encore\Admin\Controllers\AdminController;
+use App\Http\Controllers\Controller;
+use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Facades\Admin;
+use Encore\Admin\Layout\Column;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Row;
 use Encore\Admin\Show;
+use Illuminate\Support\MessageBag;
 
-class CommentController extends AdminController
+class CommentController extends Controller
 {
 
     protected $title = '评论管理';
+
+    use ModelForm;
+
+    public function index()
+    {
+//        return Admin::content(function (Content $content) {
+//            $content->row(function (Row $row) {
+//                $row->column(8, function (Column $column) {
+//                    $column->row(Comments::tree(function ($tree) {
+//                        $tree->branch(function ($branch) {
+//                            $content =  $branch['content'] ;
+//                            return "$content";
+//                        });
+//                    }));
+//                    $column->row(Comments::tree(function ($tree) {
+//                        $tree->branch(function ($branch) {
+//                            $content =  $branch['content'] ;
+//                            return "$content";
+//                        });
+//                    }));
+//                });
+//            });
+//
+//
+//        });
+    }
 
     protected function grid()
     {
@@ -23,7 +54,7 @@ class CommentController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('article.title', __('所属文章'));
         $grid->column('user.name', __('评论用户'));
-        $grid->column('reply_user.name', __('回复用户'));
+        $grid->column('reply_comment.content', __('回复评论'));
         $grid->column('pid', __('Pid'))->hide();
         $grid->column('level', __('Level'))->hide();
         $grid->column('content', __('评论内容'));
@@ -43,10 +74,10 @@ class CommentController extends AdminController
     {
         $show = new Show(Comments::findOrFail($id));
 
-        $show->field('id', __('Id'));
+        $show->field('id', __('ID'));
         $show->field('article_id', __('Article id'));
         $show->field('user_id', __('User id'));
-        $show->field('reply_user_id', __('Reply user id'));
+        $show->field('reply_comment_id', __('Reply user id'));
         $show->field('pid', __('Pid'));
         $show->field('level', __('Level'));
         $show->field('content', __('Content'));
@@ -66,37 +97,13 @@ class CommentController extends AdminController
     {
         $form = new Form(new Comments());
 
-        $belong_article_id = \request()->get('article_id');
-        $login_user_id = Admin::user()->getAuthIdentifier();
+        $article_id = \request()->get('article_id');
 
-        $form->select('article_id', '评论文章')
-                ->options(Article::all()->pluck('title', 'id'))
-                ->default($belong_article_id)
-                ->readOnly();
-        $form->select('user_id', __('评论用户'))
-                ->default(Admin::user()->getAuthIdentifier())
-                ->readonly()
-                ->options(AdminUser::where('id', Admin::user()->getAuthIdentifier())->pluck('name', 'id'));
-
-        $level = [
-            1 => '评论文章',
-            2 => '回复用户',
-        ];
-
-        $form->select('level', __('评论类型'))
-            ->rules('required')
-            ->options($level)
-            ->loads(['pid', 'reply_user_id'], ['/api/getPComments/'.$belong_article_id, '/api/getReplyUser/'.$belong_article_id.'/'.$login_user_id]);
-
-        $form->select('reply_user_id', __('回复用户'))
-            ->rules('required')
-            ->default(-1)
-            ->help("类型为回复文章时，选择默认用户");
-
-        $form->select('pid', __('评论父节点'))
-            ->rules('required')
-            ->default(-1)
-            ->help("类型为回复文章时，选择默认父节点");
+        $form->hidden('article_id', '评论文章')->default($article_id);
+        $form->hidden('user_id', __('评论用户'));
+        $form->hidden('level', __('评论类型'));
+        $form->hidden('reply_comment_id', __('回复用户'));
+        $form->hidden('pid', __('评论父节点'));
 
         $form->textarea('content', __('评论内容'))
             ->rules('required');
@@ -120,9 +127,16 @@ class CommentController extends AdminController
 
         });
 
-        $form->saved(function (Form $form) {
+        $form->submitted(function (Form $form) {
+            $form->user_id = Admin::user()->getAuthIdentifier();
+            $form->level = 1;
+            $form->reply_comment_id = 0;
+            $form->pid = 0;
+        });
+
+        $form->saved(function (Form $form) use ($article_id) {
             // 跳转页面
-            return redirect('/admin/articles/'.\request()->get('article_id'));
+            return redirect('/admin/articles/'.$article_id);
         });
 
         return $form;

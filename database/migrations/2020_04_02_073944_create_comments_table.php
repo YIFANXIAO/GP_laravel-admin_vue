@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('article_id');
             $table->integer('user_id');
-            $table->integer('reply_user_id');
+            $table->integer('reply_comment_id');
             $table->integer('pid')->default(0);
             $table->integer('level')->default(1);
             $table->text('content')->nullable();

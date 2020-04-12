@@ -146,8 +146,17 @@ class AdminPermissionController extends PermissionController
             ->help(trans('admin.all_methods_if_empty'));
         $form->textarea('http_path', trans('admin.http.path'));
 
-        $form->display('created_at', trans('admin.created_at'));
-        $form->display('updated_at', trans('admin.updated_at'));
+        $form->hidden('created_at', trans('admin.created_at'));
+        $form->hidden('updated_at', trans('admin.updated_at'));
+
+        $form->footer(function ($footer) {
+            // 去掉`查看`checkbox
+            $footer->disableViewCheck();
+            // 去掉`继续编辑`checkbox
+            $footer->disableEditingCheck();
+            // 去掉`继续创建`checkbox
+            $footer->disableCreatingCheck();
+        });
 
         return $form;
     }
