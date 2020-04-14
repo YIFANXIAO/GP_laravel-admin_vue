@@ -109882,7 +109882,7 @@ var render = function() {
                   _c("img", {
                     attrs: {
                       src:
-                        "http://admin.vue.xiao.com//uploads/images/d10fb8d673e04c2bfdce01955c59bd47.png",
+                        "http://127.0.0.1:8000/uploads/images/d10fb8d673e04c2bfdce01955c59bd47.png",
                       height: "240",
                       width: "292",
                       alt: "网络图片"

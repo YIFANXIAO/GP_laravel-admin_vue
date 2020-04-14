@@ -30,6 +30,7 @@ Route::group([
     $router->resource('fractions', FractionController::class);
     $router->resource('meta-cals', MetaCalController::class);
     $router->resource('meta-cal-types', MetaCalTypeController::class);
+    $router->resource('users', UserController::class);
 
 
 });

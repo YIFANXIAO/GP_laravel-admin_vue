@@ -3,7 +3,7 @@
         <el-row v-for="article in articles">
             <el-col :span="8">
                 <div class="grid-content-article-list bg-article-list">
-                    <img src="http://admin.vue.xiao.com//uploads/images/d10fb8d673e04c2bfdce01955c59bd47.png" height="240" width="292" alt="网络图片" />
+                    <img src="http://127.0.0.1:8000/uploads/images/d10fb8d673e04c2bfdce01955c59bd47.png" height="240" width="292" alt="网络图片" />
                 </div>
             </el-col>
             <el-col :span="16">
