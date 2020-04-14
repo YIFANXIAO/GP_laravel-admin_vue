@@ -2,8 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Comments\replyComment;
 use App\Models\Profession;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -26,14 +28,51 @@ class ProfessionController extends AdminController
     {
         $grid = new Grid(new Profession());
 
+
+
+        // 当前登陆角色非超管和教师，限制显示的数据，只显示当前用户发布的
+        if( !Admin::user()->isRole('teacher ') && !Admin::user()->isAdministrator()) {
+            $grid->model()
+                ->whereIn('id', function ($query) {
+                    $query->select('profession_id');
+                    $query->from('squad');
+                    $query->whereIn('id', function ($query) {
+                        $query->select('squad_id');
+                        $query->from('student_squad');
+                        $query->where('student_id', Admin::user()->id);
+                    });
+                });
+        }
+
         $grid->column('id', __('ID'))->hide();
         $grid->column('full_name', __('专业全称'));
         $grid->column('intro', __('简介'));
         $grid->column('created_at', __('创建时间'))->hide();
         $grid->column('updated_at', __('更新时间'))->hide();
 
+        if (!Admin::user()->can('professions.createBtn')) {
+            $grid->disableCreateButton();
+        }
         $grid->disableExport();
         $grid->disableColumnSelector();
+
+        $grid->batchActions(function ($batch) {
+            if(!Admin::user()->can('professions.deleteBtn')) {
+                $batch->disableDelete();
+            }
+        });
+
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            if(!Admin::user()->can('professions.viewBtn')) {
+                $actions->disableEdit();
+            }
+            if(!Admin::user()->can('professions.editBtn')) {
+                $actions->disableView();
+            }
+            if(!Admin::user()->can('professions.deleteBtn')) {
+                $actions->disableDelete();
+            }
+        });
 
         $grid->perPages([10, 20, 30]);
 

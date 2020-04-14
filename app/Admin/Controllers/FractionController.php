@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Fractions\ImportFractions;
 use App\Models\Fraction;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -28,6 +29,11 @@ class FractionController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Fraction());
+
+        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+            $grid->model()
+                ->where('student_id', Admin::user()->id);
+        }
 
         $grid->column('id', __('ID'))->hide();
         $grid->column('student.name', __('学生名称'));
@@ -54,8 +60,32 @@ class FractionController extends AdminController
 
         });
 
+        if (!Admin::user()->can('fraction.createBtn')) {
+            $grid->disableCreateButton();
+        }
+
+        $grid->batchActions(function ($batch) {
+            if(!Admin::user()->can('fraction.deleteBtn')) {
+                $batch->disableDelete();
+            }
+        });
+
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            if(!Admin::user()->can('fraction.viewBtn ')) {
+                $actions->disableView();
+            }
+            if(!Admin::user()->can('fraction.editBtn')) {
+                $actions->disableEdit();
+            }
+            if(!Admin::user()->can('fraction.deleteBtn')) {
+                $actions->disableDelete();
+            }
+        });
+
         $grid->tools(function (Grid\Tools $tools) {
-            $tools->append(new ImportFractions());
+            if(Admin::user()->can('fraction.importBtn')) {
+                $tools->append(new ImportFractions());
+            }
         });
 
         $grid->disableExport();
@@ -75,9 +105,8 @@ class FractionController extends AdminController
     {
         $show = new Show(Fraction::findOrFail($id));
 
-        $show->field('cal_type_id', __('Cal type id'));
-        $show->field('order', __('Order'));
-        $show->field('fraction', __('Fraction'));
+        $show->field('fraction', __('成绩'));
+        $show->field('order', __('次序'));
 
         $show->metaCalType('分数类型', function ($metaCalType){
 

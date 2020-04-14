@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Course;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -26,6 +27,19 @@ class CourseController extends AdminController
     {
         $grid = new Grid(new Course());
 
+        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+            $grid->model()
+                ->whereIn('id', function ($query) {
+                    $query->select('course_id');
+                    $query->from('squads_courses');
+                    $query->whereIn('squad_id', function ($query) {
+                        $query->select('squad_id');
+                        $query->from('student_squad');
+                        $query->where('student_id', Admin::user()->id);
+                    });
+                });
+        }
+
         $grid->column('id', __('Id'))->hide();
         $grid->column('full_name', __('课程全称'));
         $grid->column('attribute', __('属性'));
@@ -38,6 +52,28 @@ class CourseController extends AdminController
         $grid->column('Schedule_image', __('课程表'))->hide();
         $grid->column('created_at', __('创建日期'))->hide();
         $grid->column('updated_at', __('更新日期'))->hide();
+
+        if (!Admin::user()->can('course.createBtn')) {
+            $grid->disableCreateButton();
+        }
+
+        $grid->batchActions(function ($batch) {
+            if(!Admin::user()->can('course.deleteBtn')) {
+                $batch->disableDelete();
+            }
+        });
+
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            if(!Admin::user()->can('course.viewBtn')) {
+                $actions->disableView();
+            }
+            if(!Admin::user()->can('course.editBtn')) {
+                $actions->disableEdit();
+            }
+            if(!Admin::user()->can('course.deleteBtn')) {
+                $actions->disableDelete();
+            }
+        });
 
         $grid->filter(function ($filter) {
             // 去掉默认的id过滤器
@@ -136,6 +172,9 @@ class CourseController extends AdminController
 
         $show->panel()
             ->tools(function ($tools) {
+                if(!Admin::user()->can('course.editBtn')) {
+                    $tools->disableEdit();
+                }
                 $tools->disableDelete();
             });
 
