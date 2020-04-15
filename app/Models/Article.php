@@ -11,6 +11,19 @@ class Article extends Model
 
     public $primaryKey = 'id';
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($model) {
+            // 删除文章、标签绑定关系
+            ArticlesLabels::where('article_id', $model->id)->delete();
+
+            // 删除文章对应的所有评论
+            Comments::where('article_id', $model->id)->delete();
+        });
+    }
+
     public function adminUser()
     {
         return $this->belongsTo(AdminUser::class, 'user_id','id');

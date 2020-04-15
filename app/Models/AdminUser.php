@@ -4,8 +4,10 @@ namespace App\Models;
 
 
 use App\Model\ArticleDetail;
+use App\User;
 use Encore\Admin\Auth\Database\Administrator;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class AdminUser extends Administrator
 {
@@ -14,6 +16,28 @@ class AdminUser extends Administrator
     public $fillable = [
         'id','username','password','name','avatar','remember_token','created_at','updated_at',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($model) {
+
+            // 删除学生对应的分数
+            DB::table('fraction')
+                ->where('student_id',  $model->id)
+                ->delete();
+
+            // 删除学生、班级绑定关系
+            DB::table('student_squad')
+                ->where('student_id', $model->id)
+                ->delete();
+
+            // 删除对应前台用户
+            User::where('email', $model->username)->delete();
+
+        });
+    }
 
     public function articles()
     {

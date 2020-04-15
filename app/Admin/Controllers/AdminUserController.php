@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\AdminUser\ImportUsers;
+use App\Models\AdminUser;
 use Encore\Admin\Controllers\UserController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -31,8 +32,8 @@ class AdminUserController extends UserController
     protected function grid()
     {
 
-        $userModel = config('admin.database.users_model');
-        $grid = new Grid(new $userModel());
+//        $userModel = config('admin.database.users_model');
+        $grid = new Grid(new AdminUser());
         $grid->column('id', 'ID')->sortable()->hide();
         $grid->column('username', trans('用户登录标识'))->help('用户登录名，最好是英文或数字');
         $grid->column('name', trans('用户名称'))->help('用于展示的用户名称，随意')->copyable();
@@ -81,8 +82,8 @@ class AdminUserController extends UserController
      */
     protected function detail($id)
     {
-        $userModel = config('admin.database.users_model');
-        $show = new Show($userModel::findOrFail($id));
+//        $userModel = config('admin.database.users_model');
+        $show = new Show(AdminUser::findOrFail($id));
 
         $show->field('username', trans('用户登录名'));
         $show->field('name', trans('名称'));
@@ -114,13 +115,13 @@ class AdminUserController extends UserController
      */
     public function form()
     {
-        $userModel = config('admin.database.users_model');
+//        $userModel = config('admin.database.users_model');
         $permissionModel = config('admin.database.permissions_model');
         $roleModel = config('admin.database.roles_model');
         $userTable = config('admin.database.users_table');
         $connection = config('admin.database.connection');
 
-        $form = new Form(new $userModel());
+        $form = new Form(new AdminUser());
         $form->text('username', trans('用户登录名'))
             ->help('登陆用户名，最好是英文或数字')
             ->autofocus()

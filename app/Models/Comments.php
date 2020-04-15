@@ -5,6 +5,7 @@ namespace App\Models;
 use Encore\Admin\Traits\AdminBuilder;
 use Encore\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Comments extends Model
 {
@@ -12,6 +13,20 @@ class Comments extends Model
     use ModelTree, AdminBuilder;
 
     protected $table = 'comments';
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($model) {
+
+            // 根据情况、删除该评论的子评论
+            DB::table('comments')
+                ->where('pid', $model->id)
+                ->delete();
+
+        });
+    }
 
     public function __construct(array $attributes = [])
     {
