@@ -23,13 +23,13 @@
             </el-col>
         </el-row>
 
-        <el-pagination
-                background
-                :page-size="1"
-                :pager-count="11"
-                layout="prev, pager, next">
-                :total=this.articles.length>
-        </el-pagination>
+<!--        <el-pagination-->
+<!--                background-->
+<!--                :page-size="1"-->
+<!--                :pager-count="11"-->
+<!--                layout="prev, pager, next">-->
+<!--                :total=this.articles.length>-->
+<!--        </el-pagination>-->
 <!--        <div class="block">-->
 <!--&lt;!&ndash;            <span class="demonstration">页数较少时的效果</span>&ndash;&gt;-->
 <!--            -->
