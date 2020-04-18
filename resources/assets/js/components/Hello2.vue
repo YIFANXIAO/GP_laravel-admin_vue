@@ -121,7 +121,7 @@
 
 <script>
 
-    import { getTestList, getArticleList } from '../api/test'
+    import { getTestList, getArticleList } from '../api/front_all'
     import marked from 'marked'
 
     export default {

@@ -10,7 +10,8 @@
                 </el-col>
                 {{--  添加每页的个性化内容  --}}
                 <el-col :span="18">
-                    <article-list></article-list>
+                {{--  添加一些图表作为首页内容  --}}
+
                 </el-col>
             </el-row>
         </div>

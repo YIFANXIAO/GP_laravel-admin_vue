@@ -17,8 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// laravel-admin后台使用的select框的调用函数路由
+// 前台查询路由
+
+//Route::middleware('auth:api')->post('/getSquadByUser', 'SquadController@getSquadByUser');
+
 Route::any('/getArticleList', 'ArticleController@getArticleList');
+Route::any('/getSquadByUser', 'SquadController@getSquadByUser');
+
+
+// laravel-admin后台使用的select框的调用函数路由
 Route::any('/getReplyUser/{article}/{admin_user}', 'CommentsController@getReplyUser');
 Route::any('/getPComments/{article}', 'CommentsController@getPComments');
 Route::any('/getCurrentSquads/{squad_id}', 'SquadController@getCurrentSquads');

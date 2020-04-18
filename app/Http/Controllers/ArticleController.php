@@ -18,10 +18,18 @@ class ArticleController extends Controller
 //        $this->middleware('auth');
         $this->objTest = new Article();
     }
+
+    // 返回文章列表界面
+    public function getArticlesView()
+    {
+        return view('articles');
+    }
+
     public function getArticleList()
     {
-        return $articles = DB::table('article')->simplePaginate(1);
+//        return $articles = DB::table('article')->first();
+//            ->simplePaginate(1);
 
-//        return $this->objTest->getInfo();
+        return $this->objTest->getInfo();
     }
 }

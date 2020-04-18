@@ -21,7 +21,6 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/articles', 'ArticleController@getArticlesView');
+Route::get('/squads', 'SquadController@getSquadsView');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

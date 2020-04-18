@@ -4,25 +4,25 @@
             <el-menu-item index="1">
                 <i class="el-icon-s-data"></i>
                 <span slot="title">
-                    <a style="color:#606266; text-decoration: none" href="http://127.0.0.1:8000/">首页</a>
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/home'">首页</a>
                 </span>
             </el-menu-item>
             <el-menu-item index="2">
                 <i class="el-icon-reading"></i>
                 <span slot="title">
-                    <a style="color:#606266; text-decoration: none" href="http://127.0.0.1:8000/">博文随笔</a>
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/articles'">博文随笔</a>
                 </span>
             </el-menu-item>
             <el-menu-item index="3">
-                <i class="el-icon-s-custom"></i>
+                <i class="el-icon-s-order"></i>
                 <span slot="title">
-                    <a style="color:#606266; text-decoration: none" href="http://127.0.0.1:8000/">班级信息</a>
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/home'">课程信息</a>
                 </span>
             </el-menu-item>
             <el-menu-item index="4">
-                <i class="el-icon-s-order"></i>
+                <i class="el-icon-s-custom"></i>
                 <span slot="title">
-                    <a style="color:#606266; text-decoration: none" href="http://127.0.0.1:8000/">课程信息</a>
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/squads'">班级信息</a>
                 </span>
             </el-menu-item>
         </el-menu>
@@ -43,6 +43,7 @@
         data() {
             return {
                 isCollapse: false,
+                baseHttpUrl : this.COMMON.httpUrl
             }
         },
 

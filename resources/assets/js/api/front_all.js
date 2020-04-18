@@ -14,3 +14,10 @@ export function getArticleList() {
     const params = {}; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function getSquadByUser() {
+    // 使用
+    const TMPURL = '/getSquadByUser'; // url地址
+    const params = {}; // 参数
+    return fetch.post(TMPURL, params);
+}
