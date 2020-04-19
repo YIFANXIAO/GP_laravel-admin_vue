@@ -20,7 +20,8 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/articles', 'ArticleController@getArticlesView');
-Route::get('/squads', 'SquadController@getSquadsView');
+Route::get('/home', 'front\HomeController@index')->name('home');
+Route::get('/articles', 'front\ArticleController@getArticlesView');
+Route::get('/squads', 'front\SquadController@getSquadsView');
+Route::get('/personal_access_tokens', 'front\PersonalAccessTokensController@index');
 

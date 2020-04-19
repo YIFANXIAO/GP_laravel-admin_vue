@@ -10,10 +10,11 @@
         "encore/laravel-admin": "^1.7",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
+        "laravel/passport": "~4.0",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "^3.1",
-        "sharemant/laravel-admin-ext-editormd": "^1.0",
-      "ext-http": "*"
+        "paragonie/random_compat": "2.*",
+        "sharemant/laravel-admin-ext-editormd": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

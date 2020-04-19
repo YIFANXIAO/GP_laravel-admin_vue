@@ -19,11 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // 前台查询路由
 
-//Route::middleware('auth:api')->post('/getSquadByUser', 'SquadController@getSquadByUser');
-
-Route::any('/getArticleList', 'ArticleController@getArticleList');
-Route::any('/getSquadByUser', 'SquadController@getSquadByUser');
-
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('/getSquadByUser', 'front\SquadController@getSquadByUser');
+    Route::post('/getArticleList', 'front\ArticleController@getArticleList');
+});
 
 // laravel-admin后台使用的select框的调用函数路由
 Route::any('/getReplyUser/{article}/{admin_user}', 'CommentsController@getReplyUser');

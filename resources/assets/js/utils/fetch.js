@@ -15,7 +15,7 @@ httpService.interceptors.request.use(
         // 根据条件加入token-安全携带
         if (true) { // 需自定义
             // 让每个请求携带token
-            config.headers['User-Token'] = '';
+            config.headers['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZmOGFhNjkxNGZiMTZkODcyN2IzMWQ4YjYzZjE1ZGViZjc3ZjlhNTI1NTAzZjczZmViNzA5NDE5NjAxMzQzMzNmMWFkY2Q2Y2IwZTk0ZTgxIn0.eyJhdWQiOiIxIiwianRpIjoiNmY4YWE2OTE0ZmIxNmQ4NzI3YjMxZDhiNjNmMTVkZWJmNzdmOWE1MjU1MDNmNzNmZWI3MDk0MTk2MDEzNDMzM2YxYWRjZDZjYjBlOTRlODEiLCJpYXQiOjE1ODcyNjQyODAsIm5iZiI6MTU4NzI2NDI4MCwiZXhwIjoxNjE4ODAwMjgwLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.ix2LcKZAs7SpHnMFRtvR_TLqhMnA-xWriwmdyo6T9jxVB3MthHReSYxkWIu6V13pttceVN7-9akjicr-xbwJfIGjlVwKx6w14n_Ptmflrp1EgoQWQe_NO8hTVp4XURBoU-OC7GpXUKio8bsJZs_usZT3Bvde3g8XrvK7GZbOo1ut8b6w-Wj_NywB1SAYmfx5TMsAei44C3injfz7hsipvcET3SX1ItiyknZSWAck5CRKfgHevqfz4wMjFVkQ6Qf5QcLEwM1CcT_DW2O89Khphtzwu3NK3Q5lp_ezBSk2QYCzsK7w7QiNeUpdjcGTmWqBkgozuUvtw6Y3U9NqA4OKM9BQYB-ZxVKQeXcu9T7dIm9wwEf1Yu0kXFDTppZZVkCxVcYEik91WJxt1q_nDTMhfmbO5KXS3rCL9sbPB-DMzkp2IgL9EeLaz2DSsq_00rOm0pa6P8zXmfUwKGdioS-9ZQlEbjPD25uT9YcFbpjDgtjbwDzHEAkSfedyG3eaEfiFD_VRX3UiNHkoBSGKbPnpsBlR9qSpsWEI0ealzElZySgL6-fZCUBzO0bUQeCM-9r35q6qYVpdJud3GlQlwsb-wbTu3k4ZC26F03ew4uBGLd5kETy2eSCffR7M-VnXdjoT7e60aNdMRUqqw09tfETO13ytr_Rlz72UBFqhxcSLX_Y';
         }
         return config;
     },
