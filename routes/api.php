@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // 前台查询路由
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('/getSquadByUser', 'front\SquadController@getSquadByUser');
+    Route::post('/front/getSquadByUser', 'front\SquadController@getSquadByUser');
     Route::post('/getArticleList', 'front\ArticleController@getArticleList');
 });
 

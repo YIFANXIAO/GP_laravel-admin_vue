@@ -107,12 +107,17 @@ class UserController extends AdminController
         $form = new Form(new User());
 
         $form->text('name', __('姓名'));
-        $form->text('email', __('学号'))->readonly();
+
+        if ($form->isCreating()) {
+            $form->text('email', __('学号'));
+        }else {
+            $form->text('email', __('学号'))->readonly();
+        };
         $form->password('password', __('新密码'));
         $form->hidden('remember_token', __('Remember token'));
 
-        $form->submitted(function (Form $form) {
-            $form->password = Hash::make($form->model()->password);
+        $form->saving(function (Form $form) {
+            $form->password = password_hash($form->password, PASSWORD_BCRYPT);
         });
 
         $form->tools(function (Form\Tools $tools) {

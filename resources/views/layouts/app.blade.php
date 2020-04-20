@@ -72,6 +72,8 @@
             </div>
         </nav>
 
+        <div id="access-token">
+        </div>
         @yield('content')
     </div>
 
