@@ -60,7 +60,9 @@ class SquadController extends Controller
 
         if ($student != null) {
             $squads = DB::table('squad')
-                ->whereIn('id', function ($query) {
+                ->leftJoin('professions', 'squad.profession_id', '=', 'professions.id')
+                ->select('squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
+                ->whereIn('squad.id', function ($query) {
                     $query->select('squad_id');
                     $query->from('student_squad');
                     $query->whereIn('student_id', function ($query) {
@@ -76,6 +78,8 @@ class SquadController extends Controller
                 ->get();
         }else if ($teacher != null) {
             $squads = DB::table('squad')
+                ->leftJoin('professions', 'squad.profession_id', '=', 'professions.id')
+                ->select('squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
                 ->get();
         }else{
             $squads = null;
@@ -113,7 +117,10 @@ class SquadController extends Controller
         $squad_id = $request->get("squad_id");
 
         $students = DB::table('admin_users')
-            ->whereIn('id', function ($query) use ($squad_id) {
+            ->leftJoin('student_squad', 'admin_users.id', '=', 'student_squad.student_id')
+            ->leftJoin('squad', 'student_squad.squad_id', '=', 'squad.id')
+            ->select('admin_users.name', 'admin_users.username', 'admin_users.created_at', 'squad.name as squad_name')
+            ->whereIn('admin_users.id', function ($query) use ($squad_id) {
                 $query->select('student_id');
                 $query->from('student_squad');
                 $query->where('squad_id', $squad_id);

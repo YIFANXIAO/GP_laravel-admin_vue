@@ -107713,7 +107713,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107725,8 +107725,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_front_all__ = __webpack_require__(17);
-//
-//
 //
 //
 //
@@ -107787,12 +107785,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 console.log(err);
             });
-        },
-        squadDetailView: function squadDetailView(index, rows) {
-            return redirect('/articles');
-            // redirect: '/articles';
-            // rows[index].id;
-            // rows.splice(index, 1);
         }
     }
 
@@ -107814,11 +107806,15 @@ var render = function() {
     },
     [
       _c("el-table-column", {
-        attrs: { prop: "name", label: "班级名称", width: "210" }
+        attrs: { prop: "profession_name", label: "专业名称", width: "170" }
       }),
       _vm._v(" "),
       _c("el-table-column", {
-        attrs: { prop: "info", label: "班级介绍", width: "210" }
+        attrs: { prop: "name", label: "班级名称", width: "170" }
+      }),
+      _vm._v(" "),
+      _c("el-table-column", {
+        attrs: { prop: "info", label: "班级介绍", width: "170" }
       }),
       _vm._v(" "),
       _c("el-table-column", {
@@ -107826,7 +107822,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("el-table-column", {
-        attrs: { fixed: "right", label: "操作", width: "120" },
+        attrs: { fixed: "right", label: "操作", width: "100" },
         scopedSlots: _vm._u([
           {
             key: "default",
@@ -108013,6 +108009,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -108140,6 +108141,10 @@ var render = function() {
           attrs: { data: _vm.students, height: "300", border: "" }
         },
         [
+          _c("el-table-column", {
+            attrs: { prop: "squad_name", label: "班级", width: "180" }
+          }),
+          _vm._v(" "),
           _c("el-table-column", {
             attrs: { prop: "name", label: "姓名", width: "180" }
           }),
