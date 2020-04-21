@@ -13,6 +13,7 @@ import ArticleList from "./components/ArticleList";
 import common from "./components/common";
 import SquadList from "./components/SquadList";
 import SquadDetail from "./components/SquadDetail";
+import CourseList from "./components/CourseList";
 
 Vue.prototype.COMMON = common;
 
@@ -62,6 +63,11 @@ Vue.component('squad-detail', {
     props: ['squad_id'],
     template: '<SquadDetail/>',
     components: { SquadDetail }
+});
+
+Vue.component('course-list', {
+    template: '<CourseList/>',
+    components: { CourseList }
 });
 
 new Vue({

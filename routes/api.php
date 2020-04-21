@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/front/getSquadInfo', 'front\SquadController@getSquadInfo');
     Route::post('/front/getProfessionInfo', 'front\SquadController@getProfessionInfo');
     Route::post('/front/getSquadStudents', 'front\SquadController@getSquadStudents');
+    Route::post('/front/getCoursesInfoByUser', 'front\CourseController@getCoursesInfoByUser');
 });
 
 // laravel-admin后台使用的select框的调用函数路由

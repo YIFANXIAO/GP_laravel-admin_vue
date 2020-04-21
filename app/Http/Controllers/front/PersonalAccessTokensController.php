@@ -5,7 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PersonalAccessTokensController extends Controller
+class PersonalAccessTokensController extends BaseController
 {
     public function __construct()
     {

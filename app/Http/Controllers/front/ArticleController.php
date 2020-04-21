@@ -7,7 +7,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
     /**
      * @var test

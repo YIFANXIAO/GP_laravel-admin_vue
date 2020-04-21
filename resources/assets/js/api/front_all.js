@@ -36,3 +36,9 @@ export function getSquadStudents(squad_id) {
     const params = { squad_id }; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function getCoursesInfoByUser() {
+    const TMPURL = '/front/getCoursesInfoByUser'; // url地址
+    const params = { }; // 参数
+    return fetch.post(TMPURL, params);
+}
