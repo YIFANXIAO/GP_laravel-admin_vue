@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\AdminUser\ImportTeachers;
 use App\Admin\Actions\AdminUser\ImportUsers;
 use App\Models\AdminUser;
 use Encore\Admin\Controllers\UserController;
@@ -67,6 +68,7 @@ class AdminUserController extends UserController
 
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append(new ImportUsers());
+            $tools->append(new ImportTeachers());
         });
 
         $grid->disableColumnSelector();

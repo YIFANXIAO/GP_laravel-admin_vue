@@ -8,14 +8,14 @@ use App\Imports\StudentSquadImport;
 use App\Imports\UsersImport;
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
-class ImportUsers extends Action
+class ImportTeachers extends Action
 {
-    public $name = '导入学生用户';
+    public $name = '导入教师用户';
 
-    protected $selector = '.import-users';
+    protected $selector = '.import-teachers';
 
     public function handle(Request $request)
     {
@@ -26,26 +26,21 @@ class ImportUsers extends Action
             try {
                 Excel::import(new AdminUsersImport, $file);
             } catch (\Exception $e) {
-                return $this->response()->error('导入后台学生用户信息错误：'.$e->getMessage());
+                return $this->response()->error('导入后台教师用户信息错误：'.$e->getMessage());
             }
             try {
                 Excel::import(new UsersImport(), $file);
             } catch (\Exception $e) {
-                return $this->response()->error('导入前台学生用户信息错误：'.$e->getMessage());
+                return $this->response()->error('导入前台教师用户信息错误：'.$e->getMessage());
             }
             try {
                 Excel::import(new AdminRoleUserImport(), $file);
             } catch (\Exception $e) {
-                return $this->response()->error('导入学生用户与角色绑定信息错误：'.$e->getMessage());
-            }
-            try {
-                Excel::import(new StudentSquadImport(), $file);
-            } catch (\Exception $e) {
-                return $this->response()->error('导入学生与班级绑定信息出错：'.$e->getMessage());
+                return $this->response()->error('导入教师用户与角色绑定信息错误：'.$e->getMessage());
             }
         });
 
-        return $this->response()->topRight()->success('导入学生用户信息成功')->timeout(1000)->refresh();
+        return $this->response()->topRight()->success('导入教师用户信息成功')->timeout(1000)->refresh();
     }
 
     public function form()
@@ -56,7 +51,7 @@ class ImportUsers extends Action
     public function html()
     {
         return <<<HTML
-        <a class="btn btn-sm btn-default import-users">导入学生用户</a>
+        <a class="btn btn-sm btn-default import-teachers">导入教师用户</a>
 HTML;
     }
 }
