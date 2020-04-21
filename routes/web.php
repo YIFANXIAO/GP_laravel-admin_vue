@@ -24,4 +24,5 @@ Route::get('/home', 'front\HomeController@index')->name('home');
 Route::get('/articles', 'front\ArticleController@getArticlesView');
 Route::get('/squads', 'front\SquadController@getSquadsView');
 Route::get('/personal_access_tokens', 'front\PersonalAccessTokensController@index');
+Route::get('/squad_detail/{id}', 'front\SquadController@getSquadDetailView');
 

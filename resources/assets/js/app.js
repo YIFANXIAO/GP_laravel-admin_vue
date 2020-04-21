@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar";
 import ArticleList from "./components/ArticleList";
 import common from "./components/common";
 import SquadList from "./components/SquadList";
+import SquadDetail from "./components/SquadDetail";
 
 Vue.prototype.COMMON = common;
 
@@ -55,6 +56,12 @@ Vue.component('article-row', {
 Vue.component('squad-list', {
     template: '<SquadList/>',
     components: { SquadList }
+});
+
+Vue.component('squad-detail', {
+    props: ['squad_id'],
+    template: '<SquadDetail/>',
+    components: { SquadDetail }
 });
 
 new Vue({

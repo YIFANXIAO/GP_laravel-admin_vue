@@ -16,7 +16,13 @@ class SquadController extends Controller
 
     public function getSquadsView()
     {
-        return view("squad");
+        return view("squads");
+    }
+
+    public function getSquadDetailView($id)
+    {
+
+        return view("squad_detail", ['id' => $id]);
     }
 
     public function getSquadByUser(Request $request) {
@@ -76,5 +82,43 @@ class SquadController extends Controller
         }
 
         return $squads;
+    }
+
+    public function getSquadInfo(Request $request) {
+
+        $squad_id = $request->get("squad_id");
+
+        $squad = DB::table('squad')
+            ->where('id', $squad_id)
+            ->get();
+        return $squad;
+    }
+
+    public function getProfessionInfo(Request $request) {
+
+        $squad_id = $request->get("squad_id");
+
+        $profession = DB::table('professions')
+            ->whereIn('id', function ($query) use ($squad_id) {
+                $query->select('profession_id');
+                $query->from('squad');
+                $query->where('id', $squad_id);
+            })
+            ->get();
+        return $profession;
+    }
+
+    public function getSquadStudents(Request $request) {
+
+        $squad_id = $request->get("squad_id");
+
+        $students = DB::table('admin_users')
+            ->whereIn('id', function ($query) use ($squad_id) {
+                $query->select('student_id');
+                $query->from('student_squad');
+                $query->where('squad_id', $squad_id);
+            })
+            ->get();
+        return $students;
     }
 }
