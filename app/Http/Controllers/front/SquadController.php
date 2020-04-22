@@ -24,23 +24,45 @@ class SquadController extends BaseController
         return view("squad_detail", ['id' => $id]);
     }
 
-    public function getSquadByUser() {
+    public function getSquadByUser(Request $request) {
+
+        $squadPageData = $request->get("squadPageData");
+
+        $perPage = array_get($squadPageData, 'row');
+        $columns = ['*'];
+        $pageName = 'page';
+        $currentPage = array_get($squadPageData, 'page');
+
+        $squad_name = array_get($squadPageData, 'squad_name');
+        $profession_name = array_get($squadPageData, 'profession_name');
 
         if (self::isStudent()) {
             $squads = DB::table('squad')
                 ->leftJoin('professions', 'squad.profession_id', '=', 'professions.id')
-                ->select('squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
+                ->select('squad.id', 'squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
                 ->whereIn('squad.id', function ($query) {
                     $query->select('squad_id');
                     $query->from('student_squad');
                     $query->whereIn('student_id', $this->getAdminIdByUserId()->id);
                 })
-                ->get();
+                ->when(($squad_name != null && $squad_name != ''), function ($query) use ($squad_name) {
+                    return $query->where('squad.name', 'like', "%{$squad_name}%");
+                })
+                ->when(($profession_name != null && $profession_name != ''), function ($query) use ($profession_name) {
+                    return $query->where('professions.full_name', 'like', "%{$profession_name}%");
+                })
+                ->paginate($perPage, $columns, $pageName, $currentPage);
         }else if (self::isTeacher()) {
             $squads = DB::table('squad')
                 ->leftJoin('professions', 'squad.profession_id', '=', 'professions.id')
-                ->select('squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
-                ->get();
+                ->select('squad.id', 'squad.name', 'squad.info', 'squad.updated_at', 'professions.full_name as profession_name')
+                ->when(($squad_name != null && $squad_name != ''), function ($query) use ($squad_name) {
+                    return $query->where('squad.name', 'like', "%{$squad_name}%");
+                })
+                ->when(($profession_name != null && $profession_name != ''), function ($query) use ($profession_name) {
+                    return $query->where('professions.full_name', 'like', "%{$profession_name}%");
+                })
+                ->paginate($perPage, $columns, $pageName, $currentPage);
         }else{
             $squads = null;
         }
@@ -74,7 +96,15 @@ class SquadController extends BaseController
 
     public function getSquadStudents(Request $request) {
 
-        $squad_id = $request->get("squad_id");
+        $studentPageData = $request->get("studentPageData");
+        $squad_id = array_get($studentPageData, 'squad_id');
+        $perPage = array_get($studentPageData, 'row');
+        $columns = ['*'];
+        $pageName = 'page';
+        $currentPage = array_get($studentPageData, 'page');
+
+        $name = array_get($studentPageData, 'name');
+        $username = array_get($studentPageData, 'username');
 
         $students = DB::table('admin_users')
             ->leftJoin('student_squad', 'admin_users.id', '=', 'student_squad.student_id')
@@ -85,7 +115,14 @@ class SquadController extends BaseController
                 $query->from('student_squad');
                 $query->where('squad_id', $squad_id);
             })
-            ->get();
+            ->when(($name != null && $name != ''), function ($query) use ($name) {
+                return $query->where('admin_users.name', 'like', "%{$name}%");
+            })
+            ->when(($username != null && $username != ''), function ($query) use ($username) {
+                return $query->where('admin_users.username', 'like', "%{$username}%");
+            })
+            ->paginate($perPage, $columns, $pageName, $currentPage);
+
         return $students;
     }
 }

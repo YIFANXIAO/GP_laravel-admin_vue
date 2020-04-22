@@ -1651,9 +1651,9 @@ function getArticleList() {
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
-function getSquadByUser() {
+function getSquadByUser(squadPageData) {
     var TMPURL = '/front/getSquadByUser'; // url地址
-    var params = {}; // 参数
+    var params = { squadPageData: squadPageData }; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
@@ -1669,15 +1669,15 @@ function getProfessionInfo(squad_id) {
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
-function getSquadStudents(squad_id) {
+function getSquadStudents(studentPageData) {
     var TMPURL = '/front/getSquadStudents'; // url地址
-    var params = { squad_id: squad_id }; // 参数
+    var params = { studentPageData: studentPageData }; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
-function getCoursesInfoByUser() {
+function getCoursesInfoByUser(coursePageData) {
     var TMPURL = '/front/getCoursesInfoByUser'; // url地址
-    var params = {}; // 参数
+    var params = { coursePageData: coursePageData }; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
@@ -107728,7 +107728,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -107776,30 +107776,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
-        this.getSquads();
+        this.loadData(this.squadPageData);
     },
     data: function data() {
         return {
+            squadPageData: {
+                squad_name: '',
+                profession_name: '',
+                row: 5,
+                page: 1
+            },
             tableData: [],
-            baseHttpUrl: this.COMMON.httpUrl
+            baseHttpUrl: this.COMMON.httpUrl,
+            currentPage: 1,
+            currentSize: 2,
+            total: null,
+            isSizeChange: false
         };
     },
 
     methods: {
-        getSquads: function getSquads() {
+        loadData: function loadData(squadPageData) {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getSquadByUser */])().then(function (response) {
-                _this.tableData = response;
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getSquadByUser */])(squadPageData).then(function (response) {
+                _this.tableData = response.data;
+                _this.total = response.total;
+                _this.currentPage = response.current_page;
             }).catch(function (err) {
                 console.log(err);
             });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            this.squadPageData.row = val;
+            this.squadPageData.page = 1;
+            this.isSizeChange = true;
+            this.loadData(this.squadPageData);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            if (!this.isSizeChange) {
+                this.squadPageData.page = val;
+                this.loadData(this.squadPageData);
+            } else {
+                this.squadPageData.page = 1;
+                this.isSizeChange = false;
+            }
+        },
+        formSearch: function formSearch() {
+            this.squadPageData.page = 1;
+            this.loadData(this.squadPageData);
         }
     }
 
@@ -107814,53 +107866,162 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-table",
-    {
-      staticStyle: { width: "100%" },
-      attrs: { data: _vm.tableData, stripe: "", border: "" }
-    },
+    "div",
     [
-      _c("el-table-column", {
-        attrs: { prop: "profession_name", label: "专业名称", width: "170" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "name", label: "班级名称", width: "170" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "info", label: "班级介绍", width: "170" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "updated_at", label: "修改日期" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { fixed: "right", label: "操作", width: "100" },
-        scopedSlots: _vm._u([
-          {
-            key: "default",
-            fn: function(scope) {
-              return [
-                _c(
-                  "a",
-                  {
-                    staticStyle: {
-                      color: "#606266",
-                      "text-decoration": "none"
-                    },
-                    attrs: {
-                      href: _vm.baseHttpUrl + "/squad_detail/" + scope.row.id
-                    }
+      _c(
+        "el-row",
+        { attrs: { gutter: 40 } },
+        [
+          _c("el-col", { attrs: { span: 2 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("专业名称")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入专业名称" },
+                model: {
+                  value: _vm.squadPageData.profession_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.squadPageData, "profession_name", $$v)
                   },
-                  [_vm._v("查看详情")]
-                )
-              ]
+                  expression: "squadPageData.profession_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 2 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("班级名称")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入班级名称" },
+                model: {
+                  value: _vm.squadPageData.squad_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.squadPageData, "squad_name", $$v)
+                  },
+                  expression: "squadPageData.squad_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 2 } },
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "search-btn",
+                  attrs: { type: "primary" },
+                  on: { click: _vm.formSearch }
+                },
+                [_vm._v("查询")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.tableData, stripe: "", border: "" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "profession_name", label: "专业名称", width: "170" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "班级名称", width: "170" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "info", label: "班级介绍", width: "170" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "updated_at", label: "修改日期" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { fixed: "right", label: "操作", width: "100" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "a",
+                      {
+                        staticStyle: {
+                          color: "#606266",
+                          "text-decoration": "none"
+                        },
+                        attrs: {
+                          href:
+                            _vm.baseHttpUrl + "/squad_detail/" + scope.row.id
+                        }
+                      },
+                      [_vm._v("查看详情")]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("el-pagination", {
+            attrs: {
+              background: "",
+              "current-page": _vm.currentPage,
+              "page-sizes": [5, 10, 15],
+              "page-size": _vm.currentSize,
+              layout: "total, prev, pager, next,sizes, jumper",
+              total: _vm.total
+            },
+            on: {
+              "update:currentPage": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:current-page": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:pageSize": function($event) {
+                _vm.currentSize = $event
+              },
+              "update:page-size": function($event) {
+                _vm.currentSize = $event
+              },
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
             }
-          }
-        ])
-      })
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -108029,6 +108190,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -108037,14 +108217,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.getSingleSquad();
         this.getSingleProfession();
-        this.getSquadStundents();
+        this.loadData(this.studentPageData);
     },
     data: function data() {
         return {
+            studentPageData: {
+                squad_id: this.$parent.squad_id,
+                name: '',
+                username: '',
+                row: 5,
+                page: 1
+            },
             squad_id: this.$parent.squad_id,
             singleSquad: {},
             singlePeofession: {},
-            students: []
+            students: [],
+            currentPage: 1,
+            currentSize: 2,
+            total: null,
+            isSizeChange: false
         };
     },
 
@@ -108063,13 +108254,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.singlePeofession = response[0];
             });
         },
-        getSquadStundents: function getSquadStundents() {
+        loadData: function loadData(studentPageData) {
             var _this3 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadStudents */])(this.squad_id).then(function (response) {
-                _this3.students = response;
-                console.log(_this3.students, '学生信息');
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadStudents */])(studentPageData).then(function (response) {
+                _this3.students = response.data;
+                _this3.total = response.total;
+                _this3.currentPage = response.current_page;
             });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            this.studentPageData.row = val;
+            this.studentPageData.page = 1;
+            this.isSizeChange = true;
+            this.loadData(this.studentPageData);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            if (!this.isSizeChange) {
+                this.studentPageData.page = val;
+                this.loadData(this.studentPageData);
+            } else {
+                this.studentPageData.page = 1;
+                this.isSizeChange = false;
+            }
+        },
+        formSearch: function formSearch() {
+            this.studentPageData.page = 1;
+            this.loadData(this.studentPageData);
         }
     }
 
@@ -108086,8 +108297,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h3", [_vm._v("班级详情")]),
-      _vm._v(" "),
       _c(
         "el-row",
         { attrs: { gutter: 12 } },
@@ -108150,10 +108359,78 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c(
+        "el-row",
+        { attrs: { gutter: 40 } },
+        [
+          _c("el-col", { attrs: { span: 1 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("姓名")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入姓名" },
+                model: {
+                  value: _vm.studentPageData.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.studentPageData, "name", $$v)
+                  },
+                  expression: "studentPageData.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 1 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("学号")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入学号" },
+                model: {
+                  value: _vm.studentPageData.username,
+                  callback: function($$v) {
+                    _vm.$set(_vm.studentPageData, "username", $$v)
+                  },
+                  expression: "studentPageData.username"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 2 } },
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "search-btn",
+                  attrs: { type: "primary" },
+                  on: { click: _vm.formSearch }
+                },
+                [_vm._v("查询")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "el-table",
         {
           staticStyle: { width: "100%" },
-          attrs: { data: _vm.students, height: "300", border: "" }
+          attrs: { data: _vm.students, height: "280", border: "" }
         },
         [
           _c("el-table-column", {
@@ -108170,6 +108447,40 @@ var render = function() {
           _vm._v(" "),
           _c("el-table-column", {
             attrs: { prop: "created_at", label: "创建日期" }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("el-pagination", {
+            attrs: {
+              background: "",
+              "current-page": _vm.currentPage,
+              "page-sizes": [5, 10, 15],
+              "page-size": _vm.currentSize,
+              layout: "total, prev, pager, next,sizes, jumper",
+              total: _vm.total
+            },
+            on: {
+              "update:currentPage": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:current-page": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:pageSize": function($event) {
+                _vm.currentSize = $event
+              },
+              "update:page-size": function($event) {
+                _vm.currentSize = $event
+              },
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
           })
         ],
         1
@@ -108274,7 +108585,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -108342,30 +108653,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
-        this.getCourses();
+        this.loadData(this.coursePageData);
     },
     data: function data() {
         return {
+            coursePageData: {
+                full_name: '',
+                attribute: '',
+                row: 5,
+                page: 1
+            },
             tableData: [],
-            baseHttpUrl: this.COMMON.httpUrl
+            baseHttpUrl: this.COMMON.httpUrl,
+            currentPage: 1,
+            currentSize: 2,
+            total: null,
+            isSizeChange: false
         };
     },
 
     methods: {
-        getCourses: function getCourses() {
+        loadData: function loadData(coursePageData) {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["b" /* getCoursesInfoByUser */])().then(function (response) {
-                _this.tableData = response;
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["b" /* getCoursesInfoByUser */])(coursePageData).then(function (response) {
+                _this.tableData = response.data;
+                _this.total = response.total;
+                _this.currentPage = response.current_page;
             }).catch(function (err) {
                 console.log(err);
             });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            this.coursePageData.row = val;
+            this.coursePageData.page = 1;
+            this.isSizeChange = true;
+            this.loadData(this.coursePageData);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            if (!this.isSizeChange) {
+                this.coursePageData.page = val;
+                this.loadData(this.coursePageData);
+            } else {
+                this.coursePageData.page = 1;
+                this.isSizeChange = false;
+            }
+        },
+        formSearch: function formSearch() {
+            this.coursePageData.page = 1;
+            this.loadData(this.coursePageData);
         }
     }
 
@@ -108380,61 +108733,143 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-table",
-    {
-      staticStyle: { width: "100%" },
-      attrs: { data: _vm.tableData, stripe: "", border: "" }
-    },
+    "div",
     [
-      _c("el-table-column", {
-        attrs: { prop: "full_name", label: "课程全称", width: "170" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "attribute", label: "课程属性", width: "80" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "credit", label: "学分", width: "60" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "course_type_name", label: "课程类型", width: "80" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "location", label: "授课地点", width: "150" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "Schedule_text", label: "时间安排" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { fixed: "right", label: "操作", width: "100" },
-        scopedSlots: _vm._u([
-          {
-            key: "default",
-            fn: function(scope) {
-              return [
-                _c(
-                  "a",
-                  {
-                    staticStyle: {
-                      color: "#606266",
-                      "text-decoration": "none"
-                    },
-                    attrs: {
-                      href: _vm.baseHttpUrl + "/squad_detail/" + scope.row.id
-                    }
+      _c(
+        "el-row",
+        { attrs: { gutter: 40 } },
+        [
+          _c("el-col", { attrs: { span: 2 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("课程全称")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入课程全称" },
+                model: {
+                  value: _vm.coursePageData.full_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.coursePageData, "full_name", $$v)
                   },
-                  [_vm._v("查看分数")]
-                )
-              ]
+                  expression: "coursePageData.full_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 2 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("课程属性")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入课程属性" },
+                model: {
+                  value: _vm.coursePageData.attribute,
+                  callback: function($$v) {
+                    _vm.$set(_vm.coursePageData, "attribute", $$v)
+                  },
+                  expression: "coursePageData.attribute"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 2 } },
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "search-btn",
+                  attrs: { type: "primary" },
+                  on: { click: _vm.formSearch }
+                },
+                [_vm._v("查询")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.tableData, stripe: "", border: "" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "full_name", label: "课程全称", width: "170" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "attribute", label: "课程属性", width: "80" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "credit", label: "学分", width: "60" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "course_type_name", label: "课程类型", width: "80" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "location", label: "授课地点", width: "150" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "Schedule_text", label: "时间安排" }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("el-pagination", {
+            attrs: {
+              background: "",
+              "current-page": _vm.currentPage,
+              "page-sizes": [5, 10, 15],
+              "page-size": _vm.currentSize,
+              layout: "total, prev, pager, next,sizes, jumper",
+              total: _vm.total
+            },
+            on: {
+              "update:currentPage": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:current-page": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:pageSize": function($event) {
+                _vm.currentSize = $event
+              },
+              "update:page-size": function($event) {
+                _vm.currentSize = $event
+              },
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
             }
-          }
-        ])
-      })
+          })
+        ],
+        1
+      )
     ],
     1
   )

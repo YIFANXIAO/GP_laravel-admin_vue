@@ -21,7 +21,16 @@ class CourseController extends BaseController
         return view("courses");
     }
 
-    public function getCoursesInfoByUser() {
+    public function getCoursesInfoByUser(Request $request) {
+
+        $coursePageData = $request->get("coursePageData");
+        $perPage = array_get($coursePageData, 'row');
+        $columns = ['*'];
+        $pageName = 'page';
+        $currentPage = array_get($coursePageData, 'page');
+
+        $full_name = array_get($coursePageData, 'full_name');
+        $attribute = array_get($coursePageData, 'attribute');
 
         if (self::isStudent()) {
             // 角色是学生，则返回当前学生，对应的班级，对应的课程信息
@@ -37,7 +46,13 @@ class CourseController extends BaseController
                         $query->where('student_id', $this->getAdminIdByUserId()->id);
                     });
                 })
-                ->get();
+                ->when(($full_name != null && $full_name != ''), function ($query) use ($full_name) {
+                    return $query->where('courses.full_name', 'like', "%{$full_name}%");
+                })
+                ->when(($attribute != null && $attribute != ''), function ($query) use ($attribute) {
+                    return $query->where('courses.attribute', 'like', "%{$attribute}%");
+                })
+                ->paginate($perPage, $columns, $pageName, $currentPage);
         }else if (self::isTeacher()) {
             // 角色是老师，则返回当前教师，对应教授的课程信息
             $courses = DB::table('courses')
@@ -48,7 +63,13 @@ class CourseController extends BaseController
                     $query->from('teachers_courses');
                     $query->where('teacher_id',  $this->getAdminIdByUserId()->id);
                 })
-                ->get();
+                ->when(($full_name != null && $full_name != ''), function ($query) use ($full_name) {
+                    return $query->where('courses.full_name', 'like', "%{$full_name}%");
+                })
+                ->when(($attribute != null && $attribute != ''), function ($query) use ($attribute) {
+                    return $query->where('courses.attribute', 'like', "%{$attribute}%");
+                })
+                ->paginate($perPage, $columns, $pageName, $currentPage);
         }else{
             // 如果是游客，不返回任何信息
             $courses = null;

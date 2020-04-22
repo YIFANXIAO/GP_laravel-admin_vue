@@ -13,9 +13,9 @@ export function getArticleList() {
     return fetch.post(TMPURL, params);
 }
 
-export function getSquadByUser() {
+export function getSquadByUser(squadPageData) {
     const TMPURL = '/front/getSquadByUser'; // url地址
-    const params = {}; // 参数
+    const params = { squadPageData }; // 参数
     return fetch.post(TMPURL, params);
 }
 
@@ -31,14 +31,14 @@ export function getProfessionInfo(squad_id) {
     return fetch.post(TMPURL, params);
 }
 
-export function getSquadStudents(squad_id) {
+export function getSquadStudents(studentPageData) {
     const TMPURL = '/front/getSquadStudents'; // url地址
-    const params = { squad_id }; // 参数
+    const params = { studentPageData }; // 参数
     return fetch.post(TMPURL, params);
 }
 
-export function getCoursesInfoByUser() {
+export function getCoursesInfoByUser(coursePageData) {
     const TMPURL = '/front/getCoursesInfoByUser'; // url地址
-    const params = { }; // 参数
+    const params = { coursePageData }; // 参数
     return fetch.post(TMPURL, params);
 }
