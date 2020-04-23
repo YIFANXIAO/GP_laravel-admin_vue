@@ -14,6 +14,8 @@ import common from "./components/common";
 import SquadList from "./components/SquadList";
 import SquadDetail from "./components/SquadDetail";
 import CourseList from "./components/CourseList";
+import FractionDetailStudent from "./components/FractionDetailStudent";
+import FractionDetailTeacher from "./components/FractionDetailTeacher";
 
 Vue.prototype.COMMON = common;
 
@@ -68,6 +70,18 @@ Vue.component('squad-detail', {
 Vue.component('course-list', {
     template: '<CourseList/>',
     components: { CourseList }
+});
+
+Vue.component('fraction-detail-student', {
+    props: ['course_id'],
+    template: '<FractionDetailStudent/>',
+    components: { FractionDetailStudent }
+});
+
+Vue.component('fraction-detail-teacher', {
+    props: ['course_id'],
+    template: '<FractionDetailTeacher/>',
+    components: { FractionDetailTeacher }
 });
 
 new Vue({

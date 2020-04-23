@@ -41,14 +41,14 @@
                     prop="Schedule_text"
                     label="时间安排">
             </el-table-column>
-<!--            <el-table-column-->
-<!--                    fixed="right"-->
-<!--                    label="操作"-->
-<!--                    width="100">-->
-<!--                <template slot-scope="scope">-->
-<!--                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/squad_detail/' + scope.row.id">查看分数</a>-->
-<!--                </template>-->
-<!--            </el-table-column>-->
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="100">
+                <template slot-scope="scope">
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/fraction_detail/' + scope.row.id">查看分数</a>
+                </template>
+            </el-table-column>
         </el-table>
         <div class="block">
             <el-pagination

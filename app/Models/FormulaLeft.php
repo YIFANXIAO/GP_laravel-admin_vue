@@ -28,6 +28,11 @@ class FormulaLeft extends Model
                 DB::table('meta_cal')
                     ->where('formula_id', $model->id)
                     ->delete();
+
+                // 删除当前公式的所有子公式
+                DB::table('formula_left')
+                    ->where('pid', $model->id)
+                    ->delete();
             }
 
         });
@@ -50,6 +55,11 @@ class FormulaLeft extends Model
     public function metaCals()
     {
         return $this->hasMany(MetaCal::class, 'formula_id', 'id');
+    }
+
+    public function formulaLeft()
+    {
+        return $this->belongsTo(FormulaLeft::class, 'pid', 'id');
     }
 
 }

@@ -32,8 +32,8 @@ class FormulaLeftController extends AdminController
         $grid->column('id', __('ID'))->hide();
         $grid->column('name', __('公式名称'))->label();
         $grid->column('course.full_name', __('所属课程'))->label();
+        $grid->column('formulaLeft.name', __('公式父节点'))->replace([null => '根节点'])->label();
         $grid->column('metaCalTypes', __('公式元计算项'))->pluck('name')->label();;
-        $grid->column('pid', __('父公式'))->hide();
         $grid->column('created_at', __('创建时间'))->hide();
         $grid->column('updated_at', __('更新时间'))->hide();
 
@@ -131,16 +131,24 @@ class FormulaLeftController extends AdminController
         }else {
             $form->select('course_id', __('所属课程'))
                 ->options('/api/getCourses')
-                ->load('pid', '/api/getEditPFormula')
+//                ->load('pid', '/api/getEditPFormula')
+                ->readOnly()
                 ->rules('required');
         }
 
-        $form->select('pid', __('父节点'))
-            ->default(0)
-            ->rules('required');
+        if ($form->isCreating()) {
+            $form->select('pid', __('父节点'))
+                ->load('metaCalTypes','/api/getMetaCalType')
+                ->rules('required');
+        }else {
+            $form->select('pid', __('父节点'))
+                ->options('/api/getEditPFormula')
+                ->readOnly()
+                ->load('metaCalTypes','/api/getMetaCalType')
+                ->rules('required');
+        }
 
-        $form->multipleSelect('metaCalTypes', trans('公式元计算项'))
-            ->options(MetaCalType::all()->pluck('name', 'id'));
+        $form->multipleSelect('metaCalTypes', trans('公式元计算项'));
 
         $form->footer(function ($footer) {
             // 去掉`查看`checkbox

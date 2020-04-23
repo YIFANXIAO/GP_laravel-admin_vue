@@ -36,7 +36,7 @@ class CourseController extends BaseController
             // 角色是学生，则返回当前学生，对应的班级，对应的课程信息
             $courses = DB::table('courses')
                 ->leftJoin('courses_types_constant', 'courses.courses_type_id', '=', 'courses_types_constant.id')
-                ->select('courses.full_name', 'courses.attribute', 'courses.credit', 'courses.location', 'courses.Schedule_text', 'courses_types_constant.name as course_type_name')
+                ->select('courses.id', 'courses.full_name', 'courses.attribute', 'courses.credit', 'courses.location', 'courses.Schedule_text', 'courses_types_constant.name as course_type_name')
                 ->whereIn('courses.id', function ($query) {
                     $query->select('course_id');
                     $query->from('squads_courses');
@@ -57,7 +57,7 @@ class CourseController extends BaseController
             // 角色是老师，则返回当前教师，对应教授的课程信息
             $courses = DB::table('courses')
                 ->leftJoin('courses_types_constant', 'courses.courses_type_id', '=', 'courses_types_constant.id')
-                ->select('courses.full_name', 'courses.attribute', 'courses.credit', 'courses.location', 'courses.Schedule_text', 'courses_types_constant.name as course_type_name')
+                ->select('courses.id', 'courses.full_name', 'courses.attribute', 'courses.credit', 'courses.location', 'courses.Schedule_text', 'courses_types_constant.name as course_type_name')
                 ->whereIn('courses.id', function ($query) {
                     $query->select('course_id');
                     $query->from('teachers_courses');

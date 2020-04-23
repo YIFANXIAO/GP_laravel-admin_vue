@@ -43,7 +43,7 @@ class SquadController extends BaseController
                 ->whereIn('squad.id', function ($query) {
                     $query->select('squad_id');
                     $query->from('student_squad');
-                    $query->whereIn('student_id', $this->getAdminIdByUserId()->id);
+                    $query->where('student_id', $this->getAdminIdByUserId()->id);
                 })
                 ->when(($squad_name != null && $squad_name != ''), function ($query) use ($squad_name) {
                     return $query->where('squad.name', 'like', "%{$squad_name}%");

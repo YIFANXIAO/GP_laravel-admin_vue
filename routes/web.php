@@ -26,4 +26,5 @@ Route::get('/squads', 'front\SquadController@getSquadsView');
 Route::get('/personal_access_tokens', 'front\PersonalAccessTokensController@index');
 Route::get('/squad_detail/{id}', 'front\SquadController@getSquadDetailView');
 Route::get('/courses', 'front\CourseController@getCoursesView');
+Route::get('/fraction_detail/{id}', 'front\FractionController@getFractionDetailView');
 
