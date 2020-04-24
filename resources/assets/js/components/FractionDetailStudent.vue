@@ -10,11 +10,11 @@
 
 <script>
 
-    import { getSquadStudents } from "../api/front_all";
+    import { getFormulaLeftDatas } from "../api/front_all";
 
     export default {
         created() {
-
+            this.getFormulaLeftData();
         },
         data() {
             return {
@@ -22,7 +22,13 @@
             }
         },
         methods : {
+            getFormulaLeftData()
+            {
+                getFormulaLeftDatas()
+                    .then(response => {
 
+                })
+            }
         }
     }
 </script>

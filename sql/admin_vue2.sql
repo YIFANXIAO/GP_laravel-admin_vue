@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 14/04/2020 19:34:52
+ Date: 24/04/2020 10:21:14
 */
 
 SET NAMES utf8mb4;
@@ -32,18 +32,18 @@ CREATE TABLE `admin_menu`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_menu
 -- ----------------------------
 INSERT INTO `admin_menu` VALUES (22, 0, 1, '首页', 'fa-bar-chart-o', '/', NULL, '2020-04-11 05:59:56', '2020-04-11 05:59:59');
 INSERT INTO `admin_menu` VALUES (2, 0, 14, '系统管理', 'fa-tasks', NULL, NULL, NULL, '2020-04-11 05:59:59');
-INSERT INTO `admin_menu` VALUES (3, 2, 15, '用户管理', 'fa-users', 'auth/users', NULL, NULL, '2020-04-11 05:59:59');
-INSERT INTO `admin_menu` VALUES (4, 2, 16, '角色管理', 'fa-user', 'auth/roles', NULL, NULL, '2020-04-11 05:59:59');
-INSERT INTO `admin_menu` VALUES (5, 2, 17, '权限管理', 'fa-ban', 'auth/permissions', NULL, NULL, '2020-04-11 05:59:59');
-INSERT INTO `admin_menu` VALUES (6, 2, 18, '菜单管理', 'fa-bars', 'auth/menu', NULL, NULL, '2020-04-11 05:59:59');
-INSERT INTO `admin_menu` VALUES (7, 2, 19, '操作日志', 'fa-history', 'auth/logs', NULL, NULL, '2020-04-11 05:59:59');
+INSERT INTO `admin_menu` VALUES (3, 2, 15, '后台用户管理', 'fa-users', 'auth/users', NULL, NULL, '2020-04-14 15:01:01');
+INSERT INTO `admin_menu` VALUES (4, 2, 17, '角色管理', 'fa-user', 'auth/roles', NULL, NULL, '2020-04-14 14:08:07');
+INSERT INTO `admin_menu` VALUES (5, 2, 18, '权限管理', 'fa-ban', 'auth/permissions', NULL, NULL, '2020-04-14 14:08:07');
+INSERT INTO `admin_menu` VALUES (6, 2, 19, '菜单管理', 'fa-bars', 'auth/menu', NULL, NULL, '2020-04-14 14:08:07');
+INSERT INTO `admin_menu` VALUES (7, 2, 20, '操作日志', 'fa-history', 'auth/logs', NULL, NULL, '2020-04-14 14:08:07');
 INSERT INTO `admin_menu` VALUES (8, 13, 3, '博文随笔', 'fa-book', '/articles', NULL, '2020-04-02 10:00:29', '2020-04-11 05:59:59');
 INSERT INTO `admin_menu` VALUES (11, 14, 6, '专业管理', 'fa-graduation-cap', '/professions', NULL, '2020-04-07 02:15:42', '2020-04-11 05:59:59');
 INSERT INTO `admin_menu` VALUES (10, 13, 4, '标签管理', 'fa-bookmark-o', '/labels', NULL, '2020-04-05 15:42:56', '2020-04-11 05:59:59');
@@ -56,6 +56,7 @@ INSERT INTO `admin_menu` VALUES (17, 16, 12, '课程类型管理', 'fa-y-combina
 INSERT INTO `admin_menu` VALUES (18, 14, 9, '分数计算公式管理', 'fa-calculator', 'formula-lefts', NULL, '2020-04-10 13:03:19', '2020-04-11 05:59:59');
 INSERT INTO `admin_menu` VALUES (19, 14, 10, '分数管理', 'fa-database', '/fractions', NULL, '2020-04-10 13:05:29', '2020-04-11 05:59:59');
 INSERT INTO `admin_menu` VALUES (20, 16, 13, '元计算项类型管理', 'fa-yahoo', '/meta-cal-types', NULL, '2020-04-10 13:06:47', '2020-04-11 05:59:59');
+INSERT INTO `admin_menu` VALUES (26, 2, 16, '用户管理', 'fa-hand-peace-o', '/users', NULL, '2020-04-14 14:06:22', '2020-04-14 15:01:08');
 
 -- ----------------------------
 -- Table structure for admin_operation_log
@@ -72,7 +73,7 @@ CREATE TABLE `admin_operation_log`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_operation_log_user_id_index`(`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3394 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 4318 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_operation_log
@@ -3470,6 +3471,930 @@ INSERT INTO `admin_operation_log` VALUES (3390, 1, 'admin/auth/users', 'GET', '1
 INSERT INTO `admin_operation_log` VALUES (3391, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 11:34:33', '2020-04-14 11:34:33');
 INSERT INTO `admin_operation_log` VALUES (3392, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 11:34:34', '2020-04-14 11:34:34');
 INSERT INTO `admin_operation_log` VALUES (3393, 1, 'admin', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 11:34:39', '2020-04-14 11:34:39');
+INSERT INTO `admin_operation_log` VALUES (3394, 3, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-14 12:29:12', '2020-04-14 12:29:12');
+INSERT INTO `admin_operation_log` VALUES (3395, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:41:23', '2020-04-14 13:41:23');
+INSERT INTO `admin_operation_log` VALUES (3396, 1, 'admin/auth/users/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:41:36', '2020-04-14 13:41:36');
+INSERT INTO `admin_operation_log` VALUES (3397, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:41:40', '2020-04-14 13:41:40');
+INSERT INTO `admin_operation_log` VALUES (3398, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 13:56:35', '2020-04-14 13:56:35');
+INSERT INTO `admin_operation_log` VALUES (3399, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-14 13:57:02', '2020-04-14 13:57:02');
+INSERT INTO `admin_operation_log` VALUES (3400, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:03', '2020-04-14 13:57:03');
+INSERT INTO `admin_operation_log` VALUES (3401, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 13:57:08', '2020-04-14 13:57:08');
+INSERT INTO `admin_operation_log` VALUES (3402, 1, 'admin/auth/users/16/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:29', '2020-04-14 13:57:29');
+INSERT INTO `admin_operation_log` VALUES (3403, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:32', '2020-04-14 13:57:32');
+INSERT INTO `admin_operation_log` VALUES (3404, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:35', '2020-04-14 13:57:35');
+INSERT INTO `admin_operation_log` VALUES (3405, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:38', '2020-04-14 13:57:38');
+INSERT INTO `admin_operation_log` VALUES (3406, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:41', '2020-04-14 13:57:41');
+INSERT INTO `admin_operation_log` VALUES (3407, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:57:44', '2020-04-14 13:57:44');
+INSERT INTO `admin_operation_log` VALUES (3408, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 13:58:04', '2020-04-14 13:58:04');
+INSERT INTO `admin_operation_log` VALUES (3409, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"16\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-14 13:58:14', '2020-04-14 13:58:14');
+INSERT INTO `admin_operation_log` VALUES (3410, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 13:58:14', '2020-04-14 13:58:14');
+INSERT INTO `admin_operation_log` VALUES (3411, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-14 13:58:22', '2020-04-14 13:58:22');
+INSERT INTO `admin_operation_log` VALUES (3412, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 13:59:56', '2020-04-14 13:59:56');
+INSERT INTO `admin_operation_log` VALUES (3413, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-14 14:00:03', '2020-04-14 14:00:03');
+INSERT INTO `admin_operation_log` VALUES (3414, 1, 'admin/auth/users/17', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\"}', '2020-04-14 14:01:33', '2020-04-14 14:01:33');
+INSERT INTO `admin_operation_log` VALUES (3415, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:01:33', '2020-04-14 14:01:33');
+INSERT INTO `admin_operation_log` VALUES (3416, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:01:43', '2020-04-14 14:01:43');
+INSERT INTO `admin_operation_log` VALUES (3417, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-14 14:01:50', '2020-04-14 14:01:50');
+INSERT INTO `admin_operation_log` VALUES (3418, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:01:51', '2020-04-14 14:01:51');
+INSERT INTO `admin_operation_log` VALUES (3419, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:05:52', '2020-04-14 14:05:52');
+INSERT INTO `admin_operation_log` VALUES (3420, 1, 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u524d\\u5929\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"\\/users\",\"roles\":[null],\"permission\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\"}', '2020-04-14 14:06:22', '2020-04-14 14:06:22');
+INSERT INTO `admin_operation_log` VALUES (3421, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 14:06:22', '2020-04-14 14:06:22');
+INSERT INTO `admin_operation_log` VALUES (3422, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:06:26', '2020-04-14 14:06:26');
+INSERT INTO `admin_operation_log` VALUES (3423, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u524d\\u53f0\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"\\/users\",\"roles\":[null],\"permission\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 14:06:34', '2020-04-14 14:06:34');
+INSERT INTO `admin_operation_log` VALUES (3424, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 14:06:34', '2020-04-14 14:06:34');
+INSERT INTO `admin_operation_log` VALUES (3425, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:06:42', '2020-04-14 14:06:42');
+INSERT INTO `admin_operation_log` VALUES (3426, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u524d\\u53f0\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"copy\",\"uri\":\"\\/users\",\"roles\":[null],\"permission\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 14:06:55', '2020-04-14 14:06:55');
+INSERT INTO `admin_operation_log` VALUES (3427, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 14:06:55', '2020-04-14 14:06:55');
+INSERT INTO `admin_operation_log` VALUES (3428, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:07:00', '2020-04-14 14:07:00');
+INSERT INTO `admin_operation_log` VALUES (3429, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u524d\\u53f0\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-hand-peace-o\",\"uri\":\"\\/users\",\"roles\":[null],\"permission\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 14:08:00', '2020-04-14 14:08:00');
+INSERT INTO `admin_operation_log` VALUES (3430, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 14:08:00', '2020-04-14 14:08:00');
+INSERT INTO `admin_operation_log` VALUES (3431, 1, 'admin/auth/menu', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_order\":\"[{\\\"id\\\":22},{\\\"id\\\":13,\\\"children\\\":[{\\\"id\\\":8},{\\\"id\\\":10}]},{\\\"id\\\":14,\\\"children\\\":[{\\\"id\\\":11},{\\\"id\\\":12},{\\\"id\\\":15},{\\\"id\\\":18},{\\\"id\\\":19}]},{\\\"id\\\":16,\\\"children\\\":[{\\\"id\\\":17},{\\\"id\\\":20}]},{\\\"id\\\":2,\\\"children\\\":[{\\\"id\\\":3},{\\\"id\\\":26},{\\\"id\\\":4},{\\\"id\\\":5},{\\\"id\\\":6},{\\\"id\\\":7}]}]\"}', '2020-04-14 14:08:06', '2020-04-14 14:08:06');
+INSERT INTO `admin_operation_log` VALUES (3432, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:08:07', '2020-04-14 14:08:07');
+INSERT INTO `admin_operation_log` VALUES (3433, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 14:08:09', '2020-04-14 14:08:09');
+INSERT INTO `admin_operation_log` VALUES (3434, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:08:15', '2020-04-14 14:08:15');
+INSERT INTO `admin_operation_log` VALUES (3435, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:11:42', '2020-04-14 14:11:42');
+INSERT INTO `admin_operation_log` VALUES (3436, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:11:50', '2020-04-14 14:11:50');
+INSERT INTO `admin_operation_log` VALUES (3437, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:12:37', '2020-04-14 14:12:37');
+INSERT INTO `admin_operation_log` VALUES (3438, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:13:26', '2020-04-14 14:13:26');
+INSERT INTO `admin_operation_log` VALUES (3439, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:13:29', '2020-04-14 14:13:29');
+INSERT INTO `admin_operation_log` VALUES (3440, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:13:45', '2020-04-14 14:13:45');
+INSERT INTO `admin_operation_log` VALUES (3441, 1, 'admin/users/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:13:46', '2020-04-14 14:13:46');
+INSERT INTO `admin_operation_log` VALUES (3442, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:14:07', '2020-04-14 14:14:07');
+INSERT INTO `admin_operation_log` VALUES (3443, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:14:31', '2020-04-14 14:14:31');
+INSERT INTO `admin_operation_log` VALUES (3444, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:14:40', '2020-04-14 14:14:40');
+INSERT INTO `admin_operation_log` VALUES (3445, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:14:40', '2020-04-14 14:14:40');
+INSERT INTO `admin_operation_log` VALUES (3446, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:17:24', '2020-04-14 14:17:24');
+INSERT INTO `admin_operation_log` VALUES (3447, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:17:27', '2020-04-14 14:17:27');
+INSERT INTO `admin_operation_log` VALUES (3448, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:17:32', '2020-04-14 14:17:32');
+INSERT INTO `admin_operation_log` VALUES (3449, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:17:32', '2020-04-14 14:17:32');
+INSERT INTO `admin_operation_log` VALUES (3450, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:18:43', '2020-04-14 14:18:43');
+INSERT INTO `admin_operation_log` VALUES (3451, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:18:45', '2020-04-14 14:18:45');
+INSERT INTO `admin_operation_log` VALUES (3452, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:18:55', '2020-04-14 14:18:55');
+INSERT INTO `admin_operation_log` VALUES (3453, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:18:55', '2020-04-14 14:18:55');
+INSERT INTO `admin_operation_log` VALUES (3454, 1, 'admin/users/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:19:11', '2020-04-14 14:19:11');
+INSERT INTO `admin_operation_log` VALUES (3455, 1, 'admin/users/2', 'PUT', '127.0.0.1', '{\"name\":\"\\u8d75\\u94c1\\u67f1\",\"email\":\"20164842\",\"password\":\"123456\",\"remember_token\":\"YkkI9zvB4t6E9SRi201vDEtaeLtHtKBd51hhszdmHjC2t1C6ptghboR4IY7l\",\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:19:19', '2020-04-14 14:19:19');
+INSERT INTO `admin_operation_log` VALUES (3456, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:19:19', '2020-04-14 14:19:19');
+INSERT INTO `admin_operation_log` VALUES (3457, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:20:44', '2020-04-14 14:20:44');
+INSERT INTO `admin_operation_log` VALUES (3458, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:39:29', '2020-04-14 14:39:29');
+INSERT INTO `admin_operation_log` VALUES (3459, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:39:32', '2020-04-14 14:39:32');
+INSERT INTO `admin_operation_log` VALUES (3460, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:39:35', '2020-04-14 14:39:35');
+INSERT INTO `admin_operation_log` VALUES (3461, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"xyf15620168450@163.com\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:39:42', '2020-04-14 14:39:42');
+INSERT INTO `admin_operation_log` VALUES (3462, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:39:42', '2020-04-14 14:39:42');
+INSERT INTO `admin_operation_log` VALUES (3463, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:41:03', '2020-04-14 14:41:03');
+INSERT INTO `admin_operation_log` VALUES (3464, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"2\"}', '2020-04-14 14:41:40', '2020-04-14 14:41:40');
+INSERT INTO `admin_operation_log` VALUES (3465, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:41:40', '2020-04-14 14:41:40');
+INSERT INTO `admin_operation_log` VALUES (3466, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:41:41', '2020-04-14 14:41:41');
+INSERT INTO `admin_operation_log` VALUES (3467, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"T9hhMLy6CU6duYhjRQ91XANh898AV1Lchr4g9Rsm\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-14 14:42:19', '2020-04-14 14:42:19');
+INSERT INTO `admin_operation_log` VALUES (3468, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:42:20', '2020-04-14 14:42:20');
+INSERT INTO `admin_operation_log` VALUES (3469, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:42:24', '2020-04-14 14:42:24');
+INSERT INTO `admin_operation_log` VALUES (3470, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:43:45', '2020-04-14 14:43:45');
+INSERT INTO `admin_operation_log` VALUES (3471, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:43:51', '2020-04-14 14:43:51');
+INSERT INTO `admin_operation_log` VALUES (3472, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"Xd5jsBHZ2JaQRq1BkRosfpr1EwL8Dyl4XHTUj1Jx\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:43:57', '2020-04-14 14:43:57');
+INSERT INTO `admin_operation_log` VALUES (3473, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:43:57', '2020-04-14 14:43:57');
+INSERT INTO `admin_operation_log` VALUES (3474, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:45:46', '2020-04-14 14:45:46');
+INSERT INTO `admin_operation_log` VALUES (3475, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:45:49', '2020-04-14 14:45:49');
+INSERT INTO `admin_operation_log` VALUES (3476, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"Xd5jsBHZ2JaQRq1BkRosfpr1EwL8Dyl4XHTUj1Jx\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:45:55', '2020-04-14 14:45:55');
+INSERT INTO `admin_operation_log` VALUES (3477, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:45:55', '2020-04-14 14:45:55');
+INSERT INTO `admin_operation_log` VALUES (3478, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:48:52', '2020-04-14 14:48:52');
+INSERT INTO `admin_operation_log` VALUES (3479, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"111111\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:49:02', '2020-04-14 14:49:02');
+INSERT INTO `admin_operation_log` VALUES (3480, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:49:03', '2020-04-14 14:49:03');
+INSERT INTO `admin_operation_log` VALUES (3481, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:50:49', '2020-04-14 14:50:49');
+INSERT INTO `admin_operation_log` VALUES (3482, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"111111\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\"}', '2020-04-14 14:50:54', '2020-04-14 14:50:54');
+INSERT INTO `admin_operation_log` VALUES (3483, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:50:54', '2020-04-14 14:50:54');
+INSERT INTO `admin_operation_log` VALUES (3484, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:51:14', '2020-04-14 14:51:14');
+INSERT INTO `admin_operation_log` VALUES (3485, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:51:19', '2020-04-14 14:51:19');
+INSERT INTO `admin_operation_log` VALUES (3486, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:51:19', '2020-04-14 14:51:19');
+INSERT INTO `admin_operation_log` VALUES (3487, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:52:21', '2020-04-14 14:52:21');
+INSERT INTO `admin_operation_log` VALUES (3488, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:52:25', '2020-04-14 14:52:25');
+INSERT INTO `admin_operation_log` VALUES (3489, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:52:29', '2020-04-14 14:52:29');
+INSERT INTO `admin_operation_log` VALUES (3490, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:52:29', '2020-04-14 14:52:29');
+INSERT INTO `admin_operation_log` VALUES (3491, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:53:02', '2020-04-14 14:53:02');
+INSERT INTO `admin_operation_log` VALUES (3492, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:53:04', '2020-04-14 14:53:04');
+INSERT INTO `admin_operation_log` VALUES (3493, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:53:09', '2020-04-14 14:53:09');
+INSERT INTO `admin_operation_log` VALUES (3494, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:53:09', '2020-04-14 14:53:09');
+INSERT INTO `admin_operation_log` VALUES (3495, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:53:26', '2020-04-14 14:53:26');
+INSERT INTO `admin_operation_log` VALUES (3496, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:53:44', '2020-04-14 14:53:44');
+INSERT INTO `admin_operation_log` VALUES (3497, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:53:50', '2020-04-14 14:53:50');
+INSERT INTO `admin_operation_log` VALUES (3498, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:53:50', '2020-04-14 14:53:50');
+INSERT INTO `admin_operation_log` VALUES (3499, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:54:03', '2020-04-14 14:54:03');
+INSERT INTO `admin_operation_log` VALUES (3500, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 14:54:20', '2020-04-14 14:54:20');
+INSERT INTO `admin_operation_log` VALUES (3501, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\"}', '2020-04-14 14:54:26', '2020-04-14 14:54:26');
+INSERT INTO `admin_operation_log` VALUES (3502, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:54:26', '2020-04-14 14:54:26');
+INSERT INTO `admin_operation_log` VALUES (3503, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:55:16', '2020-04-14 14:55:16');
+INSERT INTO `admin_operation_log` VALUES (3504, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:55:18', '2020-04-14 14:55:18');
+INSERT INTO `admin_operation_log` VALUES (3505, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:55:24', '2020-04-14 14:55:24');
+INSERT INTO `admin_operation_log` VALUES (3506, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:55:24', '2020-04-14 14:55:24');
+INSERT INTO `admin_operation_log` VALUES (3507, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:56:50', '2020-04-14 14:56:50');
+INSERT INTO `admin_operation_log` VALUES (3508, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:56:52', '2020-04-14 14:56:52');
+INSERT INTO `admin_operation_log` VALUES (3509, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:56:54', '2020-04-14 14:56:54');
+INSERT INTO `admin_operation_log` VALUES (3510, 1, 'admin/users/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:56:56', '2020-04-14 14:56:56');
+INSERT INTO `admin_operation_log` VALUES (3511, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:56:58', '2020-04-14 14:56:58');
+INSERT INTO `admin_operation_log` VALUES (3512, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:57:06', '2020-04-14 14:57:06');
+INSERT INTO `admin_operation_log` VALUES (3513, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:08', '2020-04-14 14:57:08');
+INSERT INTO `admin_operation_log` VALUES (3514, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:10', '2020-04-14 14:57:10');
+INSERT INTO `admin_operation_log` VALUES (3515, 1, 'admin/users/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:11', '2020-04-14 14:57:11');
+INSERT INTO `admin_operation_log` VALUES (3516, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:14', '2020-04-14 14:57:14');
+INSERT INTO `admin_operation_log` VALUES (3517, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:57:25', '2020-04-14 14:57:25');
+INSERT INTO `admin_operation_log` VALUES (3518, 1, 'admin/users/3', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:28', '2020-04-14 14:57:28');
+INSERT INTO `admin_operation_log` VALUES (3519, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:33', '2020-04-14 14:57:33');
+INSERT INTO `admin_operation_log` VALUES (3520, 1, 'admin/users/3', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:34', '2020-04-14 14:57:34');
+INSERT INTO `admin_operation_log` VALUES (3521, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:35', '2020-04-14 14:57:35');
+INSERT INTO `admin_operation_log` VALUES (3522, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:37', '2020-04-14 14:57:37');
+INSERT INTO `admin_operation_log` VALUES (3523, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:57:42', '2020-04-14 14:57:42');
+INSERT INTO `admin_operation_log` VALUES (3524, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:57:42', '2020-04-14 14:57:42');
+INSERT INTO `admin_operation_log` VALUES (3525, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:44', '2020-04-14 14:57:44');
+INSERT INTO `admin_operation_log` VALUES (3526, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:45', '2020-04-14 14:57:45');
+INSERT INTO `admin_operation_log` VALUES (3527, 1, 'admin/users/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 14:57:47', '2020-04-14 14:57:47');
+INSERT INTO `admin_operation_log` VALUES (3528, 1, 'admin/users/2', 'PUT', '127.0.0.1', '{\"name\":\"\\u8d75\\u94c1\\u67f1\",\"email\":\"20164842\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-14 14:57:53', '2020-04-14 14:57:53');
+INSERT INTO `admin_operation_log` VALUES (3529, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:57:54', '2020-04-14 14:57:54');
+INSERT INTO `admin_operation_log` VALUES (3530, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 14:59:46', '2020-04-14 14:59:46');
+INSERT INTO `admin_operation_log` VALUES (3531, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:09', '2020-04-14 15:00:09');
+INSERT INTO `admin_operation_log` VALUES (3532, 1, 'admin/auth/menu/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:17', '2020-04-14 15:00:17');
+INSERT INTO `admin_operation_log` VALUES (3533, 1, 'admin/auth/menu/2', 'PUT', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"icon\":\"fa-tasks\",\"uri\":null,\"roles\":[\"1\",\"2\",\"3\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:00:26', '2020-04-14 15:00:26');
+INSERT INTO `admin_operation_log` VALUES (3534, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:00:26', '2020-04-14 15:00:26');
+INSERT INTO `admin_operation_log` VALUES (3535, 1, 'admin/auth/menu/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:29', '2020-04-14 15:00:29');
+INSERT INTO `admin_operation_log` VALUES (3536, 1, 'admin/auth/menu/3', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-users\",\"uri\":\"auth\\/users\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:00:35', '2020-04-14 15:00:35');
+INSERT INTO `admin_operation_log` VALUES (3537, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:00:36', '2020-04-14 15:00:36');
+INSERT INTO `admin_operation_log` VALUES (3538, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:38', '2020-04-14 15:00:38');
+INSERT INTO `admin_operation_log` VALUES (3539, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u524d\\u53f0\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-hand-peace-o\",\"uri\":\"\\/users\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:00:44', '2020-04-14 15:00:44');
+INSERT INTO `admin_operation_log` VALUES (3540, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:00:44', '2020-04-14 15:00:44');
+INSERT INTO `admin_operation_log` VALUES (3541, 1, 'admin/auth/menu/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:46', '2020-04-14 15:00:46');
+INSERT INTO `admin_operation_log` VALUES (3542, 1, 'admin/auth/menu/4', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u89d2\\u8272\\u7ba1\\u7406\",\"icon\":\"fa-user\",\"uri\":\"auth\\/roles\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:00:51', '2020-04-14 15:00:51');
+INSERT INTO `admin_operation_log` VALUES (3543, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:00:51', '2020-04-14 15:00:51');
+INSERT INTO `admin_operation_log` VALUES (3544, 1, 'admin/auth/menu/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:00:54', '2020-04-14 15:00:54');
+INSERT INTO `admin_operation_log` VALUES (3545, 1, 'admin/auth/menu/3', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u540e\\u53f0\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-users\",\"uri\":\"auth\\/users\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:01', '2020-04-14 15:01:01');
+INSERT INTO `admin_operation_log` VALUES (3546, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:01', '2020-04-14 15:01:01');
+INSERT INTO `admin_operation_log` VALUES (3547, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:03', '2020-04-14 15:01:03');
+INSERT INTO `admin_operation_log` VALUES (3548, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-hand-peace-o\",\"uri\":\"\\/users\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:08', '2020-04-14 15:01:08');
+INSERT INTO `admin_operation_log` VALUES (3549, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:08', '2020-04-14 15:01:08');
+INSERT INTO `admin_operation_log` VALUES (3550, 1, 'admin/auth/menu/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:11', '2020-04-14 15:01:11');
+INSERT INTO `admin_operation_log` VALUES (3551, 1, 'admin/auth/menu/4', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u89d2\\u8272\\u7ba1\\u7406\",\"icon\":\"fa-user\",\"uri\":\"auth\\/roles\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:14', '2020-04-14 15:01:14');
+INSERT INTO `admin_operation_log` VALUES (3552, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:14', '2020-04-14 15:01:14');
+INSERT INTO `admin_operation_log` VALUES (3553, 1, 'admin/auth/menu/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:17', '2020-04-14 15:01:17');
+INSERT INTO `admin_operation_log` VALUES (3554, 1, 'admin/auth/menu/5', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u6743\\u9650\\u7ba1\\u7406\",\"icon\":\"fa-ban\",\"uri\":\"auth\\/permissions\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:22', '2020-04-14 15:01:22');
+INSERT INTO `admin_operation_log` VALUES (3555, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:22', '2020-04-14 15:01:22');
+INSERT INTO `admin_operation_log` VALUES (3556, 1, 'admin/auth/menu/6/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:25', '2020-04-14 15:01:25');
+INSERT INTO `admin_operation_log` VALUES (3557, 1, 'admin/auth/menu/6', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u83dc\\u5355\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"auth\\/menu\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:29', '2020-04-14 15:01:29');
+INSERT INTO `admin_operation_log` VALUES (3558, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:29', '2020-04-14 15:01:29');
+INSERT INTO `admin_operation_log` VALUES (3559, 1, 'admin/auth/menu/7/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:31', '2020-04-14 15:01:31');
+INSERT INTO `admin_operation_log` VALUES (3560, 1, 'admin/auth/menu/7', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u64cd\\u4f5c\\u65e5\\u5fd7\",\"icon\":\"fa-history\",\"uri\":\"auth\\/logs\",\"roles\":[\"1\",\"2\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:34', '2020-04-14 15:01:34');
+INSERT INTO `admin_operation_log` VALUES (3561, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:35', '2020-04-14 15:01:35');
+INSERT INTO `admin_operation_log` VALUES (3562, 3, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:41', '2020-04-14 15:01:41');
+INSERT INTO `admin_operation_log` VALUES (3563, 1, 'admin/auth/menu/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:48', '2020-04-14 15:01:48');
+INSERT INTO `admin_operation_log` VALUES (3564, 1, 'admin/auth/menu/26', 'PUT', '127.0.0.1', '{\"parent_id\":\"2\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-hand-peace-o\",\"uri\":\"\\/users\",\"roles\":[\"1\",\"2\",\"3\",null],\"permission\":null,\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/menu\"}', '2020-04-14 15:01:51', '2020-04-14 15:01:51');
+INSERT INTO `admin_operation_log` VALUES (3565, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:51', '2020-04-14 15:01:51');
+INSERT INTO `admin_operation_log` VALUES (3566, 3, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-14 15:01:53', '2020-04-14 15:01:53');
+INSERT INTO `admin_operation_log` VALUES (3567, 3, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:01:55', '2020-04-14 15:01:55');
+INSERT INTO `admin_operation_log` VALUES (3568, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:02:00', '2020-04-14 15:02:00');
+INSERT INTO `admin_operation_log` VALUES (3569, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:02:02', '2020-04-14 15:02:02');
+INSERT INTO `admin_operation_log` VALUES (3570, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.list\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u5217\\u8868\\u754c\\u9762\",\"http_method\":[null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions\"}', '2020-04-14 15:02:41', '2020-04-14 15:02:41');
+INSERT INTO `admin_operation_log` VALUES (3571, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '[]', '2020-04-14 15:02:41', '2020-04-14 15:02:41');
+INSERT INTO `admin_operation_log` VALUES (3572, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:02:45', '2020-04-14 15:02:45');
+INSERT INTO `admin_operation_log` VALUES (3573, 1, 'admin/auth/roles/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:02:47', '2020-04-14 15:02:47');
+INSERT INTO `admin_operation_log` VALUES (3574, 1, 'admin/auth/roles/3', 'PUT', '127.0.0.1', '{\"slug\":\"student\",\"name\":\"\\u5b66\\u751f\",\"permissions\":[\"2\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"19\",\"21\",\"24\",\"27\",\"29\",\"32\",\"33\",\"39\",null],\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/roles\"}', '2020-04-14 15:02:51', '2020-04-14 15:02:51');
+INSERT INTO `admin_operation_log` VALUES (3575, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '[]', '2020-04-14 15:02:51', '2020-04-14 15:02:51');
+INSERT INTO `admin_operation_log` VALUES (3576, 3, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:02:53', '2020-04-14 15:02:53');
+INSERT INTO `admin_operation_log` VALUES (3577, 3, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:03:31', '2020-04-14 15:03:31');
+INSERT INTO `admin_operation_log` VALUES (3578, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:04:30', '2020-04-14 15:04:30');
+INSERT INTO `admin_operation_log` VALUES (3579, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"page\":\"2\"}', '2020-04-14 15:04:35', '2020-04-14 15:04:35');
+INSERT INTO `admin_operation_log` VALUES (3580, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:04:40', '2020-04-14 15:04:40');
+INSERT INTO `admin_operation_log` VALUES (3581, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.createBtn\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u65b0\\u589e\\u6309\\u94ae\",\"http_method\":[\"HEAD\",null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?&page=2\"}', '2020-04-14 15:05:11', '2020-04-14 15:05:11');
+INSERT INTO `admin_operation_log` VALUES (3582, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"2\"}', '2020-04-14 15:05:11', '2020-04-14 15:05:11');
+INSERT INTO `admin_operation_log` VALUES (3583, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:05:12', '2020-04-14 15:05:12');
+INSERT INTO `admin_operation_log` VALUES (3584, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.viewBtn\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u663e\\u793a\\u6309\\u94ae\",\"http_method\":[\"HEAD\",null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?&page=2\"}', '2020-04-14 15:05:46', '2020-04-14 15:05:46');
+INSERT INTO `admin_operation_log` VALUES (3585, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"2\"}', '2020-04-14 15:05:46', '2020-04-14 15:05:46');
+INSERT INTO `admin_operation_log` VALUES (3586, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"3\",\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:05:56', '2020-04-14 15:05:56');
+INSERT INTO `admin_operation_log` VALUES (3587, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:05:57', '2020-04-14 15:05:57');
+INSERT INTO `admin_operation_log` VALUES (3588, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.editBtn\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u4fee\\u6539\\u6309\\u94ae\",\"http_method\":[\"HEAD\",null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?page=3\"}', '2020-04-14 15:06:24', '2020-04-14 15:06:24');
+INSERT INTO `admin_operation_log` VALUES (3589, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"3\"}', '2020-04-14 15:06:24', '2020-04-14 15:06:24');
+INSERT INTO `admin_operation_log` VALUES (3590, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:06:25', '2020-04-14 15:06:25');
+INSERT INTO `admin_operation_log` VALUES (3591, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.deleteBtn\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u5220\\u9664\\u6309\\u94ae\",\"http_method\":[\"HEAD\",null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?page=3\"}', '2020-04-14 15:06:51', '2020-04-14 15:06:51');
+INSERT INTO `admin_operation_log` VALUES (3592, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"3\"}', '2020-04-14 15:06:51', '2020-04-14 15:06:51');
+INSERT INTO `admin_operation_log` VALUES (3593, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"3\",\"per_page\":\"30\",\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:06:59', '2020-04-14 15:06:59');
+INSERT INTO `admin_operation_log` VALUES (3594, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"2\",\"per_page\":\"30\",\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:06:59', '2020-04-14 15:06:59');
+INSERT INTO `admin_operation_log` VALUES (3595, 3, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:07:52', '2020-04-14 15:07:52');
+INSERT INTO `admin_operation_log` VALUES (3596, 3, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:08:48', '2020-04-14 15:08:48');
+INSERT INTO `admin_operation_log` VALUES (3597, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:08:57', '2020-04-14 15:08:57');
+INSERT INTO `admin_operation_log` VALUES (3598, 1, 'admin/auth/roles/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:08:58', '2020-04-14 15:08:58');
+INSERT INTO `admin_operation_log` VALUES (3599, 1, 'admin/auth/roles/3', 'PUT', '127.0.0.1', '{\"slug\":\"student\",\"name\":\"\\u5b66\\u751f\",\"permissions\":[\"2\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"19\",\"21\",\"24\",\"27\",\"29\",\"32\",\"33\",\"39\",\"42\",null],\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/roles\"}', '2020-04-14 15:09:11', '2020-04-14 15:09:11');
+INSERT INTO `admin_operation_log` VALUES (3600, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '[]', '2020-04-14 15:09:11', '2020-04-14 15:09:11');
+INSERT INTO `admin_operation_log` VALUES (3601, 3, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:09:15', '2020-04-14 15:09:15');
+INSERT INTO `admin_operation_log` VALUES (3602, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:09:17', '2020-04-14 15:09:17');
+INSERT INTO `admin_operation_log` VALUES (3603, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:09:46', '2020-04-14 15:09:46');
+INSERT INTO `admin_operation_log` VALUES (3604, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"per_page\":\"30\"}', '2020-04-14 15:09:52', '2020-04-14 15:09:52');
+INSERT INTO `admin_operation_log` VALUES (3605, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"per_page\":\"30\",\"page\":\"2\"}', '2020-04-14 15:09:54', '2020-04-14 15:09:54');
+INSERT INTO `admin_operation_log` VALUES (3606, 1, 'admin/auth/permissions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:09:59', '2020-04-14 15:09:59');
+INSERT INTO `admin_operation_log` VALUES (3607, 1, 'admin/auth/permissions', 'POST', '127.0.0.1', '{\"slug\":\"user.edit\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u4fee\\u6539\\u754c\\u9762\",\"http_method\":[null],\"http_path\":\"\\/users\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?&per_page=30&page=2\"}', '2020-04-14 15:10:26', '2020-04-14 15:10:26');
+INSERT INTO `admin_operation_log` VALUES (3608, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"per_page\":\"30\",\"page\":\"2\"}', '2020-04-14 15:10:26', '2020-04-14 15:10:26');
+INSERT INTO `admin_operation_log` VALUES (3609, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:10:34', '2020-04-14 15:10:34');
+INSERT INTO `admin_operation_log` VALUES (3610, 1, 'admin/auth/roles/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:10:37', '2020-04-14 15:10:37');
+INSERT INTO `admin_operation_log` VALUES (3611, 1, 'admin/auth/roles/3', 'PUT', '127.0.0.1', '{\"slug\":\"student\",\"name\":\"\\u5b66\\u751f\",\"permissions\":[\"2\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"19\",\"21\",\"24\",\"27\",\"29\",\"32\",\"33\",\"39\",\"42\",\"44\",null],\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/roles\"}', '2020-04-14 15:10:40', '2020-04-14 15:10:40');
+INSERT INTO `admin_operation_log` VALUES (3612, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '[]', '2020-04-14 15:10:41', '2020-04-14 15:10:41');
+INSERT INTO `admin_operation_log` VALUES (3613, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 15:10:42', '2020-04-14 15:10:42');
+INSERT INTO `admin_operation_log` VALUES (3614, 3, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:10:46', '2020-04-14 15:10:46');
+INSERT INTO `admin_operation_log` VALUES (3615, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:10:48', '2020-04-14 15:10:48');
+INSERT INTO `admin_operation_log` VALUES (3616, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:10:57', '2020-04-14 15:10:57');
+INSERT INTO `admin_operation_log` VALUES (3617, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"page\":\"3\"}', '2020-04-14 15:10:59', '2020-04-14 15:10:59');
+INSERT INTO `admin_operation_log` VALUES (3618, 1, 'admin/auth/permissions/44/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:11:02', '2020-04-14 15:11:02');
+INSERT INTO `admin_operation_log` VALUES (3619, 1, 'admin/auth/permissions/44', 'PUT', '127.0.0.1', '{\"slug\":\"user.edit\",\"name\":\"\\u524d\\u53f0\\u7528\\u6237\\u4fee\\u6539\\u754c\\u9762\",\"http_method\":[null],\"http_path\":\"\\/users\\/*\\/edit\",\"created_at\":\"2020-04-14 15:10:26\",\"updated_at\":\"2020-04-14 15:10:26\",\"_token\":\"d6ZoiR9pG6L41eJ1UGOuHa3CCb8cmAsPSxPPhtJc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/auth\\/permissions?&page=3\"}', '2020-04-14 15:11:11', '2020-04-14 15:11:11');
+INSERT INTO `admin_operation_log` VALUES (3620, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{\"page\":\"3\"}', '2020-04-14 15:11:11', '2020-04-14 15:11:11');
+INSERT INTO `admin_operation_log` VALUES (3621, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 15:11:14', '2020-04-14 15:11:14');
+INSERT INTO `admin_operation_log` VALUES (3622, 3, 'admin/users/1', 'GET', '127.0.0.1', '[]', '2020-04-14 15:11:58', '2020-04-14 15:11:58');
+INSERT INTO `admin_operation_log` VALUES (3623, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 15:12:28', '2020-04-14 15:12:28');
+INSERT INTO `admin_operation_log` VALUES (3624, 3, 'admin/users/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-14 15:14:51', '2020-04-14 15:14:51');
+INSERT INTO `admin_operation_log` VALUES (3625, 3, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:14:56', '2020-04-14 15:14:56');
+INSERT INTO `admin_operation_log` VALUES (3626, 3, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:02', '2020-04-14 15:15:02');
+INSERT INTO `admin_operation_log` VALUES (3627, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:10', '2020-04-14 15:15:10');
+INSERT INTO `admin_operation_log` VALUES (3628, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-14 15:15:12', '2020-04-14 15:15:12');
+INSERT INTO `admin_operation_log` VALUES (3629, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:14', '2020-04-14 15:15:14');
+INSERT INTO `admin_operation_log` VALUES (3630, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:16', '2020-04-14 15:15:16');
+INSERT INTO `admin_operation_log` VALUES (3631, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:19', '2020-04-14 15:15:19');
+INSERT INTO `admin_operation_log` VALUES (3632, 3, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-14 15:15:30', '2020-04-14 15:15:30');
+INSERT INTO `admin_operation_log` VALUES (3633, 3, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 01:51:32', '2020-04-15 01:51:32');
+INSERT INTO `admin_operation_log` VALUES (3634, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 01:51:40', '2020-04-15 01:51:40');
+INSERT INTO `admin_operation_log` VALUES (3635, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:51:44', '2020-04-15 01:51:44');
+INSERT INTO `admin_operation_log` VALUES (3636, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:51:47', '2020-04-15 01:51:47');
+INSERT INTO `admin_operation_log` VALUES (3637, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"stu1\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-15 01:51:52', '2020-04-15 01:51:52');
+INSERT INTO `admin_operation_log` VALUES (3638, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 01:51:53', '2020-04-15 01:51:53');
+INSERT INTO `admin_operation_log` VALUES (3639, 1, 'admin/users/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:52:41', '2020-04-15 01:52:41');
+INSERT INTO `admin_operation_log` VALUES (3640, 1, 'admin/users/2', 'PUT', '127.0.0.1', '{\"name\":\"\\u8d75\\u94c1\\u67f1\",\"email\":\"20164842\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-15 01:52:47', '2020-04-15 01:52:47');
+INSERT INTO `admin_operation_log` VALUES (3641, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 01:52:47', '2020-04-15 01:52:47');
+INSERT INTO `admin_operation_log` VALUES (3642, 1, 'admin/users/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:52:49', '2020-04-15 01:52:49');
+INSERT INTO `admin_operation_log` VALUES (3643, 1, 'admin/users/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\\u540c\\u5b66\",\"email\":\"stu1\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-15 01:52:54', '2020-04-15 01:52:54');
+INSERT INTO `admin_operation_log` VALUES (3644, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 01:52:55', '2020-04-15 01:52:55');
+INSERT INTO `admin_operation_log` VALUES (3645, 1, 'admin/users/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:54:20', '2020-04-15 01:54:20');
+INSERT INTO `admin_operation_log` VALUES (3646, 1, 'admin/users/2', 'PUT', '127.0.0.1', '{\"name\":\"\\u8d75\\u94c1\\u67f1\",\"email\":\"20164842\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-15 01:54:29', '2020-04-15 01:54:29');
+INSERT INTO `admin_operation_log` VALUES (3647, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 01:54:29', '2020-04-15 01:54:29');
+INSERT INTO `admin_operation_log` VALUES (3648, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:04', '2020-04-15 01:55:04');
+INSERT INTO `admin_operation_log` VALUES (3649, 1, 'admin/auth/users/18', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 01:55:10', '2020-04-15 01:55:10');
+INSERT INTO `admin_operation_log` VALUES (3650, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:10', '2020-04-15 01:55:10');
+INSERT INTO `admin_operation_log` VALUES (3651, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:16', '2020-04-15 01:55:16');
+INSERT INTO `admin_operation_log` VALUES (3652, 1, 'admin/users/2', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 01:55:21', '2020-04-15 01:55:21');
+INSERT INTO `admin_operation_log` VALUES (3653, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:21', '2020-04-15 01:55:21');
+INSERT INTO `admin_operation_log` VALUES (3654, 1, 'admin/users/1', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 01:55:26', '2020-04-15 01:55:26');
+INSERT INTO `admin_operation_log` VALUES (3655, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:27', '2020-04-15 01:55:27');
+INSERT INTO `admin_operation_log` VALUES (3656, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:55:33', '2020-04-15 01:55:33');
+INSERT INTO `admin_operation_log` VALUES (3657, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 01:56:22', '2020-04-15 01:56:22');
+INSERT INTO `admin_operation_log` VALUES (3658, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:56:24', '2020-04-15 01:56:24');
+INSERT INTO `admin_operation_log` VALUES (3659, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:56:33', '2020-04-15 01:56:33');
+INSERT INTO `admin_operation_log` VALUES (3660, 3, 'admin/auth/logout', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:56:46', '2020-04-15 01:56:46');
+INSERT INTO `admin_operation_log` VALUES (3661, 20, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 01:56:51', '2020-04-15 01:56:51');
+INSERT INTO `admin_operation_log` VALUES (3662, 20, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:56:56', '2020-04-15 01:56:56');
+INSERT INTO `admin_operation_log` VALUES (3663, 20, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:56:59', '2020-04-15 01:56:59');
+INSERT INTO `admin_operation_log` VALUES (3664, 20, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:57:01', '2020-04-15 01:57:01');
+INSERT INTO `admin_operation_log` VALUES (3665, 20, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:57:02', '2020-04-15 01:57:02');
+INSERT INTO `admin_operation_log` VALUES (3666, 20, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:57:17', '2020-04-15 01:57:17');
+INSERT INTO `admin_operation_log` VALUES (3667, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:57:21', '2020-04-15 01:57:21');
+INSERT INTO `admin_operation_log` VALUES (3668, 20, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:57:27', '2020-04-15 01:57:27');
+INSERT INTO `admin_operation_log` VALUES (3669, 20, 'admin/courses', 'GET', '127.0.0.1', '[]', '2020-04-15 01:57:29', '2020-04-15 01:57:29');
+INSERT INTO `admin_operation_log` VALUES (3670, 20, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:58:53', '2020-04-15 01:58:53');
+INSERT INTO `admin_operation_log` VALUES (3671, 20, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:58:55', '2020-04-15 01:58:55');
+INSERT INTO `admin_operation_log` VALUES (3672, 20, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:59:07', '2020-04-15 01:59:07');
+INSERT INTO `admin_operation_log` VALUES (3673, 20, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 01:59:16', '2020-04-15 01:59:16');
+INSERT INTO `admin_operation_log` VALUES (3674, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:00:09', '2020-04-15 02:00:09');
+INSERT INTO `admin_operation_log` VALUES (3675, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:00:12', '2020-04-15 02:00:12');
+INSERT INTO `admin_operation_log` VALUES (3676, 1, 'admin/squads/1', 'GET', '127.0.0.1', '[]', '2020-04-15 02:00:17', '2020-04-15 02:00:17');
+INSERT INTO `admin_operation_log` VALUES (3677, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:00:21', '2020-04-15 02:00:21');
+INSERT INTO `admin_operation_log` VALUES (3678, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:00:25', '2020-04-15 02:00:25');
+INSERT INTO `admin_operation_log` VALUES (3679, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":null,\"_model\":\"App_Models_StudentSquad\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:01:02', '2020-04-15 02:01:02');
+INSERT INTO `admin_operation_log` VALUES (3680, 20, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:02:23', '2020-04-15 02:02:23');
+INSERT INTO `admin_operation_log` VALUES (3681, 20, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:02:29', '2020-04-15 02:02:29');
+INSERT INTO `admin_operation_log` VALUES (3682, 20, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:02:32', '2020-04-15 02:02:32');
+INSERT INTO `admin_operation_log` VALUES (3683, 20, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:02:34', '2020-04-15 02:02:34');
+INSERT INTO `admin_operation_log` VALUES (3684, 20, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:02:43', '2020-04-15 02:02:43');
+INSERT INTO `admin_operation_log` VALUES (3685, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:02:50', '2020-04-15 02:02:50');
+INSERT INTO `admin_operation_log` VALUES (3686, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:04:20', '2020-04-15 02:04:20');
+INSERT INTO `admin_operation_log` VALUES (3687, 1, 'admin/articles/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:04:30', '2020-04-15 02:04:30');
+INSERT INTO `admin_operation_log` VALUES (3688, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:04:35', '2020-04-15 02:04:35');
+INSERT INTO `admin_operation_log` VALUES (3689, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"2\",\"_model\":\"App_Models_Article\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:05:22', '2020-04-15 02:05:22');
+INSERT INTO `admin_operation_log` VALUES (3690, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:05:22', '2020-04-15 02:05:22');
+INSERT INTO `admin_operation_log` VALUES (3691, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:20:43', '2020-04-15 02:20:43');
+INSERT INTO `admin_operation_log` VALUES (3692, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:21:08', '2020-04-15 02:21:08');
+INSERT INTO `admin_operation_log` VALUES (3693, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:09', '2020-04-15 02:21:09');
+INSERT INTO `admin_operation_log` VALUES (3694, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:35', '2020-04-15 02:21:35');
+INSERT INTO `admin_operation_log` VALUES (3695, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:37', '2020-04-15 02:21:37');
+INSERT INTO `admin_operation_log` VALUES (3696, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:40', '2020-04-15 02:21:40');
+INSERT INTO `admin_operation_log` VALUES (3697, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:44', '2020-04-15 02:21:44');
+INSERT INTO `admin_operation_log` VALUES (3698, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:46', '2020-04-15 02:21:46');
+INSERT INTO `admin_operation_log` VALUES (3699, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:21:56', '2020-04-15 02:21:56');
+INSERT INTO `admin_operation_log` VALUES (3700, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"21\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:22:40', '2020-04-15 02:22:40');
+INSERT INTO `admin_operation_log` VALUES (3701, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:22:40', '2020-04-15 02:22:40');
+INSERT INTO `admin_operation_log` VALUES (3702, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:22:44', '2020-04-15 02:22:44');
+INSERT INTO `admin_operation_log` VALUES (3703, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:22:46', '2020-04-15 02:22:46');
+INSERT INTO `admin_operation_log` VALUES (3704, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:32:18', '2020-04-15 02:32:18');
+INSERT INTO `admin_operation_log` VALUES (3705, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":null,\"_model\":\"App_Models_StudentSquad\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:32:22', '2020-04-15 02:32:22');
+INSERT INTO `admin_operation_log` VALUES (3706, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:32:36', '2020-04-15 02:32:36');
+INSERT INTO `admin_operation_log` VALUES (3707, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:32:39', '2020-04-15 02:32:39');
+INSERT INTO `admin_operation_log` VALUES (3708, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:32:46', '2020-04-15 02:32:46');
+INSERT INTO `admin_operation_log` VALUES (3709, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:32:47', '2020-04-15 02:32:47');
+INSERT INTO `admin_operation_log` VALUES (3710, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"22\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:32:59', '2020-04-15 02:32:59');
+INSERT INTO `admin_operation_log` VALUES (3711, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:00', '2020-04-15 02:33:00');
+INSERT INTO `admin_operation_log` VALUES (3712, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:03', '2020-04-15 02:33:03');
+INSERT INTO `admin_operation_log` VALUES (3713, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"5\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:33:09', '2020-04-15 02:33:09');
+INSERT INTO `admin_operation_log` VALUES (3714, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:09', '2020-04-15 02:33:09');
+INSERT INTO `admin_operation_log` VALUES (3715, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:13', '2020-04-15 02:33:13');
+INSERT INTO `admin_operation_log` VALUES (3716, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:15', '2020-04-15 02:33:15');
+INSERT INTO `admin_operation_log` VALUES (3717, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:17', '2020-04-15 02:33:17');
+INSERT INTO `admin_operation_log` VALUES (3718, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:21', '2020-04-15 02:33:21');
+INSERT INTO `admin_operation_log` VALUES (3719, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:33:27', '2020-04-15 02:33:27');
+INSERT INTO `admin_operation_log` VALUES (3720, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:28', '2020-04-15 02:33:28');
+INSERT INTO `admin_operation_log` VALUES (3721, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:32', '2020-04-15 02:33:32');
+INSERT INTO `admin_operation_log` VALUES (3722, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:36', '2020-04-15 02:33:36');
+INSERT INTO `admin_operation_log` VALUES (3723, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:39', '2020-04-15 02:33:39');
+INSERT INTO `admin_operation_log` VALUES (3724, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:42', '2020-04-15 02:33:42');
+INSERT INTO `admin_operation_log` VALUES (3725, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"23\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:33:46', '2020-04-15 02:33:46');
+INSERT INTO `admin_operation_log` VALUES (3726, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:47', '2020-04-15 02:33:47');
+INSERT INTO `admin_operation_log` VALUES (3727, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:50', '2020-04-15 02:33:50');
+INSERT INTO `admin_operation_log` VALUES (3728, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:33:52', '2020-04-15 02:33:52');
+INSERT INTO `admin_operation_log` VALUES (3729, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:33:58', '2020-04-15 02:33:58');
+INSERT INTO `admin_operation_log` VALUES (3730, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:07', '2020-04-15 02:34:07');
+INSERT INTO `admin_operation_log` VALUES (3731, 1, 'admin/auth/users/19/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:13', '2020-04-15 02:34:13');
+INSERT INTO `admin_operation_log` VALUES (3732, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:19', '2020-04-15 02:34:19');
+INSERT INTO `admin_operation_log` VALUES (3733, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:25', '2020-04-15 02:34:25');
+INSERT INTO `admin_operation_log` VALUES (3734, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:28', '2020-04-15 02:34:28');
+INSERT INTO `admin_operation_log` VALUES (3735, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:34:33', '2020-04-15 02:34:33');
+INSERT INTO `admin_operation_log` VALUES (3736, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:34:47', '2020-04-15 02:34:47');
+INSERT INTO `admin_operation_log` VALUES (3737, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:34:51', '2020-04-15 02:34:51');
+INSERT INTO `admin_operation_log` VALUES (3738, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:34:57', '2020-04-15 02:34:57');
+INSERT INTO `admin_operation_log` VALUES (3739, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:35:01', '2020-04-15 02:35:01');
+INSERT INTO `admin_operation_log` VALUES (3740, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"6\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:35:07', '2020-04-15 02:35:07');
+INSERT INTO `admin_operation_log` VALUES (3741, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:35:07', '2020-04-15 02:35:07');
+INSERT INTO `admin_operation_log` VALUES (3742, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:35:16', '2020-04-15 02:35:16');
+INSERT INTO `admin_operation_log` VALUES (3743, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:35:16', '2020-04-15 02:35:16');
+INSERT INTO `admin_operation_log` VALUES (3744, 1, 'admin/auth/users/24/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:35:19', '2020-04-15 02:35:19');
+INSERT INTO `admin_operation_log` VALUES (3745, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:35:22', '2020-04-15 02:35:22');
+INSERT INTO `admin_operation_log` VALUES (3746, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:35:25', '2020-04-15 02:35:25');
+INSERT INTO `admin_operation_log` VALUES (3747, 1, 'admin/auth/users/24', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 02:35:33', '2020-04-15 02:35:33');
+INSERT INTO `admin_operation_log` VALUES (3748, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:35:33', '2020-04-15 02:35:33');
+INSERT INTO `admin_operation_log` VALUES (3749, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:35:42', '2020-04-15 02:35:42');
+INSERT INTO `admin_operation_log` VALUES (3750, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:14', '2020-04-15 02:36:14');
+INSERT INTO `admin_operation_log` VALUES (3751, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"7\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:36:17', '2020-04-15 02:36:17');
+INSERT INTO `admin_operation_log` VALUES (3752, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:36:17', '2020-04-15 02:36:17');
+INSERT INTO `admin_operation_log` VALUES (3753, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:19', '2020-04-15 02:36:19');
+INSERT INTO `admin_operation_log` VALUES (3754, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:22', '2020-04-15 02:36:22');
+INSERT INTO `admin_operation_log` VALUES (3755, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:36:29', '2020-04-15 02:36:29');
+INSERT INTO `admin_operation_log` VALUES (3756, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:36:29', '2020-04-15 02:36:29');
+INSERT INTO `admin_operation_log` VALUES (3757, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:36', '2020-04-15 02:36:36');
+INSERT INTO `admin_operation_log` VALUES (3758, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:38', '2020-04-15 02:36:38');
+INSERT INTO `admin_operation_log` VALUES (3759, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"25\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:36:43', '2020-04-15 02:36:43');
+INSERT INTO `admin_operation_log` VALUES (3760, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:36:43', '2020-04-15 02:36:43');
+INSERT INTO `admin_operation_log` VALUES (3761, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:36:47', '2020-04-15 02:36:47');
+INSERT INTO `admin_operation_log` VALUES (3762, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"8\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:37:02', '2020-04-15 02:37:02');
+INSERT INTO `admin_operation_log` VALUES (3763, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:37:02', '2020-04-15 02:37:02');
+INSERT INTO `admin_operation_log` VALUES (3764, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:05', '2020-04-15 02:37:05');
+INSERT INTO `admin_operation_log` VALUES (3765, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:37:10', '2020-04-15 02:37:10');
+INSERT INTO `admin_operation_log` VALUES (3766, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:37:11', '2020-04-15 02:37:11');
+INSERT INTO `admin_operation_log` VALUES (3767, 1, 'admin/auth/users/26/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:37:14', '2020-04-15 02:37:14');
+INSERT INTO `admin_operation_log` VALUES (3768, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:16', '2020-04-15 02:37:16');
+INSERT INTO `admin_operation_log` VALUES (3769, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:19', '2020-04-15 02:37:19');
+INSERT INTO `admin_operation_log` VALUES (3770, 1, 'admin/auth/users/26', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 02:37:22', '2020-04-15 02:37:22');
+INSERT INTO `admin_operation_log` VALUES (3771, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:37:23', '2020-04-15 02:37:23');
+INSERT INTO `admin_operation_log` VALUES (3772, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:26', '2020-04-15 02:37:26');
+INSERT INTO `admin_operation_log` VALUES (3773, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:30', '2020-04-15 02:37:30');
+INSERT INTO `admin_operation_log` VALUES (3774, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:37:33', '2020-04-15 02:37:33');
+INSERT INTO `admin_operation_log` VALUES (3775, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":null,\"_model\":\"App_Models_StudentSquad\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:37:39', '2020-04-15 02:37:39');
+INSERT INTO `admin_operation_log` VALUES (3776, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"9\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:38:38', '2020-04-15 02:38:38');
+INSERT INTO `admin_operation_log` VALUES (3777, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:38:39', '2020-04-15 02:38:39');
+INSERT INTO `admin_operation_log` VALUES (3778, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:38:42', '2020-04-15 02:38:42');
+INSERT INTO `admin_operation_log` VALUES (3779, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:38:49', '2020-04-15 02:38:49');
+INSERT INTO `admin_operation_log` VALUES (3780, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:38:49', '2020-04-15 02:38:49');
+INSERT INTO `admin_operation_log` VALUES (3781, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:38:53', '2020-04-15 02:38:53');
+INSERT INTO `admin_operation_log` VALUES (3782, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:38:55', '2020-04-15 02:38:55');
+INSERT INTO `admin_operation_log` VALUES (3783, 1, 'admin/auth/users/27/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:38:59', '2020-04-15 02:38:59');
+INSERT INTO `admin_operation_log` VALUES (3784, 1, 'admin/auth/users/27', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 02:39:02', '2020-04-15 02:39:02');
+INSERT INTO `admin_operation_log` VALUES (3785, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:39:02', '2020-04-15 02:39:02');
+INSERT INTO `admin_operation_log` VALUES (3786, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:39:05', '2020-04-15 02:39:05');
+INSERT INTO `admin_operation_log` VALUES (3787, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:39:08', '2020-04-15 02:39:08');
+INSERT INTO `admin_operation_log` VALUES (3788, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:39:11', '2020-04-15 02:39:11');
+INSERT INTO `admin_operation_log` VALUES (3789, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"10\",\"_model\":\"App_User\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:41:01', '2020-04-15 02:41:01');
+INSERT INTO `admin_operation_log` VALUES (3790, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:41:02', '2020-04-15 02:41:02');
+INSERT INTO `admin_operation_log` VALUES (3791, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:41:06', '2020-04-15 02:41:06');
+INSERT INTO `admin_operation_log` VALUES (3792, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:41:14', '2020-04-15 02:41:14');
+INSERT INTO `admin_operation_log` VALUES (3793, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:41:15', '2020-04-15 02:41:15');
+INSERT INTO `admin_operation_log` VALUES (3794, 1, 'admin/auth/users/28/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:41:17', '2020-04-15 02:41:17');
+INSERT INTO `admin_operation_log` VALUES (3795, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:41:20', '2020-04-15 02:41:20');
+INSERT INTO `admin_operation_log` VALUES (3796, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:41:22', '2020-04-15 02:41:22');
+INSERT INTO `admin_operation_log` VALUES (3797, 1, 'admin/auth/users/28', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"WceLwC1JXcYf8Sg9MqphQzBmZjQMA7jYstrFtN9r\"}', '2020-04-15 02:42:08', '2020-04-15 02:42:08');
+INSERT INTO `admin_operation_log` VALUES (3798, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:42:09', '2020-04-15 02:42:09');
+INSERT INTO `admin_operation_log` VALUES (3799, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:42:13', '2020-04-15 02:42:13');
+INSERT INTO `admin_operation_log` VALUES (3800, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:42:16', '2020-04-15 02:42:16');
+INSERT INTO `admin_operation_log` VALUES (3801, 20, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 02:43:03', '2020-04-15 02:43:03');
+INSERT INTO `admin_operation_log` VALUES (3802, 20, 'admin/auth/logout', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:27', '2020-04-15 02:47:27');
+INSERT INTO `admin_operation_log` VALUES (3803, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 02:47:32', '2020-04-15 02:47:32');
+INSERT INTO `admin_operation_log` VALUES (3804, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 02:47:36', '2020-04-15 02:47:36');
+INSERT INTO `admin_operation_log` VALUES (3805, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 02:47:38', '2020-04-15 02:47:38');
+INSERT INTO `admin_operation_log` VALUES (3806, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:41', '2020-04-15 02:47:41');
+INSERT INTO `admin_operation_log` VALUES (3807, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:48', '2020-04-15 02:47:48');
+INSERT INTO `admin_operation_log` VALUES (3808, 1, 'admin/squads/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:51', '2020-04-15 02:47:51');
+INSERT INTO `admin_operation_log` VALUES (3809, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:52', '2020-04-15 02:47:52');
+INSERT INTO `admin_operation_log` VALUES (3810, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:54', '2020-04-15 02:47:54');
+INSERT INTO `admin_operation_log` VALUES (3811, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:47:59', '2020-04-15 02:47:59');
+INSERT INTO `admin_operation_log` VALUES (3812, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"11\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:48:02', '2020-04-15 02:48:02');
+INSERT INTO `admin_operation_log` VALUES (3813, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:48:02', '2020-04-15 02:48:02');
+INSERT INTO `admin_operation_log` VALUES (3814, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:49:27', '2020-04-15 02:49:27');
+INSERT INTO `admin_operation_log` VALUES (3815, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:49:27', '2020-04-15 02:49:27');
+INSERT INTO `admin_operation_log` VALUES (3816, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:49:32', '2020-04-15 02:49:32');
+INSERT INTO `admin_operation_log` VALUES (3817, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:49:40', '2020-04-15 02:49:40');
+INSERT INTO `admin_operation_log` VALUES (3818, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:49:43', '2020-04-15 02:49:43');
+INSERT INTO `admin_operation_log` VALUES (3819, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:49:45', '2020-04-15 02:49:45');
+INSERT INTO `admin_operation_log` VALUES (3820, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:49:53', '2020-04-15 02:49:53');
+INSERT INTO `admin_operation_log` VALUES (3821, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:49:53', '2020-04-15 02:49:53');
+INSERT INTO `admin_operation_log` VALUES (3822, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:50:16', '2020-04-15 02:50:16');
+INSERT INTO `admin_operation_log` VALUES (3823, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:50:39', '2020-04-15 02:50:39');
+INSERT INTO `admin_operation_log` VALUES (3824, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:50:40', '2020-04-15 02:50:40');
+INSERT INTO `admin_operation_log` VALUES (3825, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:50:45', '2020-04-15 02:50:45');
+INSERT INTO `admin_operation_log` VALUES (3826, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:50:47', '2020-04-15 02:50:47');
+INSERT INTO `admin_operation_log` VALUES (3827, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"29\",\"_model\":\"Encore_Admin_Auth_Database_Administrator\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:50:58', '2020-04-15 02:50:58');
+INSERT INTO `admin_operation_log` VALUES (3828, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:50:58', '2020-04-15 02:50:58');
+INSERT INTO `admin_operation_log` VALUES (3829, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:51:02', '2020-04-15 02:51:02');
+INSERT INTO `admin_operation_log` VALUES (3830, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:51:05', '2020-04-15 02:51:05');
+INSERT INTO `admin_operation_log` VALUES (3831, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"12\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:51:56', '2020-04-15 02:51:56');
+INSERT INTO `admin_operation_log` VALUES (3832, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:51:56', '2020-04-15 02:51:56');
+INSERT INTO `admin_operation_log` VALUES (3833, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:51:58', '2020-04-15 02:51:58');
+INSERT INTO `admin_operation_log` VALUES (3834, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:52:19', '2020-04-15 02:52:19');
+INSERT INTO `admin_operation_log` VALUES (3835, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:52:19', '2020-04-15 02:52:19');
+INSERT INTO `admin_operation_log` VALUES (3836, 1, 'admin/auth/users/30/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:52:22', '2020-04-15 02:52:22');
+INSERT INTO `admin_operation_log` VALUES (3837, 1, 'admin/auth/users/30', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\"}', '2020-04-15 02:52:29', '2020-04-15 02:52:29');
+INSERT INTO `admin_operation_log` VALUES (3838, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:52:29', '2020-04-15 02:52:29');
+INSERT INTO `admin_operation_log` VALUES (3839, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:52:36', '2020-04-15 02:52:36');
+INSERT INTO `admin_operation_log` VALUES (3840, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:52:39', '2020-04-15 02:52:39');
+INSERT INTO `admin_operation_log` VALUES (3841, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"13\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:52:42', '2020-04-15 02:52:42');
+INSERT INTO `admin_operation_log` VALUES (3842, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:52:42', '2020-04-15 02:52:42');
+INSERT INTO `admin_operation_log` VALUES (3843, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:55:42', '2020-04-15 02:55:42');
+INSERT INTO `admin_operation_log` VALUES (3844, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:56:19', '2020-04-15 02:56:19');
+INSERT INTO `admin_operation_log` VALUES (3845, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:56:24', '2020-04-15 02:56:24');
+INSERT INTO `admin_operation_log` VALUES (3846, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:56:34', '2020-04-15 02:56:34');
+INSERT INTO `admin_operation_log` VALUES (3847, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:56:35', '2020-04-15 02:56:35');
+INSERT INTO `admin_operation_log` VALUES (3848, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:56:43', '2020-04-15 02:56:43');
+INSERT INTO `admin_operation_log` VALUES (3849, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:56:43', '2020-04-15 02:56:43');
+INSERT INTO `admin_operation_log` VALUES (3850, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"31\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:56:48', '2020-04-15 02:56:48');
+INSERT INTO `admin_operation_log` VALUES (3851, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:59:08', '2020-04-15 02:59:08');
+INSERT INTO `admin_operation_log` VALUES (3852, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"14\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:59:12', '2020-04-15 02:59:12');
+INSERT INTO `admin_operation_log` VALUES (3853, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:59:13', '2020-04-15 02:59:13');
+INSERT INTO `admin_operation_log` VALUES (3854, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 02:59:15', '2020-04-15 02:59:15');
+INSERT INTO `admin_operation_log` VALUES (3855, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:59:17', '2020-04-15 02:59:17');
+INSERT INTO `admin_operation_log` VALUES (3856, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 02:59:24', '2020-04-15 02:59:24');
+INSERT INTO `admin_operation_log` VALUES (3857, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 02:59:25', '2020-04-15 02:59:25');
+INSERT INTO `admin_operation_log` VALUES (3858, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"32\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 02:59:29', '2020-04-15 02:59:29');
+INSERT INTO `admin_operation_log` VALUES (3859, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 02:59:49', '2020-04-15 02:59:49');
+INSERT INTO `admin_operation_log` VALUES (3860, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:00:45', '2020-04-15 03:00:45');
+INSERT INTO `admin_operation_log` VALUES (3861, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"15\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 03:00:48', '2020-04-15 03:00:48');
+INSERT INTO `admin_operation_log` VALUES (3862, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:00:48', '2020-04-15 03:00:48');
+INSERT INTO `admin_operation_log` VALUES (3863, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 03:00:57', '2020-04-15 03:00:57');
+INSERT INTO `admin_operation_log` VALUES (3864, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:00:57', '2020-04-15 03:00:57');
+INSERT INTO `admin_operation_log` VALUES (3865, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:01:00', '2020-04-15 03:01:00');
+INSERT INTO `admin_operation_log` VALUES (3866, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 03:01:02', '2020-04-15 03:01:02');
+INSERT INTO `admin_operation_log` VALUES (3867, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:01:05', '2020-04-15 03:01:05');
+INSERT INTO `admin_operation_log` VALUES (3868, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"33\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 03:01:09', '2020-04-15 03:01:09');
+INSERT INTO `admin_operation_log` VALUES (3869, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:20', '2020-04-15 03:03:20');
+INSERT INTO `admin_operation_log` VALUES (3870, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"16\",\"_model\":\"App_User\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 03:03:23', '2020-04-15 03:03:23');
+INSERT INTO `admin_operation_log` VALUES (3871, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:03:23', '2020-04-15 03:03:23');
+INSERT INTO `admin_operation_log` VALUES (3872, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:26', '2020-04-15 03:03:26');
+INSERT INTO `admin_operation_log` VALUES (3873, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 03:03:33', '2020-04-15 03:03:33');
+INSERT INTO `admin_operation_log` VALUES (3874, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:03:33', '2020-04-15 03:03:33');
+INSERT INTO `admin_operation_log` VALUES (3875, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:36', '2020-04-15 03:03:36');
+INSERT INTO `admin_operation_log` VALUES (3876, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:38', '2020-04-15 03:03:38');
+INSERT INTO `admin_operation_log` VALUES (3877, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"34\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 03:03:42', '2020-04-15 03:03:42');
+INSERT INTO `admin_operation_log` VALUES (3878, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:03:43', '2020-04-15 03:03:43');
+INSERT INTO `admin_operation_log` VALUES (3879, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:47', '2020-04-15 03:03:47');
+INSERT INTO `admin_operation_log` VALUES (3880, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:03:50', '2020-04-15 03:03:50');
+INSERT INTO `admin_operation_log` VALUES (3881, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:06:18', '2020-04-15 03:06:18');
+INSERT INTO `admin_operation_log` VALUES (3882, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 03:06:20', '2020-04-15 03:06:20');
+INSERT INTO `admin_operation_log` VALUES (3883, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:06:22', '2020-04-15 03:06:22');
+INSERT INTO `admin_operation_log` VALUES (3884, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 03:06:29', '2020-04-15 03:06:29');
+INSERT INTO `admin_operation_log` VALUES (3885, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:06:30', '2020-04-15 03:06:30');
+INSERT INTO `admin_operation_log` VALUES (3886, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"35\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"PAr0afaaSgxyQaVImX76Z9TygudMM4hJuWlp2dOI\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 03:06:39', '2020-04-15 03:06:39');
+INSERT INTO `admin_operation_log` VALUES (3887, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 03:06:39', '2020-04-15 03:06:39');
+INSERT INTO `admin_operation_log` VALUES (3888, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 03:06:42', '2020-04-15 03:06:42');
+INSERT INTO `admin_operation_log` VALUES (3889, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 03:06:44', '2020-04-15 03:06:44');
+INSERT INTO `admin_operation_log` VALUES (3890, 1, 'admin', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:05:21', '2020-04-15 06:05:21');
+INSERT INTO `admin_operation_log` VALUES (3891, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:14:28', '2020-04-15 06:14:28');
+INSERT INTO `admin_operation_log` VALUES (3892, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:14:29', '2020-04-15 06:14:29');
+INSERT INTO `admin_operation_log` VALUES (3893, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:14:37', '2020-04-15 06:14:37');
+INSERT INTO `admin_operation_log` VALUES (3894, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:14:38', '2020-04-15 06:14:38');
+INSERT INTO `admin_operation_log` VALUES (3895, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:14:46', '2020-04-15 06:14:46');
+INSERT INTO `admin_operation_log` VALUES (3896, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:14:48', '2020-04-15 06:14:48');
+INSERT INTO `admin_operation_log` VALUES (3897, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:14:49', '2020-04-15 06:14:49');
+INSERT INTO `admin_operation_log` VALUES (3898, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:15:32', '2020-04-15 06:15:32');
+INSERT INTO `admin_operation_log` VALUES (3899, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:16:05', '2020-04-15 06:16:05');
+INSERT INTO `admin_operation_log` VALUES (3900, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:16:06', '2020-04-15 06:16:06');
+INSERT INTO `admin_operation_log` VALUES (3901, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:09', '2020-04-15 06:18:09');
+INSERT INTO `admin_operation_log` VALUES (3902, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:17', '2020-04-15 06:18:17');
+INSERT INTO `admin_operation_log` VALUES (3903, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:17', '2020-04-15 06:18:17');
+INSERT INTO `admin_operation_log` VALUES (3904, 1, 'admin/labels', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:23', '2020-04-15 06:18:23');
+INSERT INTO `admin_operation_log` VALUES (3905, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:26', '2020-04-15 06:18:26');
+INSERT INTO `admin_operation_log` VALUES (3906, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:28', '2020-04-15 06:18:28');
+INSERT INTO `admin_operation_log` VALUES (3907, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:29', '2020-04-15 06:18:29');
+INSERT INTO `admin_operation_log` VALUES (3908, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:29', '2020-04-15 06:18:29');
+INSERT INTO `admin_operation_log` VALUES (3909, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:34', '2020-04-15 06:18:34');
+INSERT INTO `admin_operation_log` VALUES (3910, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:34', '2020-04-15 06:18:34');
+INSERT INTO `admin_operation_log` VALUES (3911, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:36', '2020-04-15 06:18:36');
+INSERT INTO `admin_operation_log` VALUES (3912, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:18:39', '2020-04-15 06:18:39');
+INSERT INTO `admin_operation_log` VALUES (3913, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:18:40', '2020-04-15 06:18:40');
+INSERT INTO `admin_operation_log` VALUES (3914, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:19:59', '2020-04-15 06:19:59');
+INSERT INTO `admin_operation_log` VALUES (3915, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:20:02', '2020-04-15 06:20:02');
+INSERT INTO `admin_operation_log` VALUES (3916, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:20:02', '2020-04-15 06:20:02');
+INSERT INTO `admin_operation_log` VALUES (3917, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:20:27', '2020-04-15 06:20:27');
+INSERT INTO `admin_operation_log` VALUES (3918, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:20:28', '2020-04-15 06:20:28');
+INSERT INTO `admin_operation_log` VALUES (3919, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:21:06', '2020-04-15 06:21:06');
+INSERT INTO `admin_operation_log` VALUES (3920, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:21:06', '2020-04-15 06:21:06');
+INSERT INTO `admin_operation_log` VALUES (3921, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:21:08', '2020-04-15 06:21:08');
+INSERT INTO `admin_operation_log` VALUES (3922, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:21:11', '2020-04-15 06:21:11');
+INSERT INTO `admin_operation_log` VALUES (3923, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:21:11', '2020-04-15 06:21:11');
+INSERT INTO `admin_operation_log` VALUES (3924, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:21:29', '2020-04-15 06:21:29');
+INSERT INTO `admin_operation_log` VALUES (3925, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:21:31', '2020-04-15 06:21:31');
+INSERT INTO `admin_operation_log` VALUES (3926, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:21:33', '2020-04-15 06:21:33');
+INSERT INTO `admin_operation_log` VALUES (3927, 1, 'admin/courses', 'GET', '127.0.0.1', '[]', '2020-04-15 06:23:15', '2020-04-15 06:23:15');
+INSERT INTO `admin_operation_log` VALUES (3928, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:18', '2020-04-15 06:23:18');
+INSERT INTO `admin_operation_log` VALUES (3929, 1, 'admin/labels', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:19', '2020-04-15 06:23:19');
+INSERT INTO `admin_operation_log` VALUES (3930, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:21', '2020-04-15 06:23:21');
+INSERT INTO `admin_operation_log` VALUES (3931, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:22', '2020-04-15 06:23:22');
+INSERT INTO `admin_operation_log` VALUES (3932, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:23', '2020-04-15 06:23:23');
+INSERT INTO `admin_operation_log` VALUES (3933, 1, 'admin/course-type-constants', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:24', '2020-04-15 06:23:24');
+INSERT INTO `admin_operation_log` VALUES (3934, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:25', '2020-04-15 06:23:25');
+INSERT INTO `admin_operation_log` VALUES (3935, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:27', '2020-04-15 06:23:27');
+INSERT INTO `admin_operation_log` VALUES (3936, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:28', '2020-04-15 06:23:28');
+INSERT INTO `admin_operation_log` VALUES (3937, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:28', '2020-04-15 06:23:28');
+INSERT INTO `admin_operation_log` VALUES (3938, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:31', '2020-04-15 06:23:31');
+INSERT INTO `admin_operation_log` VALUES (3939, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:32', '2020-04-15 06:23:32');
+INSERT INTO `admin_operation_log` VALUES (3940, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:34', '2020-04-15 06:23:34');
+INSERT INTO `admin_operation_log` VALUES (3941, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"k7OtHuO9qMHcwSc71aYFacso95hVykhbg4Hp0Wlg\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 06:23:46', '2020-04-15 06:23:46');
+INSERT INTO `admin_operation_log` VALUES (3942, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:48', '2020-04-15 06:23:48');
+INSERT INTO `admin_operation_log` VALUES (3943, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 06:23:50', '2020-04-15 06:23:50');
+INSERT INTO `admin_operation_log` VALUES (3944, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 06:23:53', '2020-04-15 06:23:53');
+INSERT INTO `admin_operation_log` VALUES (3945, 1, 'admin/auth/users/36/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:56', '2020-04-15 06:23:56');
+INSERT INTO `admin_operation_log` VALUES (3946, 1, 'admin/auth/users/36', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"k7OtHuO9qMHcwSc71aYFacso95hVykhbg4Hp0Wlg\"}', '2020-04-15 06:23:59', '2020-04-15 06:23:59');
+INSERT INTO `admin_operation_log` VALUES (3947, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:23:59', '2020-04-15 06:23:59');
+INSERT INTO `admin_operation_log` VALUES (3948, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 06:24:03', '2020-04-15 06:24:03');
+INSERT INTO `admin_operation_log` VALUES (3949, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 06:24:05', '2020-04-15 06:24:05');
+INSERT INTO `admin_operation_log` VALUES (3950, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:24:15', '2020-04-15 06:24:15');
+INSERT INTO `admin_operation_log` VALUES (3951, 1, 'admin/labels', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:25:51', '2020-04-15 06:25:51');
+INSERT INTO `admin_operation_log` VALUES (3952, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:25:55', '2020-04-15 06:25:55');
+INSERT INTO `admin_operation_log` VALUES (3953, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:26:40', '2020-04-15 06:26:40');
+INSERT INTO `admin_operation_log` VALUES (3954, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:27:23', '2020-04-15 06:27:23');
+INSERT INTO `admin_operation_log` VALUES (3955, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:29:52', '2020-04-15 06:29:52');
+INSERT INTO `admin_operation_log` VALUES (3956, 1, 'admin/labels', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:31:27', '2020-04-15 06:31:27');
+INSERT INTO `admin_operation_log` VALUES (3957, 1, 'admin/articles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:31:29', '2020-04-15 06:31:29');
+INSERT INTO `admin_operation_log` VALUES (3958, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:31:36', '2020-04-15 06:31:36');
+INSERT INTO `admin_operation_log` VALUES (3959, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:32:54', '2020-04-15 06:32:54');
+INSERT INTO `admin_operation_log` VALUES (3960, 1, 'admin/squads', 'GET', '127.0.0.1', '[]', '2020-04-15 06:36:08', '2020-04-15 06:36:08');
+INSERT INTO `admin_operation_log` VALUES (3961, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:36:10', '2020-04-15 06:36:10');
+INSERT INTO `admin_operation_log` VALUES (3962, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"k7OtHuO9qMHcwSc71aYFacso95hVykhbg4Hp0Wlg\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-15 06:36:18', '2020-04-15 06:36:18');
+INSERT INTO `admin_operation_log` VALUES (3963, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:36:19', '2020-04-15 06:36:19');
+INSERT INTO `admin_operation_log` VALUES (3964, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 06:36:24', '2020-04-15 06:36:24');
+INSERT INTO `admin_operation_log` VALUES (3965, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 06:36:27', '2020-04-15 06:36:27');
+INSERT INTO `admin_operation_log` VALUES (3966, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"37\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"k7OtHuO9qMHcwSc71aYFacso95hVykhbg4Hp0Wlg\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-15 06:36:31', '2020-04-15 06:36:31');
+INSERT INTO `admin_operation_log` VALUES (3967, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 06:36:31', '2020-04-15 06:36:31');
+INSERT INTO `admin_operation_log` VALUES (3968, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-15 06:36:35', '2020-04-15 06:36:35');
+INSERT INTO `admin_operation_log` VALUES (3969, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-15 06:36:37', '2020-04-15 06:36:37');
+INSERT INTO `admin_operation_log` VALUES (3970, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 08:31:28', '2020-04-15 08:31:28');
+INSERT INTO `admin_operation_log` VALUES (3971, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 08:34:30', '2020-04-15 08:34:30');
+INSERT INTO `admin_operation_log` VALUES (3972, 1, 'admin/squads/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 08:36:11', '2020-04-15 08:36:11');
+INSERT INTO `admin_operation_log` VALUES (3973, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 08:36:17', '2020-04-15 08:36:17');
+INSERT INTO `admin_operation_log` VALUES (3974, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-15 11:30:02', '2020-04-15 11:30:02');
+INSERT INTO `admin_operation_log` VALUES (3975, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-17 08:42:43', '2020-04-17 08:42:43');
+INSERT INTO `admin_operation_log` VALUES (3976, 1, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:05', '2020-04-17 08:43:05');
+INSERT INTO `admin_operation_log` VALUES (3977, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:11', '2020-04-17 08:43:11');
+INSERT INTO `admin_operation_log` VALUES (3978, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:14', '2020-04-17 08:43:14');
+INSERT INTO `admin_operation_log` VALUES (3979, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:36', '2020-04-17 08:43:36');
+INSERT INTO `admin_operation_log` VALUES (3980, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:39', '2020-04-17 08:43:39');
+INSERT INTO `admin_operation_log` VALUES (3981, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:42', '2020-04-17 08:43:42');
+INSERT INTO `admin_operation_log` VALUES (3982, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:43:48', '2020-04-17 08:43:48');
+INSERT INTO `admin_operation_log` VALUES (3983, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-17 08:44:30', '2020-04-17 08:44:30');
+INSERT INTO `admin_operation_log` VALUES (3984, 1, 'admin/auth/logout', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:44:34', '2020-04-17 08:44:34');
+INSERT INTO `admin_operation_log` VALUES (3985, 3, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-17 08:44:51', '2020-04-17 08:44:51');
+INSERT INTO `admin_operation_log` VALUES (3986, 3, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:44:57', '2020-04-17 08:44:57');
+INSERT INTO `admin_operation_log` VALUES (3987, 3, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:44:59', '2020-04-17 08:44:59');
+INSERT INTO `admin_operation_log` VALUES (3988, 3, 'admin/professions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:45:07', '2020-04-17 08:45:07');
+INSERT INTO `admin_operation_log` VALUES (3989, 3, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:45:11', '2020-04-17 08:45:11');
+INSERT INTO `admin_operation_log` VALUES (3990, 3, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:45:39', '2020-04-17 08:45:39');
+INSERT INTO `admin_operation_log` VALUES (3991, 1, 'admin/squads/1', 'GET', '127.0.0.1', '[]', '2020-04-17 08:45:53', '2020-04-17 08:45:53');
+INSERT INTO `admin_operation_log` VALUES (3992, 1, 'admin/auth/logout', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 08:45:59', '2020-04-17 08:45:59');
+INSERT INTO `admin_operation_log` VALUES (3993, 3, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 11:59:05', '2020-04-17 11:59:05');
+INSERT INTO `admin_operation_log` VALUES (3994, 3, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 11:59:10', '2020-04-17 11:59:10');
+INSERT INTO `admin_operation_log` VALUES (3995, 3, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 12:00:10', '2020-04-17 12:00:10');
+INSERT INTO `admin_operation_log` VALUES (3996, 3, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-17 12:00:13', '2020-04-17 12:00:13');
+INSERT INTO `admin_operation_log` VALUES (3997, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-19 08:01:54', '2020-04-19 08:01:54');
+INSERT INTO `admin_operation_log` VALUES (3998, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 08:01:58', '2020-04-19 08:01:58');
+INSERT INTO `admin_operation_log` VALUES (3999, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 08:02:00', '2020-04-19 08:02:00');
+INSERT INTO `admin_operation_log` VALUES (4000, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 08:02:03', '2020-04-19 08:02:03');
+INSERT INTO `admin_operation_log` VALUES (4001, 1, 'admin/student-squads/create', 'GET', '127.0.0.1', '{\"squad_id\":\"1\",\"_pjax\":\"#pjax-container\"}', '2020-04-19 08:02:05', '2020-04-19 08:02:05');
+INSERT INTO `admin_operation_log` VALUES (4002, 1, 'admin/student-squads/create', 'GET', '127.0.0.1', '{\"squad_id\":\"1\"}', '2020-04-19 08:02:11', '2020-04-19 08:02:11');
+INSERT INTO `admin_operation_log` VALUES (4003, 1, 'admin/student-squads/create', 'GET', '127.0.0.1', '{\"squad_id\":\"1\"}', '2020-04-19 09:00:39', '2020-04-19 09:00:39');
+INSERT INTO `admin_operation_log` VALUES (4004, 1, 'admin/course-type-constants', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 09:00:44', '2020-04-19 09:00:44');
+INSERT INTO `admin_operation_log` VALUES (4005, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-19 12:05:43', '2020-04-19 12:05:43');
+INSERT INTO `admin_operation_log` VALUES (4006, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:05:48', '2020-04-19 12:05:48');
+INSERT INTO `admin_operation_log` VALUES (4007, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:06:08', '2020-04-19 12:06:08');
+INSERT INTO `admin_operation_log` VALUES (4008, 1, 'admin/users/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:06:10', '2020-04-19 12:06:10');
+INSERT INTO `admin_operation_log` VALUES (4009, 1, 'admin/users/create', 'GET', '127.0.0.1', '[]', '2020-04-19 12:09:28', '2020-04-19 12:09:28');
+INSERT INTO `admin_operation_log` VALUES (4010, 1, 'admin/users/create', 'GET', '127.0.0.1', '[]', '2020-04-19 12:10:03', '2020-04-19 12:10:03');
+INSERT INTO `admin_operation_log` VALUES (4011, 1, 'admin/users/create', 'GET', '127.0.0.1', '[]', '2020-04-19 12:11:10', '2020-04-19 12:11:10');
+INSERT INTO `admin_operation_log` VALUES (4012, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:11:14', '2020-04-19 12:11:14');
+INSERT INTO `admin_operation_log` VALUES (4013, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:11:16', '2020-04-19 12:11:16');
+INSERT INTO `admin_operation_log` VALUES (4014, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:11:19', '2020-04-19 12:11:19');
+INSERT INTO `admin_operation_log` VALUES (4015, 1, 'admin/users/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:11:20', '2020-04-19 12:11:20');
+INSERT INTO `admin_operation_log` VALUES (4016, 1, 'admin/users', 'POST', '127.0.0.1', '{\"name\":\"\\u738b\\u8001\\u5e08\",\"email\":\"wang\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"O7qlZtAJNDCv3ituPiFVHIuof2q2JM9e6CJ2qvy8\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:11:33', '2020-04-19 12:11:33');
+INSERT INTO `admin_operation_log` VALUES (4017, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:11:33', '2020-04-19 12:11:33');
+INSERT INTO `admin_operation_log` VALUES (4018, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:13:43', '2020-04-19 12:13:43');
+INSERT INTO `admin_operation_log` VALUES (4019, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:13:46', '2020-04-19 12:13:46');
+INSERT INTO `admin_operation_log` VALUES (4020, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"111111\",\"remember_token\":\"NlYdcYqG6AiZSrpuCTiSkO5B99w7ftbZX7YLQEcoVuDamBIxDCgwpz0VbdeV\",\"_token\":\"O7qlZtAJNDCv3ituPiFVHIuof2q2JM9e6CJ2qvy8\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:13:53', '2020-04-19 12:13:53');
+INSERT INTO `admin_operation_log` VALUES (4021, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:13:53', '2020-04-19 12:13:53');
+INSERT INTO `admin_operation_log` VALUES (4022, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:14:11', '2020-04-19 12:14:11');
+INSERT INTO `admin_operation_log` VALUES (4023, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"ZaNYP7FuUfmeHBqpKuRpiS3h6ixFYPIbb3WgCvfguvzolgt6R1fgPNIex8bC\",\"_token\":\"VbUTYN2kaYSnBBo4pxPFV4xahySi5rvUCWjIyH1p\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:14:34', '2020-04-19 12:14:34');
+INSERT INTO `admin_operation_log` VALUES (4024, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:14:34', '2020-04-19 12:14:34');
+INSERT INTO `admin_operation_log` VALUES (4025, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:16:39', '2020-04-19 12:16:39');
+INSERT INTO `admin_operation_log` VALUES (4026, 1, 'admin/users/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:16:42', '2020-04-19 12:16:42');
+INSERT INTO `admin_operation_log` VALUES (4027, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:16:45', '2020-04-19 12:16:45');
+INSERT INTO `admin_operation_log` VALUES (4028, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:16:47', '2020-04-19 12:16:47');
+INSERT INTO `admin_operation_log` VALUES (4029, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:17:21', '2020-04-19 12:17:21');
+INSERT INTO `admin_operation_log` VALUES (4030, 1, 'admin/users/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:17:23', '2020-04-19 12:17:23');
+INSERT INTO `admin_operation_log` VALUES (4031, 1, 'admin/users', 'POST', '127.0.0.1', '{\"name\":\"\\u8096\\u8001\\u5e08\",\"email\":\"xiao\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"VbUTYN2kaYSnBBo4pxPFV4xahySi5rvUCWjIyH1p\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:17:42', '2020-04-19 12:17:42');
+INSERT INTO `admin_operation_log` VALUES (4032, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:17:42', '2020-04-19 12:17:42');
+INSERT INTO `admin_operation_log` VALUES (4033, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:18:47', '2020-04-19 12:18:47');
+INSERT INTO `admin_operation_log` VALUES (4034, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:19:19', '2020-04-19 12:19:19');
+INSERT INTO `admin_operation_log` VALUES (4035, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"ZaNYP7FuUfmeHBqpKuRpiS3h6ixFYPIbb3WgCvfguvzolgt6R1fgPNIex8bC\",\"_token\":\"VbUTYN2kaYSnBBo4pxPFV4xahySi5rvUCWjIyH1p\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:19:26', '2020-04-19 12:19:26');
+INSERT INTO `admin_operation_log` VALUES (4036, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:19:26', '2020-04-19 12:19:26');
+INSERT INTO `admin_operation_log` VALUES (4037, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:22:57', '2020-04-19 12:22:57');
+INSERT INTO `admin_operation_log` VALUES (4038, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:22:59', '2020-04-19 12:22:59');
+INSERT INTO `admin_operation_log` VALUES (4039, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"ZaNYP7FuUfmeHBqpKuRpiS3h6ixFYPIbb3WgCvfguvzolgt6R1fgPNIex8bC\",\"_token\":\"ZiYEMKVvwho7gMKENUyRM8K1eOLeIXQlYHshSrO0\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:23:05', '2020-04-19 12:23:05');
+INSERT INTO `admin_operation_log` VALUES (4040, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:23:05', '2020-04-19 12:23:05');
+INSERT INTO `admin_operation_log` VALUES (4041, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:28:37', '2020-04-19 12:28:37');
+INSERT INTO `admin_operation_log` VALUES (4042, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:40', '2020-04-19 12:28:40');
+INSERT INTO `admin_operation_log` VALUES (4043, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:46', '2020-04-19 12:28:46');
+INSERT INTO `admin_operation_log` VALUES (4044, 1, 'admin/auth/roles/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:49', '2020-04-19 12:28:49');
+INSERT INTO `admin_operation_log` VALUES (4045, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:52', '2020-04-19 12:28:52');
+INSERT INTO `admin_operation_log` VALUES (4046, 1, 'admin/auth/roles/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:54', '2020-04-19 12:28:54');
+INSERT INTO `admin_operation_log` VALUES (4047, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:28:56', '2020-04-19 12:28:56');
+INSERT INTO `admin_operation_log` VALUES (4048, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:30:07', '2020-04-19 12:30:07');
+INSERT INTO `admin_operation_log` VALUES (4049, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"ZiYEMKVvwho7gMKENUyRM8K1eOLeIXQlYHshSrO0\",\"_action\":\"App_Admin_Actions_AdminUser_ImportUsers\"}', '2020-04-19 12:30:15', '2020-04-19 12:30:15');
+INSERT INTO `admin_operation_log` VALUES (4050, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:30:16', '2020-04-19 12:30:16');
+INSERT INTO `admin_operation_log` VALUES (4051, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:30:21', '2020-04-19 12:30:21');
+INSERT INTO `admin_operation_log` VALUES (4052, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:53:37', '2020-04-19 12:53:37');
+INSERT INTO `admin_operation_log` VALUES (4053, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:53:40', '2020-04-19 12:53:40');
+INSERT INTO `admin_operation_log` VALUES (4054, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"ZaNYP7FuUfmeHBqpKuRpiS3h6ixFYPIbb3WgCvfguvzolgt6R1fgPNIex8bC\",\"_token\":\"ldF3QMVLUWMbrucmWpKsYcY6Vb6oVNPrPaQdoIkP\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:53:47', '2020-04-19 12:53:47');
+INSERT INTO `admin_operation_log` VALUES (4055, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:53:47', '2020-04-19 12:53:47');
+INSERT INTO `admin_operation_log` VALUES (4056, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:55:02', '2020-04-19 12:55:02');
+INSERT INTO `admin_operation_log` VALUES (4057, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:55:27', '2020-04-19 12:55:27');
+INSERT INTO `admin_operation_log` VALUES (4058, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"111111\",\"remember_token\":\"1La3ZQlWzb2ASzkHmaXfv7LULDVT4ZT3stgdJSsRSycyDXRBZXvNwmjlXZhv\",\"_token\":\"zYieaXd6TeuPRu4v6uUPmUmErjT3QwDxS9wsWAA0\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:55:36', '2020-04-19 12:55:36');
+INSERT INTO `admin_operation_log` VALUES (4059, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:55:36', '2020-04-19 12:55:36');
+INSERT INTO `admin_operation_log` VALUES (4060, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 12:57:25', '2020-04-19 12:57:25');
+INSERT INTO `admin_operation_log` VALUES (4061, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"nTmGHq5bUlS4Ev8POpBAjSvPjllyCQ5mifR1gGBQ\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 12:57:31', '2020-04-19 12:57:31');
+INSERT INTO `admin_operation_log` VALUES (4062, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 12:57:31', '2020-04-19 12:57:31');
+INSERT INTO `admin_operation_log` VALUES (4063, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:00:09', '2020-04-19 13:00:09');
+INSERT INTO `admin_operation_log` VALUES (4064, 1, 'admin/users/3', 'GET', '127.0.0.1', '[]', '2020-04-19 13:01:17', '2020-04-19 13:01:17');
+INSERT INTO `admin_operation_log` VALUES (4065, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:01:20', '2020-04-19 13:01:20');
+INSERT INTO `admin_operation_log` VALUES (4066, 1, 'admin/users/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:01:23', '2020-04-19 13:01:23');
+INSERT INTO `admin_operation_log` VALUES (4067, 1, 'admin/users/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u4e8c\\u599e\",\"email\":\"20164843\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"RijySj4oKT8DZ8As5UHDqQsnKsVB3hJWRWKJyB2m\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:01:29', '2020-04-19 13:01:29');
+INSERT INTO `admin_operation_log` VALUES (4068, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:01:30', '2020-04-19 13:01:30');
+INSERT INTO `admin_operation_log` VALUES (4069, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:03:39', '2020-04-19 13:03:39');
+INSERT INTO `admin_operation_log` VALUES (4070, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:03:42', '2020-04-19 13:03:42');
+INSERT INTO `admin_operation_log` VALUES (4071, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"gMPnWjR69uz974NMCn6EbUFNWfC4AFNcSIRKjpEIaP4yz88IuHuFAAszGKtb\",\"_token\":\"OV26Pbwwexh1gU33bAYhqS0ZQJY2PGbqglfFhJar\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:03:58', '2020-04-19 13:03:58');
+INSERT INTO `admin_operation_log` VALUES (4072, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:03:58', '2020-04-19 13:03:58');
+INSERT INTO `admin_operation_log` VALUES (4073, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:04:35', '2020-04-19 13:04:35');
+INSERT INTO `admin_operation_log` VALUES (4074, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"gMPnWjR69uz974NMCn6EbUFNWfC4AFNcSIRKjpEIaP4yz88IuHuFAAszGKtb\",\"_token\":\"OV26Pbwwexh1gU33bAYhqS0ZQJY2PGbqglfFhJar\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:04:40', '2020-04-19 13:04:40');
+INSERT INTO `admin_operation_log` VALUES (4075, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:04:40', '2020-04-19 13:04:40');
+INSERT INTO `admin_operation_log` VALUES (4076, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:05:35', '2020-04-19 13:05:35');
+INSERT INTO `admin_operation_log` VALUES (4077, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:05:40', '2020-04-19 13:05:40');
+INSERT INTO `admin_operation_log` VALUES (4078, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:05:42', '2020-04-19 13:05:42');
+INSERT INTO `admin_operation_log` VALUES (4079, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"789456\",\"remember_token\":\"Dmmog9pd32a1vG6sMygH4YvIBnI8ELClHCpZuPfM8EZ3WjRkJn7tv0gjF9WB\",\"_token\":\"R2dl8GauEQWYu8g9xTL7moTrBN5dakhLYXWGVtoQ\",\"_method\":\"PUT\"}', '2020-04-19 13:05:53', '2020-04-19 13:05:53');
+INSERT INTO `admin_operation_log` VALUES (4080, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:05:53', '2020-04-19 13:05:53');
+INSERT INTO `admin_operation_log` VALUES (4081, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:06:43', '2020-04-19 13:06:43');
+INSERT INTO `admin_operation_log` VALUES (4082, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:06:45', '2020-04-19 13:06:45');
+INSERT INTO `admin_operation_log` VALUES (4083, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"789456\",\"remember_token\":\"Dmmog9pd32a1vG6sMygH4YvIBnI8ELClHCpZuPfM8EZ3WjRkJn7tv0gjF9WB\",\"_token\":\"R2dl8GauEQWYu8g9xTL7moTrBN5dakhLYXWGVtoQ\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:06:55', '2020-04-19 13:06:55');
+INSERT INTO `admin_operation_log` VALUES (4084, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:06:56', '2020-04-19 13:06:56');
+INSERT INTO `admin_operation_log` VALUES (4085, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:07:12', '2020-04-19 13:07:12');
+INSERT INTO `admin_operation_log` VALUES (4086, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"Dmmog9pd32a1vG6sMygH4YvIBnI8ELClHCpZuPfM8EZ3WjRkJn7tv0gjF9WB\",\"_token\":\"R2dl8GauEQWYu8g9xTL7moTrBN5dakhLYXWGVtoQ\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:07:17', '2020-04-19 13:07:17');
+INSERT INTO `admin_operation_log` VALUES (4087, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:07:18', '2020-04-19 13:07:18');
+INSERT INTO `admin_operation_log` VALUES (4088, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:07:54', '2020-04-19 13:07:54');
+INSERT INTO `admin_operation_log` VALUES (4089, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:09:25', '2020-04-19 13:09:25');
+INSERT INTO `admin_operation_log` VALUES (4090, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"741852\",\"remember_token\":\"Dmmog9pd32a1vG6sMygH4YvIBnI8ELClHCpZuPfM8EZ3WjRkJn7tv0gjF9WB\",\"_token\":\"R2dl8GauEQWYu8g9xTL7moTrBN5dakhLYXWGVtoQ\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:09:35', '2020-04-19 13:09:35');
+INSERT INTO `admin_operation_log` VALUES (4091, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:09:36', '2020-04-19 13:09:36');
+INSERT INTO `admin_operation_log` VALUES (4092, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:11:58', '2020-04-19 13:11:58');
+INSERT INTO `admin_operation_log` VALUES (4093, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:12:00', '2020-04-19 13:12:00');
+INSERT INTO `admin_operation_log` VALUES (4094, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:12:05', '2020-04-19 13:12:05');
+INSERT INTO `admin_operation_log` VALUES (4095, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"B0pN5z3d2z697bgBQZNYbHaB6uLHOl8i5GfgScATno1Wdl4yQ3WiDFbG59hK\",\"_token\":\"EjdEKHcbLJXlDbTkQMDIIbOPeWxy02lGEziCAVoR\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:12:21', '2020-04-19 13:12:21');
+INSERT INTO `admin_operation_log` VALUES (4096, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:12:21', '2020-04-19 13:12:21');
+INSERT INTO `admin_operation_log` VALUES (4097, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:14:15', '2020-04-19 13:14:15');
+INSERT INTO `admin_operation_log` VALUES (4098, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:14:18', '2020-04-19 13:14:18');
+INSERT INTO `admin_operation_log` VALUES (4099, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"741852\",\"remember_token\":null,\"_token\":\"Gw9qQhLCMM64DYFjccgpZcBNeVJRwz4O8EVlZdsI\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:15:20', '2020-04-19 13:15:20');
+INSERT INTO `admin_operation_log` VALUES (4100, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:15:21', '2020-04-19 13:15:21');
+INSERT INTO `admin_operation_log` VALUES (4101, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:15:46', '2020-04-19 13:15:46');
+INSERT INTO `admin_operation_log` VALUES (4102, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:15:48', '2020-04-19 13:15:48');
+INSERT INTO `admin_operation_log` VALUES (4103, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"Gw9qQhLCMM64DYFjccgpZcBNeVJRwz4O8EVlZdsI\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:16:09', '2020-04-19 13:16:09');
+INSERT INTO `admin_operation_log` VALUES (4104, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:16:09', '2020-04-19 13:16:09');
+INSERT INTO `admin_operation_log` VALUES (4105, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:17:46', '2020-04-19 13:17:46');
+INSERT INTO `admin_operation_log` VALUES (4106, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:17:50', '2020-04-19 13:17:50');
+INSERT INTO `admin_operation_log` VALUES (4107, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"v9x8HZWP0kIWU8xlfoDlufU8wrphkQE7c7q2cNXe\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:17:57', '2020-04-19 13:17:57');
+INSERT INTO `admin_operation_log` VALUES (4108, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:17:57', '2020-04-19 13:17:57');
+INSERT INTO `admin_operation_log` VALUES (4109, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:18:57', '2020-04-19 13:18:57');
+INSERT INTO `admin_operation_log` VALUES (4110, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:19:00', '2020-04-19 13:19:00');
+INSERT INTO `admin_operation_log` VALUES (4111, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:22:41', '2020-04-19 13:22:41');
+INSERT INTO `admin_operation_log` VALUES (4112, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"v9x8HZWP0kIWU8xlfoDlufU8wrphkQE7c7q2cNXe\",\"_method\":\"PUT\"}', '2020-04-19 13:22:48', '2020-04-19 13:22:48');
+INSERT INTO `admin_operation_log` VALUES (4113, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:22:48', '2020-04-19 13:22:48');
+INSERT INTO `admin_operation_log` VALUES (4114, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:23:35', '2020-04-19 13:23:35');
+INSERT INTO `admin_operation_log` VALUES (4115, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:23:37', '2020-04-19 13:23:37');
+INSERT INTO `admin_operation_log` VALUES (4116, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"v9x8HZWP0kIWU8xlfoDlufU8wrphkQE7c7q2cNXe\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:23:44', '2020-04-19 13:23:44');
+INSERT INTO `admin_operation_log` VALUES (4117, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:23:44', '2020-04-19 13:23:44');
+INSERT INTO `admin_operation_log` VALUES (4118, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:24:27', '2020-04-19 13:24:27');
+INSERT INTO `admin_operation_log` VALUES (4119, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:24:32', '2020-04-19 13:24:32');
+INSERT INTO `admin_operation_log` VALUES (4120, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"v9x8HZWP0kIWU8xlfoDlufU8wrphkQE7c7q2cNXe\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:24:38', '2020-04-19 13:24:38');
+INSERT INTO `admin_operation_log` VALUES (4121, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:24:38', '2020-04-19 13:24:38');
+INSERT INTO `admin_operation_log` VALUES (4122, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:25:16', '2020-04-19 13:25:16');
+INSERT INTO `admin_operation_log` VALUES (4123, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:25:20', '2020-04-19 13:25:20');
+INSERT INTO `admin_operation_log` VALUES (4124, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"789456\",\"remember_token\":null,\"_token\":\"v9x8HZWP0kIWU8xlfoDlufU8wrphkQE7c7q2cNXe\",\"_method\":\"PUT\"}', '2020-04-19 13:25:45', '2020-04-19 13:25:45');
+INSERT INTO `admin_operation_log` VALUES (4125, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:25:45', '2020-04-19 13:25:45');
+INSERT INTO `admin_operation_log` VALUES (4126, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:27:12', '2020-04-19 13:27:12');
+INSERT INTO `admin_operation_log` VALUES (4127, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:27:15', '2020-04-19 13:27:15');
+INSERT INTO `admin_operation_log` VALUES (4128, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"bRJ76z6Jda4zs6tsc9kEUrty2iASSwmxzEH95KZd\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:27:22', '2020-04-19 13:27:22');
+INSERT INTO `admin_operation_log` VALUES (4129, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:27:22', '2020-04-19 13:27:22');
+INSERT INTO `admin_operation_log` VALUES (4130, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:37:41', '2020-04-19 13:37:41');
+INSERT INTO `admin_operation_log` VALUES (4131, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:37:43', '2020-04-19 13:37:43');
+INSERT INTO `admin_operation_log` VALUES (4132, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"RTFOFXbRbBZr4g7bhz2wqmR0QlcHDRwVu2ZRX4j3\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:37:51', '2020-04-19 13:37:51');
+INSERT INTO `admin_operation_log` VALUES (4133, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:37:51', '2020-04-19 13:37:51');
+INSERT INTO `admin_operation_log` VALUES (4134, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:38:20', '2020-04-19 13:38:20');
+INSERT INTO `admin_operation_log` VALUES (4135, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"RTFOFXbRbBZr4g7bhz2wqmR0QlcHDRwVu2ZRX4j3\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:38:25', '2020-04-19 13:38:25');
+INSERT INTO `admin_operation_log` VALUES (4136, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:38:25', '2020-04-19 13:38:25');
+INSERT INTO `admin_operation_log` VALUES (4137, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:42:42', '2020-04-19 13:42:42');
+INSERT INTO `admin_operation_log` VALUES (4138, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"741852\",\"remember_token\":\"8AFt3tbjv1SCSMEd8A6Ca3XKPaImHavkDOy2XJJ83Di8NXETFGOojfclhW55\",\"_token\":\"XAU03rbiBV5fyFJOFkt4M0XF2nPIUd6L8qZDSpHS\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:42:50', '2020-04-19 13:42:50');
+INSERT INTO `admin_operation_log` VALUES (4139, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:42:51', '2020-04-19 13:42:51');
+INSERT INTO `admin_operation_log` VALUES (4140, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:43:52', '2020-04-19 13:43:52');
+INSERT INTO `admin_operation_log` VALUES (4141, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"789456\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:44:00', '2020-04-19 13:44:00');
+INSERT INTO `admin_operation_log` VALUES (4142, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:44:24', '2020-04-19 13:44:24');
+INSERT INTO `admin_operation_log` VALUES (4143, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:44:28', '2020-04-19 13:44:28');
+INSERT INTO `admin_operation_log` VALUES (4144, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\\/4\"}', '2020-04-19 13:44:35', '2020-04-19 13:44:35');
+INSERT INTO `admin_operation_log` VALUES (4145, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:45:47', '2020-04-19 13:45:47');
+INSERT INTO `admin_operation_log` VALUES (4146, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:45:49', '2020-04-19 13:45:49');
+INSERT INTO `admin_operation_log` VALUES (4147, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"785463\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\\/4\"}', '2020-04-19 13:46:00', '2020-04-19 13:46:00');
+INSERT INTO `admin_operation_log` VALUES (4148, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:50:37', '2020-04-19 13:50:37');
+INSERT INTO `admin_operation_log` VALUES (4149, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:50:39', '2020-04-19 13:50:39');
+INSERT INTO `admin_operation_log` VALUES (4150, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"789456\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\\/4\"}', '2020-04-19 13:50:49', '2020-04-19 13:50:49');
+INSERT INTO `admin_operation_log` VALUES (4151, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:51:17', '2020-04-19 13:51:17');
+INSERT INTO `admin_operation_log` VALUES (4152, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:51:19', '2020-04-19 13:51:19');
+INSERT INTO `admin_operation_log` VALUES (4153, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"777888\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\\/4\"}', '2020-04-19 13:51:29', '2020-04-19 13:51:29');
+INSERT INTO `admin_operation_log` VALUES (4154, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:52:33', '2020-04-19 13:52:33');
+INSERT INTO `admin_operation_log` VALUES (4155, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:52:36', '2020-04-19 13:52:36');
+INSERT INTO `admin_operation_log` VALUES (4156, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"777888\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\\/4\"}', '2020-04-19 13:52:43', '2020-04-19 13:52:43');
+INSERT INTO `admin_operation_log` VALUES (4157, 1, 'admin/users/4', 'GET', '127.0.0.1', '[]', '2020-04-19 13:53:04', '2020-04-19 13:53:04');
+INSERT INTO `admin_operation_log` VALUES (4158, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:53:06', '2020-04-19 13:53:06');
+INSERT INTO `admin_operation_log` VALUES (4159, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '[]', '2020-04-19 13:53:15', '2020-04-19 13:53:15');
+INSERT INTO `admin_operation_log` VALUES (4160, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\"}', '2020-04-19 13:53:22', '2020-04-19 13:53:22');
+INSERT INTO `admin_operation_log` VALUES (4161, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:53:22', '2020-04-19 13:53:22');
+INSERT INTO `admin_operation_log` VALUES (4162, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:53:36', '2020-04-19 13:53:36');
+INSERT INTO `admin_operation_log` VALUES (4163, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:53:38', '2020-04-19 13:53:38');
+INSERT INTO `admin_operation_log` VALUES (4164, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"777888\",\"remember_token\":\"W8B2SNjw17a2Vx5wHwRiYo585s39e6uEAm8AzSvyH7mx9ggOBGhLHAB32tFX\",\"_token\":\"oDuCrcIYp6ZwNuNNl2Fbb8NY3euZDUXjDRAIh8Na\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:53:43', '2020-04-19 13:53:43');
+INSERT INTO `admin_operation_log` VALUES (4165, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:53:43', '2020-04-19 13:53:43');
+INSERT INTO `admin_operation_log` VALUES (4166, 1, 'admin/users/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:53:57', '2020-04-19 13:53:57');
+INSERT INTO `admin_operation_log` VALUES (4167, 1, 'admin/users/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u9038\\u51e1\",\"email\":\"20164841\",\"password\":\"123456\",\"remember_token\":\"dFvx5AqiUMiML8K648Wd6tATzwwGbmuot1EYrqWuP6ajQh8z6CyC81fvD5Sc\",\"_token\":\"i5hYdnmTLsxeO0N3KMqKPrDTxoCTmyZEFivFEPqZ\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:54:02', '2020-04-19 13:54:02');
+INSERT INTO `admin_operation_log` VALUES (4168, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:54:02', '2020-04-19 13:54:02');
+INSERT INTO `admin_operation_log` VALUES (4169, 1, 'admin/users/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:55:10', '2020-04-19 13:55:10');
+INSERT INTO `admin_operation_log` VALUES (4170, 1, 'admin/users', 'POST', '127.0.0.1', '{\"name\":\"\\u66fe\\u8001\\u5e08\",\"email\":\"zeng\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"azb3lWPTEf8Wy9OoC9bpVHFQliWdOtZLyHNagzq6\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:55:26', '2020-04-19 13:55:26');
+INSERT INTO `admin_operation_log` VALUES (4171, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:55:26', '2020-04-19 13:55:26');
+INSERT INTO `admin_operation_log` VALUES (4172, 1, 'admin/users/22/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:55:49', '2020-04-19 13:55:49');
+INSERT INTO `admin_operation_log` VALUES (4173, 1, 'admin/users/22', 'PUT', '127.0.0.1', '{\"name\":\"\\u8096\\u8001\\u5e08\",\"email\":\"xiao\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"azb3lWPTEf8Wy9OoC9bpVHFQliWdOtZLyHNagzq6\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-19 13:55:54', '2020-04-19 13:55:54');
+INSERT INTO `admin_operation_log` VALUES (4174, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-19 13:55:54', '2020-04-19 13:55:54');
+INSERT INTO `admin_operation_log` VALUES (4175, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-19 13:59:27', '2020-04-19 13:59:27');
+INSERT INTO `admin_operation_log` VALUES (4176, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-20 08:39:27', '2020-04-20 08:39:27');
+INSERT INTO `admin_operation_log` VALUES (4177, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-20 08:39:35', '2020-04-20 08:39:35');
+INSERT INTO `admin_operation_log` VALUES (4178, 1, 'admin/users/21/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-20 08:39:39', '2020-04-20 08:39:39');
+INSERT INTO `admin_operation_log` VALUES (4179, 1, 'admin/users/21', 'PUT', '127.0.0.1', '{\"name\":\"\\u738b\\u8001\\u5e08\",\"email\":\"wang\",\"password\":\"123456\",\"remember_token\":null,\"_token\":\"r46WKiLjbi4NaYQwAi95Ma8aV91eeK9MXVKIUAIs\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}', '2020-04-20 08:39:44', '2020-04-20 08:39:44');
+INSERT INTO `admin_operation_log` VALUES (4180, 1, 'admin/users', 'GET', '127.0.0.1', '[]', '2020-04-20 08:39:44', '2020-04-20 08:39:44');
+INSERT INTO `admin_operation_log` VALUES (4181, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-20 11:04:59', '2020-04-20 11:04:59');
+INSERT INTO `admin_operation_log` VALUES (4182, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-21 08:11:24', '2020-04-21 08:11:24');
+INSERT INTO `admin_operation_log` VALUES (4183, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:11:28', '2020-04-21 08:11:28');
+INSERT INTO `admin_operation_log` VALUES (4184, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2020-04-21 08:42:16', '2020-04-21 08:42:16');
+INSERT INTO `admin_operation_log` VALUES (4185, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:47', '2020-04-21 08:45:47');
+INSERT INTO `admin_operation_log` VALUES (4186, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:49', '2020-04-21 08:45:49');
+INSERT INTO `admin_operation_log` VALUES (4187, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:52', '2020-04-21 08:45:52');
+INSERT INTO `admin_operation_log` VALUES (4188, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:54', '2020-04-21 08:45:54');
+INSERT INTO `admin_operation_log` VALUES (4189, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:56', '2020-04-21 08:45:56');
+INSERT INTO `admin_operation_log` VALUES (4190, 1, 'admin/squads/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:57', '2020-04-21 08:45:57');
+INSERT INTO `admin_operation_log` VALUES (4191, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:45:59', '2020-04-21 08:45:59');
+INSERT INTO `admin_operation_log` VALUES (4192, 1, 'admin/squads/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:46:23', '2020-04-21 08:46:23');
+INSERT INTO `admin_operation_log` VALUES (4193, 1, 'admin/squads/1', 'GET', '127.0.0.1', '[]', '2020-04-21 08:47:35', '2020-04-21 08:47:35');
+INSERT INTO `admin_operation_log` VALUES (4194, 1, 'admin/squads/1', 'GET', '127.0.0.1', '[]', '2020-04-21 08:48:10', '2020-04-21 08:48:10');
+INSERT INTO `admin_operation_log` VALUES (4195, 1, 'admin/squads/1', 'GET', '127.0.0.1', '[]', '2020-04-21 08:48:55', '2020-04-21 08:48:55');
+INSERT INTO `admin_operation_log` VALUES (4196, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:55:48', '2020-04-21 08:55:48');
+INSERT INTO `admin_operation_log` VALUES (4197, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"38\",\"_model\":\"App_Models_AdminUser\",\"_token\":\"GcbO5fgtEtADuJXYu6ItBvYkxLSJKw5n5VkgTUfR\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-21 08:56:16', '2020-04-21 08:56:16');
+INSERT INTO `admin_operation_log` VALUES (4198, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:16', '2020-04-21 08:56:16');
+INSERT INTO `admin_operation_log` VALUES (4199, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:20', '2020-04-21 08:56:20');
+INSERT INTO `admin_operation_log` VALUES (4200, 1, 'admin/squads', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:25', '2020-04-21 08:56:25');
+INSERT INTO `admin_operation_log` VALUES (4201, 1, 'admin/squads/2', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:28', '2020-04-21 08:56:28');
+INSERT INTO `admin_operation_log` VALUES (4202, 1, 'admin/squads/2', 'GET', '127.0.0.1', '[]', '2020-04-21 08:56:32', '2020-04-21 08:56:32');
+INSERT INTO `admin_operation_log` VALUES (4203, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:39', '2020-04-21 08:56:39');
+INSERT INTO `admin_operation_log` VALUES (4204, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:46', '2020-04-21 08:56:46');
+INSERT INTO `admin_operation_log` VALUES (4205, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:56:49', '2020-04-21 08:56:49');
+INSERT INTO `admin_operation_log` VALUES (4206, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"GcbO5fgtEtADuJXYu6ItBvYkxLSJKw5n5VkgTUfR\",\"_action\":\"App_Admin_Actions_AdminUser_ImportTeachers\"}', '2020-04-21 08:58:14', '2020-04-21 08:58:14');
+INSERT INTO `admin_operation_log` VALUES (4207, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:58:15', '2020-04-21 08:58:15');
+INSERT INTO `admin_operation_log` VALUES (4208, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 08:58:24', '2020-04-21 08:58:24');
+INSERT INTO `admin_operation_log` VALUES (4209, 1, 'admin/courses', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-21 11:55:41', '2020-04-21 11:55:41');
+INSERT INTO `admin_operation_log` VALUES (4210, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-22 14:02:12', '2020-04-22 14:02:12');
+INSERT INTO `admin_operation_log` VALUES (4211, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:02:20', '2020-04-22 14:02:20');
+INSERT INTO `admin_operation_log` VALUES (4212, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:02:25', '2020-04-22 14:02:25');
+INSERT INTO `admin_operation_log` VALUES (4213, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:09:27', '2020-04-22 14:09:27');
+INSERT INTO `admin_operation_log` VALUES (4214, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-22 14:09:29', '2020-04-22 14:09:29');
+INSERT INTO `admin_operation_log` VALUES (4215, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:09:33', '2020-04-22 14:09:33');
+INSERT INTO `admin_operation_log` VALUES (4216, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:09:37', '2020-04-22 14:09:37');
+INSERT INTO `admin_operation_log` VALUES (4217, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:09:56', '2020-04-22 14:09:56');
+INSERT INTO `admin_operation_log` VALUES (4218, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:09:59', '2020-04-22 14:09:59');
+INSERT INTO `admin_operation_log` VALUES (4219, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:13:32', '2020-04-22 14:13:32');
+INSERT INTO `admin_operation_log` VALUES (4220, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:13:43', '2020-04-22 14:13:43');
+INSERT INTO `admin_operation_log` VALUES (4221, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:13:53', '2020-04-22 14:13:53');
+INSERT INTO `admin_operation_log` VALUES (4222, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-22 14:13:58', '2020-04-22 14:13:58');
+INSERT INTO `admin_operation_log` VALUES (4223, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-23 01:01:21', '2020-04-23 01:01:21');
+INSERT INTO `admin_operation_log` VALUES (4224, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 01:01:25', '2020-04-23 01:01:25');
+INSERT INTO `admin_operation_log` VALUES (4225, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 01:01:29', '2020-04-23 01:01:29');
+INSERT INTO `admin_operation_log` VALUES (4226, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 01:29:05', '2020-04-23 01:29:05');
+INSERT INTO `admin_operation_log` VALUES (4227, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:53:18', '2020-04-23 06:53:18');
+INSERT INTO `admin_operation_log` VALUES (4228, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:53:24', '2020-04-23 06:53:24');
+INSERT INTO `admin_operation_log` VALUES (4229, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:53:26', '2020-04-23 06:53:26');
+INSERT INTO `admin_operation_log` VALUES (4230, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:53:28', '2020-04-23 06:53:28');
+INSERT INTO `admin_operation_log` VALUES (4231, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:55:33', '2020-04-23 06:55:33');
+INSERT INTO `admin_operation_log` VALUES (4232, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:55:36', '2020-04-23 06:55:36');
+INSERT INTO `admin_operation_log` VALUES (4233, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:55:59', '2020-04-23 06:55:59');
+INSERT INTO `admin_operation_log` VALUES (4234, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:56:01', '2020-04-23 06:56:01');
+INSERT INTO `admin_operation_log` VALUES (4235, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:58:42', '2020-04-23 06:58:42');
+INSERT INTO `admin_operation_log` VALUES (4236, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 06:58:44', '2020-04-23 06:58:44');
+INSERT INTO `admin_operation_log` VALUES (4237, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:00:17', '2020-04-23 07:00:17');
+INSERT INTO `admin_operation_log` VALUES (4238, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:00:20', '2020-04-23 07:00:20');
+INSERT INTO `admin_operation_log` VALUES (4239, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 07:29:53', '2020-04-23 07:29:53');
+INSERT INTO `admin_operation_log` VALUES (4240, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:02', '2020-04-23 07:30:02');
+INSERT INTO `admin_operation_log` VALUES (4241, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:07', '2020-04-23 07:30:07');
+INSERT INTO `admin_operation_log` VALUES (4242, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:19', '2020-04-23 07:30:19');
+INSERT INTO `admin_operation_log` VALUES (4243, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:21', '2020-04-23 07:30:21');
+INSERT INTO `admin_operation_log` VALUES (4244, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:47', '2020-04-23 07:30:47');
+INSERT INTO `admin_operation_log` VALUES (4245, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:30:49', '2020-04-23 07:30:49');
+INSERT INTO `admin_operation_log` VALUES (4246, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:31:03', '2020-04-23 07:31:03');
+INSERT INTO `admin_operation_log` VALUES (4247, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:35:48', '2020-04-23 07:35:48');
+INSERT INTO `admin_operation_log` VALUES (4248, 1, 'admin/formula-lefts', 'POST', '127.0.0.1', '{\"name\":\"\\u5e73\\u65f6\\u5206\",\"course_id\":\"1\",\"pid\":\"1\",\"metaCalTypes\":[\"1\",\"2\",\"3\",null],\"_token\":\"A4KJJlTnjnc4mmHE8CNPeadeFdU9iCwSSkMr11GP\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 07:36:02', '2020-04-23 07:36:02');
+INSERT INTO `admin_operation_log` VALUES (4249, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 07:36:02', '2020-04-23 07:36:02');
+INSERT INTO `admin_operation_log` VALUES (4250, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:36:05', '2020-04-23 07:36:05');
+INSERT INTO `admin_operation_log` VALUES (4251, 1, 'admin/formula-lefts/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u603b\\u5206\",\"course_id\":\"1\",\"pid\":\"0\",\"metaCalTypes\":[\"1\",\"2\",\"3\",\"4\",null],\"_token\":\"A4KJJlTnjnc4mmHE8CNPeadeFdU9iCwSSkMr11GP\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 07:36:12', '2020-04-23 07:36:12');
+INSERT INTO `admin_operation_log` VALUES (4252, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 07:36:13', '2020-04-23 07:36:13');
+INSERT INTO `admin_operation_log` VALUES (4253, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:36:16', '2020-04-23 07:36:16');
+INSERT INTO `admin_operation_log` VALUES (4254, 1, 'admin/formula-lefts', 'POST', '127.0.0.1', '{\"name\":\"\\u5b9e\\u9a8c\\u5206\",\"course_id\":\"1\",\"pid\":\"1\",\"metaCalTypes\":[\"2\",null],\"_token\":\"A4KJJlTnjnc4mmHE8CNPeadeFdU9iCwSSkMr11GP\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 07:36:35', '2020-04-23 07:36:35');
+INSERT INTO `admin_operation_log` VALUES (4255, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 07:36:36', '2020-04-23 07:36:36');
+INSERT INTO `admin_operation_log` VALUES (4256, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 07:36:38', '2020-04-23 07:36:38');
+INSERT INTO `admin_operation_log` VALUES (4257, 1, 'admin/formula-lefts/5', 'PUT', '127.0.0.1', '{\"name\":\"\\u5e73\\u65f6\\u5206\",\"course_id\":\"1\",\"pid\":\"0\",\"metaCalTypes\":[\"1\",\"3\",null],\"_token\":\"A4KJJlTnjnc4mmHE8CNPeadeFdU9iCwSSkMr11GP\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 07:36:43', '2020-04-23 07:36:43');
+INSERT INTO `admin_operation_log` VALUES (4258, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 07:36:43', '2020-04-23 07:36:43');
+INSERT INTO `admin_operation_log` VALUES (4259, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:18:01', '2020-04-23 08:18:01');
+INSERT INTO `admin_operation_log` VALUES (4260, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:18:08', '2020-04-23 08:18:08');
+INSERT INTO `admin_operation_log` VALUES (4261, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:18:10', '2020-04-23 08:18:10');
+INSERT INTO `admin_operation_log` VALUES (4262, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:18:22', '2020-04-23 08:18:22');
+INSERT INTO `admin_operation_log` VALUES (4263, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:18:24', '2020-04-23 08:18:24');
+INSERT INTO `admin_operation_log` VALUES (4264, 1, 'admin/formula-lefts/5', 'PUT', '127.0.0.1', '{\"name\":\"\\u5e73\\u65f6\\u5206\",\"course_id\":\"1\",\"pid\":\"1\",\"metaCalTypes\":[\"1\",\"3\",null],\"_token\":\"z7fwYKczk6GJFZKyDQNHaVNXk9eRejQ2H4J9MgFD\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 08:18:39', '2020-04-23 08:18:39');
+INSERT INTO `admin_operation_log` VALUES (4265, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:18:40', '2020-04-23 08:18:40');
+INSERT INTO `admin_operation_log` VALUES (4266, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:19:01', '2020-04-23 08:19:01');
+INSERT INTO `admin_operation_log` VALUES (4267, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:25:33', '2020-04-23 08:25:33');
+INSERT INTO `admin_operation_log` VALUES (4268, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:25:40', '2020-04-23 08:25:40');
+INSERT INTO `admin_operation_log` VALUES (4269, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:25:45', '2020-04-23 08:25:45');
+INSERT INTO `admin_operation_log` VALUES (4270, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:25:50', '2020-04-23 08:25:50');
+INSERT INTO `admin_operation_log` VALUES (4271, 1, 'admin/formula-lefts/5', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:25:52', '2020-04-23 08:25:52');
+INSERT INTO `admin_operation_log` VALUES (4272, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:25:58', '2020-04-23 08:25:58');
+INSERT INTO `admin_operation_log` VALUES (4273, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:27:01', '2020-04-23 08:27:01');
+INSERT INTO `admin_operation_log` VALUES (4274, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:27:04', '2020-04-23 08:27:04');
+INSERT INTO `admin_operation_log` VALUES (4275, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:27:07', '2020-04-23 08:27:07');
+INSERT INTO `admin_operation_log` VALUES (4276, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:27:10', '2020-04-23 08:27:10');
+INSERT INTO `admin_operation_log` VALUES (4277, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:27:18', '2020-04-23 08:27:18');
+INSERT INTO `admin_operation_log` VALUES (4278, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:27:53', '2020-04-23 08:27:53');
+INSERT INTO `admin_operation_log` VALUES (4279, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:27:56', '2020-04-23 08:27:56');
+INSERT INTO `admin_operation_log` VALUES (4280, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:28:02', '2020-04-23 08:28:02');
+INSERT INTO `admin_operation_log` VALUES (4281, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:28:22', '2020-04-23 08:28:22');
+INSERT INTO `admin_operation_log` VALUES (4282, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:29:11', '2020-04-23 08:29:11');
+INSERT INTO `admin_operation_log` VALUES (4283, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:30:12', '2020-04-23 08:30:12');
+INSERT INTO `admin_operation_log` VALUES (4284, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:32:13', '2020-04-23 08:32:13');
+INSERT INTO `admin_operation_log` VALUES (4285, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:33:10', '2020-04-23 08:33:10');
+INSERT INTO `admin_operation_log` VALUES (4286, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:33:16', '2020-04-23 08:33:16');
+INSERT INTO `admin_operation_log` VALUES (4287, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:33:20', '2020-04-23 08:33:20');
+INSERT INTO `admin_operation_log` VALUES (4288, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:34:33', '2020-04-23 08:34:33');
+INSERT INTO `admin_operation_log` VALUES (4289, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:36:27', '2020-04-23 08:36:27');
+INSERT INTO `admin_operation_log` VALUES (4290, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '[]', '2020-04-23 08:36:38', '2020-04-23 08:36:38');
+INSERT INTO `admin_operation_log` VALUES (4291, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:03', '2020-04-23 08:38:03');
+INSERT INTO `admin_operation_log` VALUES (4292, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:07', '2020-04-23 08:38:07');
+INSERT INTO `admin_operation_log` VALUES (4293, 1, 'admin/formula-lefts/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u603b\\u5206\",\"course_id\":\"1\",\"pid\":\"0\",\"metaCalTypes\":[\"1\",\"2\",null],\"_token\":\"z7fwYKczk6GJFZKyDQNHaVNXk9eRejQ2H4J9MgFD\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 08:38:13', '2020-04-23 08:38:13');
+INSERT INTO `admin_operation_log` VALUES (4294, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:38:13', '2020-04-23 08:38:13');
+INSERT INTO `admin_operation_log` VALUES (4295, 1, 'admin/formula-lefts/5/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:23', '2020-04-23 08:38:23');
+INSERT INTO `admin_operation_log` VALUES (4296, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:26', '2020-04-23 08:38:26');
+INSERT INTO `admin_operation_log` VALUES (4297, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:29', '2020-04-23 08:38:29');
+INSERT INTO `admin_operation_log` VALUES (4298, 1, 'admin/formula-lefts/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u603b\\u5206\",\"course_id\":\"1\",\"pid\":\"0\",\"metaCalTypes\":[\"1\",\"2\",\"3\",\"4\",null],\"_token\":\"z7fwYKczk6GJFZKyDQNHaVNXk9eRejQ2H4J9MgFD\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-23 08:38:36', '2020-04-23 08:38:36');
+INSERT INTO `admin_operation_log` VALUES (4299, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:38:36', '2020-04-23 08:38:36');
+INSERT INTO `admin_operation_log` VALUES (4300, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:38:54', '2020-04-23 08:38:54');
+INSERT INTO `admin_operation_log` VALUES (4301, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-23 08:39:00', '2020-04-23 08:39:00');
+INSERT INTO `admin_operation_log` VALUES (4302, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:48:37', '2020-04-23 08:48:37');
+INSERT INTO `admin_operation_log` VALUES (4303, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:49:01', '2020-04-23 08:49:01');
+INSERT INTO `admin_operation_log` VALUES (4304, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:49:57', '2020-04-23 08:49:57');
+INSERT INTO `admin_operation_log` VALUES (4305, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:50:07', '2020-04-23 08:50:07');
+INSERT INTO `admin_operation_log` VALUES (4306, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-23 08:50:33', '2020-04-23 08:50:33');
+INSERT INTO `admin_operation_log` VALUES (4307, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-24 01:09:07', '2020-04-24 01:09:07');
+INSERT INTO `admin_operation_log` VALUES (4308, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:13', '2020-04-24 01:09:13');
+INSERT INTO `admin_operation_log` VALUES (4309, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:17', '2020-04-24 01:09:17');
+INSERT INTO `admin_operation_log` VALUES (4310, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:25', '2020-04-24 01:09:25');
+INSERT INTO `admin_operation_log` VALUES (4311, 1, 'admin/formula-lefts/5', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:29', '2020-04-24 01:09:29');
+INSERT INTO `admin_operation_log` VALUES (4312, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:32', '2020-04-24 01:09:32');
+INSERT INTO `admin_operation_log` VALUES (4313, 1, 'admin/formula-lefts/6', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:35', '2020-04-24 01:09:35');
+INSERT INTO `admin_operation_log` VALUES (4314, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:09:37', '2020-04-24 01:09:37');
+INSERT INTO `admin_operation_log` VALUES (4315, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:13:46', '2020-04-24 01:13:46');
+INSERT INTO `admin_operation_log` VALUES (4316, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"student\":{\"name\":\"\\u738b\"},\"course\":{\"full_name\":\"\\u8ba1\\u7b97\\u673a\\u7f51\\u7edc\"},\"metaCalType\":{\"name\":null},\"order\":null}', '2020-04-24 01:14:03', '2020-04-24 01:14:03');
+INSERT INTO `admin_operation_log` VALUES (4317, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"student\":{\"name\":\"\\u738b\"},\"course\":{\"full_name\":\"\\u8ba1\\u7b97\\u673a\\u7f51\\u7edc\"},\"metaCalType\":{\"name\":null},\"order\":null}', '2020-04-24 01:14:06', '2020-04-24 01:14:06');
 
 -- ----------------------------
 -- Table structure for admin_permissions
@@ -3486,7 +4411,7 @@ CREATE TABLE `admin_permissions`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_permissions_name_unique`(`name`) USING BTREE,
   UNIQUE INDEX `admin_permissions_slug_unique`(`slug`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 45 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_permissions
@@ -3529,6 +4454,12 @@ INSERT INTO `admin_permissions` VALUES (35, '分数删除按钮', 'fraction.dele
 INSERT INTO `admin_permissions` VALUES (36, '分数新增按钮', 'fraction.createBtn', 'HEAD', '/fractions', '2020-04-14 09:30:20', '2020-04-14 09:30:20');
 INSERT INTO `admin_permissions` VALUES (37, '分数修改按钮', 'fraction.editBtn', 'HEAD', '/fractions', '2020-04-14 09:30:46', '2020-04-14 09:30:46');
 INSERT INTO `admin_permissions` VALUES (38, '分数显示按钮', 'fraction.viewBtn', 'HEAD', '/fractions', '2020-04-14 09:31:14', '2020-04-14 09:31:14');
+INSERT INTO `admin_permissions` VALUES (39, '前台用户列表界面', 'user.list', '', '/users', '2020-04-14 15:02:41', '2020-04-14 15:02:41');
+INSERT INTO `admin_permissions` VALUES (40, '前台用户新增按钮', 'user.createBtn', 'HEAD', '/users', '2020-04-14 15:05:11', '2020-04-14 15:05:11');
+INSERT INTO `admin_permissions` VALUES (41, '前台用户显示按钮', 'user.viewBtn', 'HEAD', '/users', '2020-04-14 15:05:46', '2020-04-14 15:05:46');
+INSERT INTO `admin_permissions` VALUES (42, '前台用户修改按钮', 'user.editBtn', 'HEAD', '/users', '2020-04-14 15:06:24', '2020-04-14 15:06:24');
+INSERT INTO `admin_permissions` VALUES (43, '前台用户删除按钮', 'user.deleteBtn', 'HEAD', '/users', '2020-04-14 15:06:51', '2020-04-14 15:06:51');
+INSERT INTO `admin_permissions` VALUES (44, '前台用户修改界面', 'user.edit', '', '/users/*/edit', '2020-04-14 15:10:26', '2020-04-14 15:11:11');
 
 -- ----------------------------
 -- Table structure for admin_role_menu
@@ -3575,6 +4506,7 @@ INSERT INTO `admin_role_menu` VALUES (2, 18, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (1, 19, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (2, 19, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (3, 19, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 2, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (1, 16, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (2, 16, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (1, 17, NULL, NULL);
@@ -3584,6 +4516,20 @@ INSERT INTO `admin_role_menu` VALUES (2, 20, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (3, 11, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (3, 12, NULL, NULL);
 INSERT INTO `admin_role_menu` VALUES (3, 15, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (3, 2, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 3, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 3, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 26, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 26, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 4, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 4, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 5, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 5, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 6, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 6, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (1, 7, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (2, 7, NULL, NULL);
+INSERT INTO `admin_role_menu` VALUES (3, 26, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for admin_role_permissions
@@ -3619,6 +4565,9 @@ INSERT INTO `admin_role_permissions` VALUES (3, 29, NULL, NULL);
 INSERT INTO `admin_role_permissions` VALUES (3, 32, NULL, NULL);
 INSERT INTO `admin_role_permissions` VALUES (3, 33, NULL, NULL);
 INSERT INTO `admin_role_permissions` VALUES (3, 2, NULL, NULL);
+INSERT INTO `admin_role_permissions` VALUES (3, 39, NULL, NULL);
+INSERT INTO `admin_role_permissions` VALUES (3, 42, NULL, NULL);
+INSERT INTO `admin_role_permissions` VALUES (3, 44, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for admin_role_users
@@ -3647,6 +4596,9 @@ INSERT INTO `admin_role_users` VALUES (2, 11, NULL, NULL);
 INSERT INTO `admin_role_users` VALUES (3, 10, '2020-04-07 12:10:52', '2020-04-07 12:10:52');
 INSERT INTO `admin_role_users` VALUES (2, 12, NULL, NULL);
 INSERT INTO `admin_role_users` VALUES (3, 14, '2020-04-11 15:07:41', '2020-04-11 15:07:41');
+INSERT INTO `admin_role_users` VALUES (3, 20, '2020-04-15 01:56:23', '2020-04-15 01:56:23');
+INSERT INTO `admin_role_users` VALUES (3, 19, '2020-04-14 14:42:20', '2020-04-14 14:42:20');
+INSERT INTO `admin_role_users` VALUES (2, 39, '2020-04-21 08:58:15', '2020-04-21 08:58:15');
 
 -- ----------------------------
 -- Table structure for admin_roles
@@ -3697,14 +4649,14 @@ CREATE TABLE `admin_users`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_users_username_unique`(`username`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
-INSERT INTO `admin_users` VALUES (1, 'admin', '$2y$10$G6KvI.E8JBaMz.NAukiLm.5Hh9PQ5uIyAKKIPAomiKq/kFI.SVHjG', 'Administrator', 'images/de2c35d5b0d5489ed69a5e58b773f038.png', 'RUccaox3442BB1r8HifslBjE83ExRuGtExgTv6C9zzW64BlsYKg4YYPuffJp', '2020-04-02 09:56:20', '2020-04-11 07:26:31');
+INSERT INTO `admin_users` VALUES (1, 'admin', '$2y$10$G6KvI.E8JBaMz.NAukiLm.5Hh9PQ5uIyAKKIPAomiKq/kFI.SVHjG', 'Administrator', 'images/de2c35d5b0d5489ed69a5e58b773f038.png', '5h5BaCSDy9FGh9jARW6nZ97lNYqQflnwabUpEVPAvTSNQvZXyD151ltAJfqq', '2020-04-02 09:56:20', '2020-04-11 07:26:31');
 INSERT INTO `admin_users` VALUES (2, 'xiao', '$2y$10$bCMMizVlBS0HoVxhdfhTTO6M7jYPNuAqdoGCNDhseBPeyToV9JQ2W', '肖老师', 'images/d10fb8d673e04c2bfdce01955c59bd47.png', 'Zr64Sv8wqqjV3Ugbq9zzKiw2bDqd770U8vGcu8onSKCqFPs3Zd1MZ3lvntQN', '2020-04-03 03:38:37', '2020-04-03 03:38:37');
-INSERT INTO `admin_users` VALUES (3, 'stu1', '$2y$10$2rJM0JsghS/SWvZ8sOoOau1M5SxeH6kfjkh4OcE3TNYTUEjijgE8y', '老王', 'images/48b81e19ac05ccdddcdd5198d961a0af.jpg', 'lpZruNznKxf6PTXqK1yp1L0vHv6HhoXWiFGr3mLcMgKLFmot7ijmg6OyK0ze', '2020-04-05 00:58:50', '2020-04-05 00:59:08');
+INSERT INTO `admin_users` VALUES (3, 'stu1', '$2y$10$2rJM0JsghS/SWvZ8sOoOau1M5SxeH6kfjkh4OcE3TNYTUEjijgE8y', '老王', 'images/48b81e19ac05ccdddcdd5198d961a0af.jpg', 'VJxg0faVs2YNLiLuLCyoepNo7vmwi0a8z7lG8T2LUhANDgqJggQXy7pUuxMe', '2020-04-05 00:58:50', '2020-04-05 00:59:08');
 INSERT INTO `admin_users` VALUES (5, 'stu2', '$2y$10$BxC8FWIrJI/ueIxiPGSkrO/MP7gjScGeapa1jyJNywDvp3/hxLRzG', '老裴', NULL, NULL, '2020-04-07 09:06:03', '2020-04-07 09:06:03');
 INSERT INTO `admin_users` VALUES (6, 'stu3', '$2y$10$DwzmF66CR8C2AqVZtapjUuN5wtpowLHsZmhfRoBmDqFBVWZKqYWJG', '老吴', NULL, NULL, '2020-04-07 09:07:24', '2020-04-07 09:07:24');
 INSERT INTO `admin_users` VALUES (7, 'stu4', '$2y$10$LGmA14AcH8e2gqk8MIuudOMhJcSZP0JnVOptUylFBW0v9A.D8PIC6', '老曹', NULL, NULL, '2020-04-07 09:08:11', '2020-04-07 09:08:11');
@@ -3714,6 +4666,9 @@ INSERT INTO `admin_users` VALUES (10, 'stu7', '$2y$10$7wymN/KA2qjgnbwsGqEFF.0Ern
 INSERT INTO `admin_users` VALUES (11, 'wang', '$2y$10$NYU.o70VMRWwsRriADXkGuGPFpfWqSjCXYGbJwWURG8MysrZnWHU2', '王老师', 'images/ec824c2c054ee5ab460a7ff97474e2ea.png', NULL, '2020-04-10 11:54:47', '2020-04-10 11:54:47');
 INSERT INTO `admin_users` VALUES (12, 'yang', '$2y$10$9tXmTa.At5/lsFLTToXxaOQHxd3296vUr.WR3STuFiF2hpK4U/Q46', '杨老师', 'images/217fb57555f27081a859313542fa4136.png', NULL, '2020-04-10 11:55:30', '2020-04-10 11:55:30');
 INSERT INTO `admin_users` VALUES (14, 'stu8', '$2y$10$VK6BKZ9.T4gAF.VJPix14.BP9lLB2F//opgMhvoP9I8FajAhh.8q.', '老赵', 'images/unnamed.jpg', NULL, '2020-04-11 15:07:41', '2020-04-11 15:07:41');
+INSERT INTO `admin_users` VALUES (20, '20164841', '$2y$10$LMGoadh7rUNLinZu9zWYq.fWTollXE.P98dIrN72uGDzJetfWtVLm', '肖逸凡', 'images/unnamed.jpg', '5CGgIXt4nZmMWloulSRwps53iwYXB0oGPdkW4LPQbVS5s6ORZC1t9kjiP0nj', '2020-04-15 01:56:23', '2020-04-15 01:56:23');
+INSERT INTO `admin_users` VALUES (19, '20164843', '$2y$10$GnLav2jMfET87oQcmbeSdOGe9sXXF3wrmN1CgvJjE/fhBr4xCBdCi', '王二妞', 'images/unnamed.jpg', NULL, '2020-04-14 14:42:20', '2020-04-14 14:42:20');
+INSERT INTO `admin_users` VALUES (39, 'liu', '$2y$10$jzBdxxPPZFs1pFxDojMfWe0uzbCuVp/jBNAF.Ib6AOrIIaytJ1nHS', '刘若英老师', 'images/unnamed.jpg', NULL, '2020-04-21 08:58:14', '2020-04-21 08:58:14');
 
 -- ----------------------------
 -- Table structure for article
@@ -3736,7 +4691,6 @@ CREATE TABLE `article`  (
 -- Records of article
 -- ----------------------------
 INSERT INTO `article` VALUES (1, 1, '孤岛惊魂', '讲述了一个在孤岛上发生的惊魂故事', 'images/6956710ee7a7322831f3e6692d59fa75.png', '# 一级标题\r\n## 二级标题\r\n### 三级标题\r\n**加粗**\r\n\r\n| 测试  | 测试  |\r\n| ------------ | ------------ |\r\n| 测试  | 测试  |\r\n| 测试  |  测试 |', '2020-04-02 10:02:01', '2020-04-02 10:03:00');
-INSERT INTO `article` VALUES (2, 1, '咒怨', '讲述了一个发生在日本的恐怖故事', 'images/1d49acb44c313a5f916f9c72e51e95da.jpg', '```java\r\nclass test{\r\n	\r\n}\r\n```', '2020-04-03 08:08:56', '2020-04-03 08:08:56');
 INSERT INTO `article` VALUES (3, 1, '2020继续加油', '大年三十终于写完这篇总结，给来年定个目标，给今年做个肯定，希望以后每年都有新的总结可写，都有美好的故事发送，加油！！', 'images/unnamed.jpg', '# 新年总结\r\n## 除夕总结\r\n## 初一总结\r\n### 初二总结', '2020-04-04 01:26:29', '2020-04-04 01:26:29');
 INSERT INTO `article` VALUES (4, 3, '夏洛特烦恼', '一个叫夏洛的人，他特别地烦恼', 'images/17fcb77f5348e46c041c10ce8875da99.jpg', '# 夏洛\r\n## 就特么你叫夏洛啊', '2020-04-05 07:40:05', '2020-04-05 07:40:05');
 INSERT INTO `article` VALUES (5, 3, '老王的日常生活vlog', '主要讲述了老王和邻居的幸福生活', 'images/a599b374c7900f0c75c09637723c2cb0.png', '# 老王的快乐生活\r\n## 自我介绍\r\n> 我叫老王，我很快乐\r\n\r\n## 邻居介绍\r\n\r\n> 我隔壁有个老王，我不太快了', '2020-04-12 07:08:01', '2020-04-12 07:08:01');
@@ -3757,7 +4711,6 @@ CREATE TABLE `articles_labels`  (
 -- Records of articles_labels
 -- ----------------------------
 INSERT INTO `articles_labels` VALUES (1, 2, NULL, NULL);
-INSERT INTO `articles_labels` VALUES (2, 1, NULL, NULL);
 INSERT INTO `articles_labels` VALUES (3, 3, NULL, NULL);
 INSERT INTO `articles_labels` VALUES (4, 2, NULL, NULL);
 INSERT INTO `articles_labels` VALUES (1, 1, NULL, NULL);
@@ -3845,12 +4798,14 @@ CREATE TABLE `formula_left`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of formula_left
 -- ----------------------------
 INSERT INTO `formula_left` VALUES (1, '总分', 1, 0, '2020-04-10 13:15:33', '2020-04-10 15:11:22');
+INSERT INTO `formula_left` VALUES (5, '平时分', 1, 1, '2020-04-23 07:36:02', '2020-04-23 08:18:39');
+INSERT INTO `formula_left` VALUES (6, '实验分', 1, 1, '2020-04-23 07:36:35', '2020-04-23 07:36:35');
 
 -- ----------------------------
 -- Table structure for fraction
@@ -3917,14 +4872,18 @@ CREATE TABLE `meta_cal`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `meta_cal_formula_id_cal_type_id_index`(`formula_id`, `cal_type_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of meta_cal
 -- ----------------------------
 INSERT INTO `meta_cal` VALUES (1, 1, 1, 5, 0.1, NULL, '2020-04-11 03:37:56');
-INSERT INTO `meta_cal` VALUES (6, 1, 3, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (7, 5, 1, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (13, 1, 4, 1, 0, NULL, NULL);
 INSERT INTO `meta_cal` VALUES (5, 1, 2, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (9, 5, 3, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (12, 1, 3, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (11, 6, 2, 1, 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for meta_cal_type
@@ -3955,7 +4914,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -3978,6 +4937,120 @@ INSERT INTO `migrations` VALUES (19, '2020_04_10_122140_create_formula_left_tabl
 INSERT INTO `migrations` VALUES (20, '2020_04_10_122505_create_meta_cal_table', 8);
 INSERT INTO `migrations` VALUES (21, '2020_04_10_122548_create_meta_cal_type_table', 8);
 INSERT INTO `migrations` VALUES (22, '2020_04_10_122654_create_fraction_table', 8);
+INSERT INTO `migrations` VALUES (23, '2016_06_01_000001_create_oauth_auth_codes_table', 9);
+INSERT INTO `migrations` VALUES (24, '2016_06_01_000002_create_oauth_access_tokens_table', 9);
+INSERT INTO `migrations` VALUES (25, '2016_06_01_000003_create_oauth_refresh_tokens_table', 9);
+INSERT INTO `migrations` VALUES (26, '2016_06_01_000004_create_oauth_clients_table', 9);
+INSERT INTO `migrations` VALUES (27, '2016_06_01_000005_create_oauth_personal_access_clients_table', 9);
+
+-- ----------------------------
+-- Table structure for oauth_access_tokens
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_access_tokens`;
+CREATE TABLE `oauth_access_tokens`  (
+  `id` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `client_id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `scopes` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `expires_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_access_tokens_user_id_index`(`user_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_access_tokens
+-- ----------------------------
+INSERT INTO `oauth_access_tokens` VALUES ('bcab8089c5f102f08623f2c66d70fc44aa835062100aaff86ec18606773724ea30ee19288187a636', 22, 1, 'personAccessToken', '[]', 0, '2020-04-20 08:36:27', '2020-04-20 08:36:27', '2021-04-20 08:36:27');
+INSERT INTO `oauth_access_tokens` VALUES ('c3420aa5caab29b36ab038fda41749c3483709b5de139099b61d223b1a6b90aabb65b6bb4e9c2e52', 4, 1, 'personAccessToken', '[]', 0, '2020-04-20 09:20:51', '2020-04-20 09:20:51', '2021-04-20 09:20:51');
+INSERT INTO `oauth_access_tokens` VALUES ('0b6c52c86c4aeedfb0c77f8a2732b477cfe70c0ffa2a42652c9d5869da7504889a668865dfc4c3bb', 4, 1, 'personAccessToken', '[]', 0, '2020-04-21 01:48:14', '2020-04-21 01:48:14', '2021-04-21 01:48:14');
+INSERT INTO `oauth_access_tokens` VALUES ('c529e64b495c1bf31130d279de6548a7f4888f45f2259134ee8bc1834eeabfc53582ab88c0baffcd', 22, 1, 'personAccessToken', '[]', 0, '2020-04-21 08:05:27', '2020-04-21 08:05:27', '2021-04-21 08:05:27');
+INSERT INTO `oauth_access_tokens` VALUES ('f10c904931e25a08f9dddfb3449ccfa714aa2c59895f7ff682450f673090a5eede427db1449c4d60', 25, 1, 'personAccessToken', '[]', 0, '2020-04-21 08:58:42', '2020-04-21 08:58:42', '2021-04-21 08:58:42');
+INSERT INTO `oauth_access_tokens` VALUES ('a8cebc6592f5ff1c33a3c76d79eb096820656c3d1ed7a6370bf053eea656075a59d1012007ecaaa8', 22, 1, 'personAccessToken', '[]', 0, '2020-04-21 11:17:37', '2020-04-21 11:17:37', '2021-04-21 11:17:37');
+INSERT INTO `oauth_access_tokens` VALUES ('db50972b12be6237a9982af0861248929f837b1d0091763fd250f2166f0903f8887ff33eacf097a7', 4, 1, 'personAccessToken', '[]', 0, '2020-04-21 12:36:09', '2020-04-21 12:36:09', '2021-04-21 12:36:09');
+INSERT INTO `oauth_access_tokens` VALUES ('6b54905b557102b6e19e76924cf32b333c63458d081c5c7b60d5a2ba30347371207a2858dccc2f8a', 22, 1, 'personAccessToken', '[]', 0, '2020-04-21 12:36:23', '2020-04-21 12:36:23', '2021-04-21 12:36:23');
+INSERT INTO `oauth_access_tokens` VALUES ('da5c33b79ec91b317a35169ba27be5db947b0539d1ae402ed1ec6edc3fdb13a76176fd09e2cb4c88', 4, 1, 'personAccessToken', '[]', 0, '2020-04-21 13:00:42', '2020-04-21 13:00:42', '2021-04-21 13:00:42');
+INSERT INTO `oauth_access_tokens` VALUES ('449bc46f68dd01aeb57358b4452dd6ebf672ac027031a7cf36815c3189983877e37b94d82e7a689c', 22, 1, 'personAccessToken', '[]', 0, '2020-04-21 13:01:22', '2020-04-21 13:01:22', '2021-04-21 13:01:22');
+INSERT INTO `oauth_access_tokens` VALUES ('c759ba942527a9d57175db9b79749a05e97f172ac49adb923d608c516f32b65139ee18ac8b7adf34', 4, 1, 'personAccessToken', '[]', 0, '2020-04-21 13:10:44', '2020-04-21 13:10:44', '2021-04-21 13:10:44');
+INSERT INTO `oauth_access_tokens` VALUES ('2fea3f31301cf2175ce20f4df45b77d2a0388925b9b1333d5602eef04e59b4cc772949c385419d49', 22, 1, 'personAccessToken', '[]', 0, '2020-04-21 13:11:02', '2020-04-21 13:11:02', '2021-04-21 13:11:02');
+INSERT INTO `oauth_access_tokens` VALUES ('59e545155321cabe9b98b82048680cac84165253cbdefa18e812e35823e3a68b74be4c215f479665', 4, 1, 'personAccessToken', '[]', 0, '2020-04-23 07:40:27', '2020-04-23 07:40:27', '2021-04-23 07:40:27');
+INSERT INTO `oauth_access_tokens` VALUES ('32cf91b40cccb3f3a1a996c28af3851efe8eb03415cbbe02849977406b7a6cdd1d351f5e57234bc9', 22, 1, 'personAccessToken', '[]', 0, '2020-04-23 07:57:01', '2020-04-23 07:57:01', '2021-04-23 07:57:01');
+INSERT INTO `oauth_access_tokens` VALUES ('3e11f85af0352b26b0801ad38ecb3ca6a34c47300b100423fe9d3950601f87abccd1704e16e17f9c', 4, 1, 'personAccessToken', '[]', 0, '2020-04-23 07:57:18', '2020-04-23 07:57:18', '2021-04-23 07:57:18');
+INSERT INTO `oauth_access_tokens` VALUES ('bb4167e6c034f903d7ab73f8f73e4bae25db813e4f459f8a5061be01dc9e77aa146144ebccfb8348', 21, 1, 'personAccessToken', '[]', 0, '2020-04-20 10:42:19', '2020-04-20 10:42:19', '2021-04-20 10:42:19');
+
+-- ----------------------------
+-- Table structure for oauth_auth_codes
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_auth_codes`;
+CREATE TABLE `oauth_auth_codes`  (
+  `id` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `scopes` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for oauth_clients
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_clients`;
+CREATE TABLE `oauth_clients`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `secret` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `redirect` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_clients_user_id_index`(`user_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_clients
+-- ----------------------------
+INSERT INTO `oauth_clients` VALUES (1, NULL, '《计算机网络》课程建设网站 Personal Access Client', '8ALmdaicLmzNOaEIeOjeLidSaTOwKAsmj64yjzTP', 'http://localhost', 1, 0, 0, '2020-04-19 01:43:39', '2020-04-19 01:43:39');
+INSERT INTO `oauth_clients` VALUES (2, NULL, '《计算机网络》课程建设网站 Password Grant Client', 'C4BOfKucLtMeMe754kGyzZqe6r6xpvBfE2XENMI5', 'http://localhost', 0, 1, 0, '2020-04-19 01:43:39', '2020-04-19 01:43:39');
+INSERT INTO `oauth_clients` VALUES (3, 4, 'getSquadByUser', 'fTePSOtKa56UlaEg4b72WG9igZd023Mkw7Tofrw1', 'http://127.0.0.1:8000/api/getSquadByUser', 0, 0, 1, '2020-04-19 02:08:58', '2020-04-19 07:52:35');
+
+-- ----------------------------
+-- Table structure for oauth_personal_access_clients
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_personal_access_clients`;
+CREATE TABLE `oauth_personal_access_clients`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_personal_access_clients_client_id_index`(`client_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of oauth_personal_access_clients
+-- ----------------------------
+INSERT INTO `oauth_personal_access_clients` VALUES (1, 1, '2020-04-19 01:43:39', '2020-04-19 01:43:39');
+
+-- ----------------------------
+-- Table structure for oauth_refresh_tokens
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_refresh_tokens`;
+CREATE TABLE `oauth_refresh_tokens`  (
+  `id` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_refresh_tokens_access_token_id_index`(`access_token_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -4073,6 +5146,8 @@ INSERT INTO `student_squad` VALUES (6, 1, '2020-04-07 09:11:00', '2020-04-07 09:
 INSERT INTO `student_squad` VALUES (9, 1, '2020-04-07 20:03:49', '2020-04-07 20:03:52');
 INSERT INTO `student_squad` VALUES (10, 1, '2020-04-07 12:10:52', '2020-04-07 12:10:52');
 INSERT INTO `student_squad` VALUES (14, 2, '2020-04-11 15:07:41', '2020-04-11 15:07:41');
+INSERT INTO `student_squad` VALUES (19, 2, '2020-04-14 14:42:20', '2020-04-14 14:42:20');
+INSERT INTO `student_squad` VALUES (20, 2, '2020-04-15 01:56:23', '2020-04-15 01:56:23');
 
 -- ----------------------------
 -- Table structure for teachers_courses
@@ -4102,18 +5177,23 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '去除了校验规则，作为用户登陆名使用，学生的登录名一律为学号',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'xiao', 'xyf15620168540@163.com', '$2y$10$eWsxRt1JdzZ0OQVVLHdeKe21F2SpYvnQaxgN.YJbTLOBFzT5P/E/6', 'pSL1qvstm8UpfOX5i74KhM24qkJqZfu4JB0lP570eWayPNjXnDG0xncsNCGR', '2020-04-03 09:13:10', '2020-04-03 09:13:10');
+INSERT INTO `users` VALUES (4, '肖逸凡', '20164841', '$2y$10$ZLzllEc0ElH5tFkhrZplauU//ApD12/.VBMFna4jRucvv/tW5zg0q', '7VSkipcjW7a9y2A7Kcfjnzvv27w9pWulXkqdzXkGt6yRz5KaoLoHaX8qtPMQ', '2020-04-15 01:56:23', '2020-04-19 13:54:02');
+INSERT INTO `users` VALUES (3, '王二妞', '20164843', '$2y$10$7ttfa1gCeRbJAIGS0cu6Buh2stLYDYT/POQ5a6jxd6EYJdsiH4ubC', 'AWTxht2yF1Dn7MstSUnExcoPXrzwZY5fOgTbQpWa3gaKBNVTFxXwhMaL3JVG', '2020-04-14 14:42:20', '2020-04-19 13:01:29');
+INSERT INTO `users` VALUES (21, '王老师', 'wang', '$2y$10$cceol/Nhpupwor0fQjX2.eHdgHiPSoiJE22woKSBuUsCWxox7WWIe', 'NSctEAEAfgmgwGuBlSuGJUa35mXv36tNhySBtrvpNzAVakJ88Fzs4V2r2n7C', '2020-04-19 12:11:33', '2020-04-20 08:39:44');
+INSERT INTO `users` VALUES (22, '肖老师', 'xiao', '$2y$10$RVnsZwwm9VT8lXa2w/FX.uUY8yyV6p2TjS1xe9Idzy5mpo86nXAam', 'yZRgYri87iGFqjyHwUcNghzLxfT5pjfyKKWpWvzzjshwc8rk1K7p2CSmKP6r', '2020-04-19 12:17:42', '2020-04-19 13:55:54');
+INSERT INTO `users` VALUES (25, '刘若英老师', 'liu', '$2y$10$aekqcVkzemVDC.rlMzS5Q.GyWURbHXrRZP91w6g/FX1M4sOhU9/F2', NULL, '2020-04-21 08:58:15', '2020-04-21 08:58:15');
+INSERT INTO `users` VALUES (24, '曾老师', 'zeng', '$2y$10$hb8/YL7qXsuhdji2nJghpeh6LLWdF5ykPfUPY1YLm53qBXTzUTbb.', 'IqQ8ARw7AIq30xJRTq4rIKsWyJY8PwZvROGEJFNb0US1j6WL9W3SJzvTJQfs', '2020-04-19 13:55:26', '2020-04-19 13:55:26');
 
 SET FOREIGN_KEY_CHECKS = 1;

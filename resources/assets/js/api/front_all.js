@@ -42,3 +42,9 @@ export function getCoursesInfoByUser(coursePageData) {
     const params = { coursePageData }; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function getFormulaLeftDatas() {
+    const TMPURL = '/front/getFormulaLeftDatas'; // url地址
+    const params = {  }; // 参数
+    return fetch.post(TMPURL, params);
+}

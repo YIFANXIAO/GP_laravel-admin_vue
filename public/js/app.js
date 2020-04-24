@@ -1556,11 +1556,12 @@ var isInContainer = exports.isInContainer = function isInContainer(el, container
 "use strict";
 /* unused harmony export getTestList */
 /* harmony export (immutable) */ __webpack_exports__["a"] = getArticleList;
-/* harmony export (immutable) */ __webpack_exports__["d"] = getSquadByUser;
-/* harmony export (immutable) */ __webpack_exports__["e"] = getSquadInfo;
-/* harmony export (immutable) */ __webpack_exports__["c"] = getProfessionInfo;
-/* harmony export (immutable) */ __webpack_exports__["f"] = getSquadStudents;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getSquadByUser;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getSquadInfo;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getProfessionInfo;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getSquadStudents;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getCoursesInfoByUser;
+/* harmony export (immutable) */ __webpack_exports__["c"] = getFormulaLeftDatas;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_fetch__ = __webpack_require__(87);
 // 引入工具类-目录自定义
 
@@ -1604,6 +1605,12 @@ function getSquadStudents(studentPageData) {
 function getCoursesInfoByUser(coursePageData) {
     var TMPURL = '/front/getCoursesInfoByUser'; // url地址
     var params = { coursePageData: coursePageData }; // 参数
+    return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
+}
+
+function getFormulaLeftDatas() {
+    var TMPURL = '/front/getFormulaLeftDatas'; // url地址
+    var params = {}; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
@@ -107844,7 +107851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadData: function loadData(squadPageData) {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getSquadByUser */])(squadPageData).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["e" /* getSquadByUser */])(squadPageData).then(function (response) {
                 _this.tableData = response.data;
                 _this.total = response.total;
                 _this.currentPage = response.current_page;
@@ -108261,21 +108268,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getSingleSquad: function getSingleSquad() {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["e" /* getSquadInfo */])(this.squad_id).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadInfo */])(this.squad_id).then(function (response) {
                 _this.singleSquad = response[0];
             });
         },
         getSingleProfession: function getSingleProfession() {
             var _this2 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getProfessionInfo */])(this.squad_id).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getProfessionInfo */])(this.squad_id).then(function (response) {
                 _this2.singlePeofession = response[0];
             });
         },
         loadData: function loadData(studentPageData) {
             var _this3 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadStudents */])(studentPageData).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["g" /* getSquadStudents */])(studentPageData).then(function (response) {
                 _this3.students = response.data;
                 _this3.total = response.total;
                 _this3.currentPage = response.current_page;
@@ -109042,14 +109049,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
+    created: function created() {
+        this.getFormulaLeftData();
+    },
     data: function data() {
         return {
             course_id: this.$parent.course_id
         };
     },
 
-    methods: {}
+    methods: {
+        getFormulaLeftData: function getFormulaLeftData() {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getFormulaLeftDatas */])().then(function (response) {});
+        }
+    }
 });
 
 /***/ }),
