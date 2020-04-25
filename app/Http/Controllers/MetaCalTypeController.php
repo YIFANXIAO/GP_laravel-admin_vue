@@ -26,4 +26,25 @@ class MetaCalTypeController extends Controller
 
         return $metaCalTypes_collection;
     }
+
+    // 根据level，查询对应的父级节点
+    public function getPMetaCalType(Request $request)
+    {
+        $level = $request->get('q');
+
+        if ($level == 2) {
+            // 当前节点为父级节点，返回pid是无父级节点
+            $result = (['data' => ['id' => 0, 'text' => '无父结点']]);
+        }elseif ($level == 1){
+            // 当前节点为元计算项，返回pid为
+            $result = DB::table('meta_cal_type')
+                ->where('level', 2)
+                ->get(['id', DB::raw('name as text')]);
+        }else{
+            $result = null;
+        }
+
+        return $result;
+    }
+
 }

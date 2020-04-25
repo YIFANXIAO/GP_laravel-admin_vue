@@ -28,6 +28,8 @@ class MetaCalTypeController extends AdminController
 
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('计算项名称'));
+        $grid->column('metaCalType.name', __('父级节点'))->replace([null => '无父节点']);
+        $grid->column('level', __('计算项类别'))->replace(['1' => '元计算项', '2' => '父级节点']);
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'))->hide();
 
@@ -78,6 +80,19 @@ class MetaCalTypeController extends AdminController
         $form = new Form(new MetaCalType());
 
         $form->text('name', __('计算项名称'));
+
+        $level = [
+            '1' => '元计算项',
+            '2' => '父级节点'
+        ];
+
+        $form->select('level', __('计算项类别'))
+            ->options($level)
+            ->load('pid', '/api/getPMetaCalType')
+            ->rules('required');
+
+        $form->select('pid', __('父级节点'))
+            ->rules('required');
 
         $form->footer(function ($footer) {
             // 去掉`查看`checkbox

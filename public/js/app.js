@@ -1608,9 +1608,9 @@ function getCoursesInfoByUser(coursePageData) {
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
-function getFormulaLeftDatas() {
+function getFormulaLeftDatas(fractionRequestData) {
     var TMPURL = '/front/getFormulaLeftDatas'; // url地址
-    var params = {}; // 参数
+    var params = { fractionRequestData: fractionRequestData }; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
@@ -108330,21 +108330,28 @@ var render = function() {
             "el-col",
             { attrs: { span: 12 } },
             [
-              _c("el-card", { attrs: { shadow: "always" } }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "clearfix",
-                    attrs: { slot: "header" },
-                    slot: "header"
-                  },
-                  [_c("span", [_vm._v(_vm._s(this.singleSquad.name))])]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "text item" }, [
-                  _c("span", [_vm._v(_vm._s(this.singleSquad.info))])
-                ])
-              ])
+              _c(
+                "el-card",
+                {
+                  staticStyle: { margin: "15px" },
+                  attrs: { shadow: "always" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "clearfix",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [_c("span", [_vm._v(_vm._s(this.singleSquad.name))])]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text item" }, [
+                    _c("span", [_vm._v(_vm._s(this.singleSquad.info))])
+                  ])
+                ]
+              )
             ],
             1
           ),
@@ -108353,25 +108360,32 @@ var render = function() {
             "el-col",
             { attrs: { span: 12 } },
             [
-              _c("el-card", { attrs: { shadow: "always" } }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "clearfix",
-                    attrs: { slot: "header" },
-                    slot: "header"
-                  },
-                  [
-                    _c("span", [
-                      _vm._v(_vm._s(this.singlePeofession.full_name))
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "text item" }, [
-                  _c("span", [_vm._v(_vm._s(this.singlePeofession.intro))])
-                ])
-              ])
+              _c(
+                "el-card",
+                {
+                  staticStyle: { margin: "15px" },
+                  attrs: { shadow: "always" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "clearfix",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [
+                      _c("span", [
+                        _vm._v(_vm._s(this.singlePeofession.full_name))
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text item" }, [
+                    _c("span", [_vm._v(_vm._s(this.singlePeofession.intro))])
+                  ])
+                ]
+              )
             ],
             1
           )
@@ -109044,23 +109058,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
-        this.getFormulaLeftData();
+        this.getFormulaLeftData(this.fractionRequestData);
     },
     data: function data() {
         return {
-            course_id: this.$parent.course_id
+            fractionRequestData: {
+                course_id: this.$parent.course_id
+            },
+            course_id: this.$parent.course_id,
+            fractions: []
         };
     },
 
     methods: {
-        getFormulaLeftData: function getFormulaLeftData() {
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getFormulaLeftDatas */])().then(function (response) {});
+        getFormulaLeftData: function getFormulaLeftData(fractionRequestData) {
+            var _this = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getFormulaLeftDatas */])(fractionRequestData).then(function (response) {
+                _this.fractions = response;
+            });
         }
     }
 });
@@ -109073,11 +109107,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", [_vm._v("学生版-分数详情页")]),
-    _vm._v(" "),
-    _c("h3", [_vm._v(_vm._s(this.course_id))])
-  ])
+  return _c(
+    "div",
+    _vm._l(_vm.fractions, function(fraction) {
+      return _c(
+        "div",
+        [
+          _c(
+            "el-col",
+            { attrs: { span: 12 } },
+            [
+              _c(
+                "el-card",
+                {
+                  staticStyle: { margin: "15px" },
+                  attrs: { shadow: "always" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "clearfix",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [
+                      _c("span", [
+                        _vm._v(
+                          _vm._s(fraction.name) +
+                            "/" +
+                            _vm._s(fraction.isComplete)
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text item" }, [
+                    _c("span", [_vm._v(_vm._s(fraction.fraction))])
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

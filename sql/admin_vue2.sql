@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 24/04/2020 10:21:14
+ Date: 25/04/2020 17:08:11
 */
 
 SET NAMES utf8mb4;
@@ -73,7 +73,7 @@ CREATE TABLE `admin_operation_log`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_operation_log_user_id_index`(`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4318 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 4486 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_operation_log
@@ -4395,6 +4395,174 @@ INSERT INTO `admin_operation_log` VALUES (4314, 1, 'admin/formula-lefts', 'GET',
 INSERT INTO `admin_operation_log` VALUES (4315, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 01:13:46', '2020-04-24 01:13:46');
 INSERT INTO `admin_operation_log` VALUES (4316, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"student\":{\"name\":\"\\u738b\"},\"course\":{\"full_name\":\"\\u8ba1\\u7b97\\u673a\\u7f51\\u7edc\"},\"metaCalType\":{\"name\":null},\"order\":null}', '2020-04-24 01:14:03', '2020-04-24 01:14:03');
 INSERT INTO `admin_operation_log` VALUES (4317, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\",\"student\":{\"name\":\"\\u738b\"},\"course\":{\"full_name\":\"\\u8ba1\\u7b97\\u673a\\u7f51\\u7edc\"},\"metaCalType\":{\"name\":null},\"order\":null}', '2020-04-24 01:14:06', '2020-04-24 01:14:06');
+INSERT INTO `admin_operation_log` VALUES (4318, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 02:57:45', '2020-04-24 02:57:45');
+INSERT INTO `admin_operation_log` VALUES (4319, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 02:59:07', '2020-04-24 02:59:07');
+INSERT INTO `admin_operation_log` VALUES (4320, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 03:00:05', '2020-04-24 03:00:05');
+INSERT INTO `admin_operation_log` VALUES (4321, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:00:15', '2020-04-24 03:00:15');
+INSERT INTO `admin_operation_log` VALUES (4322, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:00:19', '2020-04-24 03:00:19');
+INSERT INTO `admin_operation_log` VALUES (4323, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 03:01:07', '2020-04-24 03:01:07');
+INSERT INTO `admin_operation_log` VALUES (4324, 1, 'admin/meta-cal-types/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:01:48', '2020-04-24 03:01:48');
+INSERT INTO `admin_operation_log` VALUES (4325, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:02:00', '2020-04-24 03:02:00');
+INSERT INTO `admin_operation_log` VALUES (4326, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 03:03:54', '2020-04-24 03:03:54');
+INSERT INTO `admin_operation_log` VALUES (4327, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 03:04:13', '2020-04-24 03:04:13');
+INSERT INTO `admin_operation_log` VALUES (4328, 1, 'admin/meta-cal-types/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:04:28', '2020-04-24 03:04:28');
+INSERT INTO `admin_operation_log` VALUES (4329, 1, 'admin/meta-cal-types/1', 'GET', '127.0.0.1', '[]', '2020-04-24 03:04:39', '2020-04-24 03:04:39');
+INSERT INTO `admin_operation_log` VALUES (4330, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:05:50', '2020-04-24 03:05:50');
+INSERT INTO `admin_operation_log` VALUES (4331, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:05:54', '2020-04-24 03:05:54');
+INSERT INTO `admin_operation_log` VALUES (4332, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:05:57', '2020-04-24 03:05:57');
+INSERT INTO `admin_operation_log` VALUES (4333, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:05:59', '2020-04-24 03:05:59');
+INSERT INTO `admin_operation_log` VALUES (4334, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 03:09:12', '2020-04-24 03:09:12');
+INSERT INTO `admin_operation_log` VALUES (4335, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:09:14', '2020-04-24 03:09:14');
+INSERT INTO `admin_operation_log` VALUES (4336, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:14:30', '2020-04-24 03:14:30');
+INSERT INTO `admin_operation_log` VALUES (4337, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:16:54', '2020-04-24 03:16:54');
+INSERT INTO `admin_operation_log` VALUES (4338, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:27:41', '2020-04-24 03:27:41');
+INSERT INTO `admin_operation_log` VALUES (4339, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:27:52', '2020-04-24 03:27:52');
+INSERT INTO `admin_operation_log` VALUES (4340, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:28:09', '2020-04-24 03:28:09');
+INSERT INTO `admin_operation_log` VALUES (4341, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 03:28:39', '2020-04-24 03:28:39');
+INSERT INTO `admin_operation_log` VALUES (4342, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 03:28:53', '2020-04-24 03:28:53');
+INSERT INTO `admin_operation_log` VALUES (4343, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:42:44', '2020-04-24 06:42:44');
+INSERT INTO `admin_operation_log` VALUES (4344, 1, 'admin/meta-cal-types', 'POST', '127.0.0.1', '{\"name\":\"\\u5b9e\\u9a8c\\u5206\",\"level\":\"2\",\"pid\":\"\\u65e0\\u7236\\u7ea7\\u8282\\u70b9\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\"}', '2020-04-24 06:42:53', '2020-04-24 06:42:53');
+INSERT INTO `admin_operation_log` VALUES (4345, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 06:42:54', '2020-04-24 06:42:54');
+INSERT INTO `admin_operation_log` VALUES (4346, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 06:44:15', '2020-04-24 06:44:15');
+INSERT INTO `admin_operation_log` VALUES (4347, 1, 'admin/meta-cal-types', 'POST', '127.0.0.1', '{\"name\":\"\\u5b9e\\u9a8c\\u5206\",\"level\":\"2\",\"pid\":\"\\u65e0\\u7236\\u7ea7\\u8282\\u70b9\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\"}', '2020-04-24 06:44:32', '2020-04-24 06:44:32');
+INSERT INTO `admin_operation_log` VALUES (4348, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 06:44:32', '2020-04-24 06:44:32');
+INSERT INTO `admin_operation_log` VALUES (4349, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 06:45:28', '2020-04-24 06:45:28');
+INSERT INTO `admin_operation_log` VALUES (4350, 1, 'admin/meta-cal-types', 'POST', '127.0.0.1', '{\"name\":\"\\u5b9e\\u9a8c\\u5206\",\"level\":\"2\",\"pid\":\"0\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\"}', '2020-04-24 06:45:47', '2020-04-24 06:45:47');
+INSERT INTO `admin_operation_log` VALUES (4351, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:45:47', '2020-04-24 06:45:47');
+INSERT INTO `admin_operation_log` VALUES (4352, 1, 'admin/meta-cal-types/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:45:57', '2020-04-24 06:45:57');
+INSERT INTO `admin_operation_log` VALUES (4353, 1, 'admin/meta-cal-types/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8003\\u52e4\",\"level\":\"1\",\"pid\":\"5\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\"}', '2020-04-24 06:46:10', '2020-04-24 06:46:10');
+INSERT INTO `admin_operation_log` VALUES (4354, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:46:10', '2020-04-24 06:46:10');
+INSERT INTO `admin_operation_log` VALUES (4355, 1, 'admin/meta-cal-types/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:46:13', '2020-04-24 06:46:13');
+INSERT INTO `admin_operation_log` VALUES (4356, 1, 'admin/meta-cal-types/2/edit', 'GET', '127.0.0.1', '[]', '2020-04-24 06:46:17', '2020-04-24 06:46:17');
+INSERT INTO `admin_operation_log` VALUES (4357, 1, 'admin/meta-cal-types/2', 'PUT', '127.0.0.1', '{\"name\":\"\\u5b9e\\u9a8c\",\"level\":\"1\",\"pid\":\"6\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\\/create\"}', '2020-04-24 06:46:25', '2020-04-24 06:46:25');
+INSERT INTO `admin_operation_log` VALUES (4358, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '[]', '2020-04-24 06:46:25', '2020-04-24 06:46:25');
+INSERT INTO `admin_operation_log` VALUES (4359, 1, 'admin/meta-cal-types/2/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:46:27', '2020-04-24 06:46:27');
+INSERT INTO `admin_operation_log` VALUES (4360, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:46:29', '2020-04-24 06:46:29');
+INSERT INTO `admin_operation_log` VALUES (4361, 1, 'admin/meta-cal-types/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:46:35', '2020-04-24 06:46:35');
+INSERT INTO `admin_operation_log` VALUES (4362, 1, 'admin/meta-cal-types', 'POST', '127.0.0.1', '{\"name\":\"\\u671f\\u672b\\u6210\\u7ee9\",\"level\":\"2\",\"pid\":\"0\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\"}', '2020-04-24 06:46:44', '2020-04-24 06:46:44');
+INSERT INTO `admin_operation_log` VALUES (4363, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:46:44', '2020-04-24 06:46:44');
+INSERT INTO `admin_operation_log` VALUES (4364, 1, 'admin/meta-cal-types/4/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:46:52', '2020-04-24 06:46:52');
+INSERT INTO `admin_operation_log` VALUES (4365, 1, 'admin/meta-cal-types/4', 'PUT', '127.0.0.1', '{\"name\":\"\\u671f\\u672b\\u8003\\u8bd5\\u5206\\u6570\",\"level\":\"1\",\"pid\":\"7\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\"}', '2020-04-24 06:47:11', '2020-04-24 06:47:11');
+INSERT INTO `admin_operation_log` VALUES (4366, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:47:11', '2020-04-24 06:47:11');
+INSERT INTO `admin_operation_log` VALUES (4367, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:47:18', '2020-04-24 06:47:18');
+INSERT INTO `admin_operation_log` VALUES (4368, 1, 'admin/meta-cal-types/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:47:22', '2020-04-24 06:47:22');
+INSERT INTO `admin_operation_log` VALUES (4369, 1, 'admin/meta-cal-types/3/edit', 'GET', '127.0.0.1', '[]', '2020-04-24 06:47:27', '2020-04-24 06:47:27');
+INSERT INTO `admin_operation_log` VALUES (4370, 1, 'admin/meta-cal-types/3', 'PUT', '127.0.0.1', '{\"name\":\"\\u8bfe\\u540e\\u4f5c\\u4e1a\",\"level\":\"1\",\"pid\":\"5\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/meta-cal-types\"}', '2020-04-24 06:47:34', '2020-04-24 06:47:34');
+INSERT INTO `admin_operation_log` VALUES (4371, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:47:34', '2020-04-24 06:47:34');
+INSERT INTO `admin_operation_log` VALUES (4372, 1, 'admin/meta-cal-types/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:47:38', '2020-04-24 06:47:38');
+INSERT INTO `admin_operation_log` VALUES (4373, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:48:11', '2020-04-24 06:48:11');
+INSERT INTO `admin_operation_log` VALUES (4374, 1, 'admin/meta-cal-types/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:48:14', '2020-04-24 06:48:14');
+INSERT INTO `admin_operation_log` VALUES (4375, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:48:25', '2020-04-24 06:48:25');
+INSERT INTO `admin_operation_log` VALUES (4376, 1, 'admin/meta-cal-types/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:48:27', '2020-04-24 06:48:27');
+INSERT INTO `admin_operation_log` VALUES (4377, 1, 'admin/meta-cal-types/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-24 06:51:58', '2020-04-24 06:51:58');
+INSERT INTO `admin_operation_log` VALUES (4378, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:52:09', '2020-04-24 06:52:09');
+INSERT INTO `admin_operation_log` VALUES (4379, 1, 'admin/meta-cal-types/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:53:10', '2020-04-24 06:53:10');
+INSERT INTO `admin_operation_log` VALUES (4380, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 06:53:28', '2020-04-24 06:53:28');
+INSERT INTO `admin_operation_log` VALUES (4381, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '[]', '2020-04-24 06:54:39', '2020-04-24 06:54:39');
+INSERT INTO `admin_operation_log` VALUES (4382, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 07:06:00', '2020-04-24 07:06:00');
+INSERT INTO `admin_operation_log` VALUES (4383, 1, 'admin/formula-lefts/5,6', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"FY3sqUrBZgXbNq4D1g5r1qZTI0ZCYP1YZviT74kz\"}', '2020-04-24 07:06:06', '2020-04-24 07:06:06');
+INSERT INTO `admin_operation_log` VALUES (4384, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-24 07:06:06', '2020-04-24 07:06:06');
+INSERT INTO `admin_operation_log` VALUES (4385, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-24 07:06:58', '2020-04-24 07:06:58');
+INSERT INTO `admin_operation_log` VALUES (4386, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-25 01:17:49', '2020-04-25 01:17:49');
+INSERT INTO `admin_operation_log` VALUES (4387, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:17:56', '2020-04-25 01:17:56');
+INSERT INTO `admin_operation_log` VALUES (4388, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"7\",\"_model\":\"App_Models_Fraction\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-25 01:18:17', '2020-04-25 01:18:17');
+INSERT INTO `admin_operation_log` VALUES (4389, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:18:17', '2020-04-25 01:18:17');
+INSERT INTO `admin_operation_log` VALUES (4390, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_key\":\"6\",\"_model\":\"App_Models_Fraction\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"Encore_Admin_Grid_Actions_Delete\",\"_input\":\"true\"}', '2020-04-25 01:18:21', '2020-04-25 01:18:21');
+INSERT INTO `admin_operation_log` VALUES (4391, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:18:22', '2020-04-25 01:18:22');
+INSERT INTO `admin_operation_log` VALUES (4392, 1, 'admin', 'GET', '127.0.0.1', '[]', '2020-04-25 01:18:54', '2020-04-25 01:18:54');
+INSERT INTO `admin_operation_log` VALUES (4393, 1, 'admin/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:18:58', '2020-04-25 01:18:58');
+INSERT INTO `admin_operation_log` VALUES (4394, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:19:00', '2020-04-25 01:19:00');
+INSERT INTO `admin_operation_log` VALUES (4395, 1, 'admin/meta-cal-types', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:19:23', '2020-04-25 01:19:23');
+INSERT INTO `admin_operation_log` VALUES (4396, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:20:03', '2020-04-25 01:20:03');
+INSERT INTO `admin_operation_log` VALUES (4397, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:20:11', '2020-04-25 01:20:11');
+INSERT INTO `admin_operation_log` VALUES (4398, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 01:23:17', '2020-04-25 01:23:17');
+INSERT INTO `admin_operation_log` VALUES (4399, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:24:01', '2020-04-25 01:24:01');
+INSERT INTO `admin_operation_log` VALUES (4400, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:24:13', '2020-04-25 01:24:13');
+INSERT INTO `admin_operation_log` VALUES (4401, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 01:24:36', '2020-04-25 01:24:36');
+INSERT INTO `admin_operation_log` VALUES (4402, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:25:35', '2020-04-25 01:25:35');
+INSERT INTO `admin_operation_log` VALUES (4403, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 01:28:56', '2020-04-25 01:28:56');
+INSERT INTO `admin_operation_log` VALUES (4404, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:29:05', '2020-04-25 01:29:05');
+INSERT INTO `admin_operation_log` VALUES (4405, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:29:59', '2020-04-25 01:29:59');
+INSERT INTO `admin_operation_log` VALUES (4406, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 01:32:15', '2020-04-25 01:32:15');
+INSERT INTO `admin_operation_log` VALUES (4407, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 01:32:24', '2020-04-25 01:32:24');
+INSERT INTO `admin_operation_log` VALUES (4408, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:32:24', '2020-04-25 01:32:24');
+INSERT INTO `admin_operation_log` VALUES (4409, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 01:32:38', '2020-04-25 01:32:38');
+INSERT INTO `admin_operation_log` VALUES (4410, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"student\":{\"name\":\"\\u8096\\u9038\\u51e1\"},\"course\":{\"full_name\":null},\"metaCalType\":{\"name\":null},\"order\":null,\"_pjax\":\"#pjax-container\"}', '2020-04-25 01:32:52', '2020-04-25 01:32:52');
+INSERT INTO `admin_operation_log` VALUES (4411, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"student\":{\"name\":\"\\u8096\\u9038\\u51e1\"},\"_pjax\":\"#pjax-container\",\"_sort\":{\"column\":\"order\",\"type\":\"desc\"}}', '2020-04-25 01:32:58', '2020-04-25 01:32:58');
+INSERT INTO `admin_operation_log` VALUES (4412, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"student\":{\"name\":\"\\u8096\\u9038\\u51e1\"},\"_pjax\":\"#pjax-container\",\"_sort\":{\"column\":\"order\",\"type\":\"asc\"}}', '2020-04-25 01:32:59', '2020-04-25 01:32:59');
+INSERT INTO `admin_operation_log` VALUES (4413, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:10:38', '2020-04-25 02:10:38');
+INSERT INTO `admin_operation_log` VALUES (4414, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:10:41', '2020-04-25 02:10:41');
+INSERT INTO `admin_operation_log` VALUES (4415, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:11:13', '2020-04-25 02:11:13');
+INSERT INTO `admin_operation_log` VALUES (4416, 1, 'admin/_handle_action_', 'POST', '127.0.0.1', '{\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_action\":\"App_Admin_Actions_Fractions_ImportFractions\"}', '2020-04-25 02:11:20', '2020-04-25 02:11:20');
+INSERT INTO `admin_operation_log` VALUES (4417, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:11:20', '2020-04-25 02:11:20');
+INSERT INTO `admin_operation_log` VALUES (4418, 1, 'admin/fractions/21/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:11:37', '2020-04-25 02:11:37');
+INSERT INTO `admin_operation_log` VALUES (4419, 1, 'admin/fractions/21', 'PUT', '127.0.0.1', '{\"course_id\":\"1\",\"student_id\":\"3\",\"cal_type_id\":\"1\",\"order\":\"3\",\"fraction\":\"50\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/fractions\"}', '2020-04-25 02:11:42', '2020-04-25 02:11:42');
+INSERT INTO `admin_operation_log` VALUES (4420, 1, 'admin/fractions/21/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 02:11:42', '2020-04-25 02:11:42');
+INSERT INTO `admin_operation_log` VALUES (4421, 1, 'admin/fractions/21/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 02:13:56', '2020-04-25 02:13:56');
+INSERT INTO `admin_operation_log` VALUES (4422, 1, 'admin/fractions/21', 'PUT', '127.0.0.1', '{\"course_id\":\"1\",\"student_id\":\"3\",\"cal_type_id\":\"1\",\"order\":\"3\",\"fraction\":\"50\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_method\":\"PUT\"}', '2020-04-25 02:14:01', '2020-04-25 02:14:01');
+INSERT INTO `admin_operation_log` VALUES (4423, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:14:02', '2020-04-25 02:14:02');
+INSERT INTO `admin_operation_log` VALUES (4424, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:16:23', '2020-04-25 02:16:23');
+INSERT INTO `admin_operation_log` VALUES (4425, 1, 'admin/fractions/21/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:16:40', '2020-04-25 02:16:40');
+INSERT INTO `admin_operation_log` VALUES (4426, 1, 'admin/fractions/21', 'PUT', '127.0.0.1', '{\"course_id\":\"1\",\"student_id\":\"20\",\"cal_type_id\":\"1\",\"order\":\"3\",\"fraction\":\"50\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/fractions\"}', '2020-04-25 02:16:48', '2020-04-25 02:16:48');
+INSERT INTO `admin_operation_log` VALUES (4427, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:16:49', '2020-04-25 02:16:49');
+INSERT INTO `admin_operation_log` VALUES (4428, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:18:35', '2020-04-25 02:18:35');
+INSERT INTO `admin_operation_log` VALUES (4429, 1, 'admin/fractions/21/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:18:38', '2020-04-25 02:18:38');
+INSERT INTO `admin_operation_log` VALUES (4430, 1, 'admin/fractions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:18:51', '2020-04-25 02:18:51');
+INSERT INTO `admin_operation_log` VALUES (4431, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:20:10', '2020-04-25 02:20:10');
+INSERT INTO `admin_operation_log` VALUES (4432, 1, 'admin/fractions/23/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:20:14', '2020-04-25 02:20:14');
+INSERT INTO `admin_operation_log` VALUES (4433, 1, 'admin/fractions/23', 'PUT', '127.0.0.1', '{\"course_id\":\"1\",\"student_id\":\"20\",\"cal_type_id\":\"1\",\"order\":\"5\",\"fraction\":\"20\",\"_token\":\"L7arsuLXeHrtkdxNpXYAMkEAKw9XJ03jJ81yYn7w\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/fractions\"}', '2020-04-25 02:20:20', '2020-04-25 02:20:20');
+INSERT INTO `admin_operation_log` VALUES (4434, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:20:20', '2020-04-25 02:20:20');
+INSERT INTO `admin_operation_log` VALUES (4435, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:21:01', '2020-04-25 02:21:01');
+INSERT INTO `admin_operation_log` VALUES (4436, 1, 'admin/fractions/23/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:21:04', '2020-04-25 02:21:04');
+INSERT INTO `admin_operation_log` VALUES (4437, 1, 'admin/fractions', 'GET', '127.0.0.1', '[]', '2020-04-25 02:21:04', '2020-04-25 02:21:04');
+INSERT INTO `admin_operation_log` VALUES (4438, 1, 'admin/fractions/23/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 02:21:20', '2020-04-25 02:21:20');
+INSERT INTO `admin_operation_log` VALUES (4439, 1, 'admin/fractions/23/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 02:21:36', '2020-04-25 02:21:36');
+INSERT INTO `admin_operation_log` VALUES (4440, 1, 'admin/fractions/23/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 02:21:57', '2020-04-25 02:21:57');
+INSERT INTO `admin_operation_log` VALUES (4441, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:49:25', '2020-04-25 08:49:25');
+INSERT INTO `admin_operation_log` VALUES (4442, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 08:52:20', '2020-04-25 08:52:20');
+INSERT INTO `admin_operation_log` VALUES (4443, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:52:22', '2020-04-25 08:52:22');
+INSERT INTO `admin_operation_log` VALUES (4444, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 08:55:13', '2020-04-25 08:55:13');
+INSERT INTO `admin_operation_log` VALUES (4445, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 08:55:27', '2020-04-25 08:55:27');
+INSERT INTO `admin_operation_log` VALUES (4446, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 08:56:01', '2020-04-25 08:56:01');
+INSERT INTO `admin_operation_log` VALUES (4447, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:56:09', '2020-04-25 08:56:09');
+INSERT INTO `admin_operation_log` VALUES (4448, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:56:12', '2020-04-25 08:56:12');
+INSERT INTO `admin_operation_log` VALUES (4449, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:56:15', '2020-04-25 08:56:15');
+INSERT INTO `admin_operation_log` VALUES (4450, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 08:57:57', '2020-04-25 08:57:57');
+INSERT INTO `admin_operation_log` VALUES (4451, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:57:59', '2020-04-25 08:57:59');
+INSERT INTO `admin_operation_log` VALUES (4452, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:58:01', '2020-04-25 08:58:01');
+INSERT INTO `admin_operation_log` VALUES (4453, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 08:58:06', '2020-04-25 08:58:06');
+INSERT INTO `admin_operation_log` VALUES (4454, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:58:08', '2020-04-25 08:58:08');
+INSERT INTO `admin_operation_log` VALUES (4455, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 08:58:26', '2020-04-25 08:58:26');
+INSERT INTO `admin_operation_log` VALUES (4456, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 08:59:10', '2020-04-25 08:59:10');
+INSERT INTO `admin_operation_log` VALUES (4457, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:59:11', '2020-04-25 08:59:11');
+INSERT INTO `admin_operation_log` VALUES (4458, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:59:13', '2020-04-25 08:59:13');
+INSERT INTO `admin_operation_log` VALUES (4459, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:59:25', '2020-04-25 08:59:25');
+INSERT INTO `admin_operation_log` VALUES (4460, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:59:27', '2020-04-25 08:59:27');
+INSERT INTO `admin_operation_log` VALUES (4461, 1, 'admin/formula-lefts/1', 'PUT', '127.0.0.1', '{\"name\":\"\\u8ba1\\u7b97\\u673a\\u7f51\\u7edc~\\u603b\\u5206\",\"course_id\":\"1\",\"metaCalTypes\":[\"1\",\"2\",\"3\",\"4\",null],\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-25 08:59:41', '2020-04-25 08:59:41');
+INSERT INTO `admin_operation_log` VALUES (4462, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 08:59:41', '2020-04-25 08:59:41');
+INSERT INTO `admin_operation_log` VALUES (4463, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 08:59:43', '2020-04-25 08:59:43');
+INSERT INTO `admin_operation_log` VALUES (4464, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:00:18', '2020-04-25 09:00:18');
+INSERT INTO `admin_operation_log` VALUES (4465, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 09:00:21', '2020-04-25 09:00:21');
+INSERT INTO `admin_operation_log` VALUES (4466, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:00:23', '2020-04-25 09:00:23');
+INSERT INTO `admin_operation_log` VALUES (4467, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '[]', '2020-04-25 09:01:06', '2020-04-25 09:01:06');
+INSERT INTO `admin_operation_log` VALUES (4468, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:09', '2020-04-25 09:01:09');
+INSERT INTO `admin_operation_log` VALUES (4469, 1, 'admin/formula-lefts/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:12', '2020-04-25 09:01:12');
+INSERT INTO `admin_operation_log` VALUES (4470, 1, 'admin/formula-lefts', 'POST', '127.0.0.1', '{\"name\":\"\\u710a\\u63a5\\u4e07\\u7528\\u8868~\\u603b\\u5206\",\"course_id\":\"4\",\"metaCalTypes\":[\"2\",null],\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/formula-lefts\"}', '2020-04-25 09:01:34', '2020-04-25 09:01:34');
+INSERT INTO `admin_operation_log` VALUES (4471, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '[]', '2020-04-25 09:01:34', '2020-04-25 09:01:34');
+INSERT INTO `admin_operation_log` VALUES (4472, 1, 'admin/formula-lefts/7', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:38', '2020-04-25 09:01:38');
+INSERT INTO `admin_operation_log` VALUES (4473, 1, 'admin/meta-cals/14', 'PUT', '127.0.0.1', '{\"name\":\"number\",\"value\":\"8\",\"pk\":\"14\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:01:46', '2020-04-25 09:01:46');
+INSERT INTO `admin_operation_log` VALUES (4474, 1, 'admin/meta-cals/14', 'PUT', '127.0.0.1', '{\"name\":\"proportion\",\"value\":\"1\",\"pk\":\"14\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:01:52', '2020-04-25 09:01:52');
+INSERT INTO `admin_operation_log` VALUES (4475, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:54', '2020-04-25 09:01:54');
+INSERT INTO `admin_operation_log` VALUES (4476, 1, 'admin/formula-lefts/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:56', '2020-04-25 09:01:56');
+INSERT INTO `admin_operation_log` VALUES (4477, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:01:58', '2020-04-25 09:01:58');
+INSERT INTO `admin_operation_log` VALUES (4478, 1, 'admin/formula-lefts/1', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:02:00', '2020-04-25 09:02:00');
+INSERT INTO `admin_operation_log` VALUES (4479, 1, 'admin/meta-cals/5', 'PUT', '127.0.0.1', '{\"name\":\"number\",\"value\":\"8\",\"pk\":\"5\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:14', '2020-04-25 09:02:14');
+INSERT INTO `admin_operation_log` VALUES (4480, 1, 'admin/meta-cals/5', 'PUT', '127.0.0.1', '{\"name\":\"number\",\"value\":\"3\",\"pk\":\"5\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:18', '2020-04-25 09:02:18');
+INSERT INTO `admin_operation_log` VALUES (4481, 1, 'admin/meta-cals/5', 'PUT', '127.0.0.1', '{\"name\":\"proportion\",\"value\":\"0.1\",\"pk\":\"5\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:23', '2020-04-25 09:02:23');
+INSERT INTO `admin_operation_log` VALUES (4482, 1, 'admin/meta-cals/12', 'PUT', '127.0.0.1', '{\"name\":\"number\",\"value\":\"5\",\"pk\":\"12\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:28', '2020-04-25 09:02:28');
+INSERT INTO `admin_operation_log` VALUES (4483, 1, 'admin/meta-cals/12', 'PUT', '127.0.0.1', '{\"name\":\"proportion\",\"value\":\"0.1\",\"pk\":\"12\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:33', '2020-04-25 09:02:33');
+INSERT INTO `admin_operation_log` VALUES (4484, 1, 'admin/meta-cals/13', 'PUT', '127.0.0.1', '{\"name\":\"proportion\",\"value\":\"0.7\",\"pk\":\"13\",\"_token\":\"1ZH1emhX4msWjFMKkAXucjlUXucq6bCcmZBuiBDX\",\"_editable\":\"1\",\"_method\":\"PUT\"}', '2020-04-25 09:02:38', '2020-04-25 09:02:38');
+INSERT INTO `admin_operation_log` VALUES (4485, 1, 'admin/formula-lefts', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2020-04-25 09:02:45', '2020-04-25 09:02:45');
 
 -- ----------------------------
 -- Table structure for admin_permissions
@@ -4794,18 +4962,16 @@ CREATE TABLE `formula_left`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `course_id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of formula_left
 -- ----------------------------
-INSERT INTO `formula_left` VALUES (1, '总分', 1, 0, '2020-04-10 13:15:33', '2020-04-10 15:11:22');
-INSERT INTO `formula_left` VALUES (5, '平时分', 1, 1, '2020-04-23 07:36:02', '2020-04-23 08:18:39');
-INSERT INTO `formula_left` VALUES (6, '实验分', 1, 1, '2020-04-23 07:36:35', '2020-04-23 07:36:35');
+INSERT INTO `formula_left` VALUES (1, '计算机网络~总分', 1, '2020-04-10 13:15:33', '2020-04-25 08:59:41');
+INSERT INTO `formula_left` VALUES (7, '焊接万用表~总分', 4, '2020-04-25 09:01:34', '2020-04-25 09:01:34');
 
 -- ----------------------------
 -- Table structure for fraction
@@ -4821,7 +4987,7 @@ CREATE TABLE `fraction`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of fraction
@@ -4831,11 +4997,14 @@ INSERT INTO `fraction` VALUES (2, 3, 1, 1, 2, 100, '2020-04-11 02:56:35', '2020-
 INSERT INTO `fraction` VALUES (3, 3, 1, 1, 3, 100, '2020-04-11 03:02:03', '2020-04-11 03:02:03');
 INSERT INTO `fraction` VALUES (4, 3, 1, 1, 4, 100, '2020-04-11 03:03:58', '2020-04-11 03:03:58');
 INSERT INTO `fraction` VALUES (5, 3, 1, 1, 5, 100, '2020-04-11 03:14:31', '2020-04-11 03:14:31');
-INSERT INTO `fraction` VALUES (6, 3, 1, 1, 6, 100, '2020-04-11 03:26:18', '2020-04-11 03:26:18');
-INSERT INTO `fraction` VALUES (7, 3, 1, 1, 7, 100, '2020-04-11 03:27:18', '2020-04-11 03:27:18');
+INSERT INTO `fraction` VALUES (19, 20, 1, 1, 1, 100, '2020-04-25 01:32:24', '2020-04-25 01:32:24');
+INSERT INTO `fraction` VALUES (20, 20, 1, 1, 2, 100, '2020-04-25 01:32:24', '2020-04-25 01:32:24');
 INSERT INTO `fraction` VALUES (8, 5, 1, 1, 1, 100, '2020-04-11 05:44:44', '2020-04-11 05:44:44');
 INSERT INTO `fraction` VALUES (9, 6, 1, 1, 1, 100, '2020-04-11 05:47:49', '2020-04-11 05:47:49');
 INSERT INTO `fraction` VALUES (10, 6, 1, 1, 2, 100, '2020-04-11 13:58:25', '2020-04-11 13:58:25');
+INSERT INTO `fraction` VALUES (23, 20, 1, 1, 5, 20, '2020-04-25 02:11:20', '2020-04-25 02:20:20');
+INSERT INTO `fraction` VALUES (22, 20, 1, 1, 4, 100, '2020-04-25 01:32:24', '2020-04-25 01:32:24');
+INSERT INTO `fraction` VALUES (21, 20, 1, 1, 3, 50, '2020-04-25 01:32:24', '2020-04-25 02:16:48');
 INSERT INTO `fraction` VALUES (18, 6, 1, 1, 3, 100, '2020-04-11 15:07:05', '2020-04-11 15:07:05');
 
 -- ----------------------------
@@ -4872,18 +5041,16 @@ CREATE TABLE `meta_cal`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `meta_cal_formula_id_cal_type_id_index`(`formula_id`, `cal_type_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of meta_cal
 -- ----------------------------
 INSERT INTO `meta_cal` VALUES (1, 1, 1, 5, 0.1, NULL, '2020-04-11 03:37:56');
-INSERT INTO `meta_cal` VALUES (7, 5, 1, 1, 0, NULL, NULL);
-INSERT INTO `meta_cal` VALUES (13, 1, 4, 1, 0, NULL, NULL);
-INSERT INTO `meta_cal` VALUES (5, 1, 2, 1, 0, NULL, NULL);
-INSERT INTO `meta_cal` VALUES (9, 5, 3, 1, 0, NULL, NULL);
-INSERT INTO `meta_cal` VALUES (12, 1, 3, 1, 0, NULL, NULL);
-INSERT INTO `meta_cal` VALUES (11, 6, 2, 1, 0, NULL, NULL);
+INSERT INTO `meta_cal` VALUES (13, 1, 4, 1, 0.7, NULL, '2020-04-25 09:02:38');
+INSERT INTO `meta_cal` VALUES (5, 1, 2, 3, 0.1, NULL, '2020-04-25 09:02:23');
+INSERT INTO `meta_cal` VALUES (12, 1, 3, 5, 0.1, NULL, '2020-04-25 09:02:33');
+INSERT INTO `meta_cal` VALUES (14, 7, 2, 8, 1, NULL, '2020-04-25 09:01:52');
 
 -- ----------------------------
 -- Table structure for meta_cal_type
@@ -4892,18 +5059,23 @@ DROP TABLE IF EXISTS `meta_cal_type`;
 CREATE TABLE `meta_cal_type`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pid` int(11) NULL DEFAULT NULL,
+  `level` int(11) NULL DEFAULT NULL COMMENT '1、元计算项；2、父级节点',
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of meta_cal_type
 -- ----------------------------
-INSERT INTO `meta_cal_type` VALUES (1, '考勤', '2020-04-10 15:10:31', '2020-04-10 15:10:49');
-INSERT INTO `meta_cal_type` VALUES (2, '实验', '2020-04-10 15:10:42', '2020-04-10 15:10:42');
-INSERT INTO `meta_cal_type` VALUES (3, '课后作业', '2020-04-10 15:10:59', '2020-04-10 15:10:59');
-INSERT INTO `meta_cal_type` VALUES (4, '期末成绩', '2020-04-10 15:11:07', '2020-04-10 15:11:07');
+INSERT INTO `meta_cal_type` VALUES (1, '考勤', 5, 1, '2020-04-10 15:10:31', '2020-04-10 15:10:49');
+INSERT INTO `meta_cal_type` VALUES (2, '实验', 6, 1, '2020-04-10 15:10:42', '2020-04-24 06:46:25');
+INSERT INTO `meta_cal_type` VALUES (3, '课后作业', 5, 1, '2020-04-10 15:10:59', '2020-04-10 15:10:59');
+INSERT INTO `meta_cal_type` VALUES (4, '期末考试分数', 7, 1, '2020-04-10 15:11:07', '2020-04-24 06:47:11');
+INSERT INTO `meta_cal_type` VALUES (5, '平时分', 0, 2, '2020-04-24 14:42:37', '2020-04-24 14:42:39');
+INSERT INTO `meta_cal_type` VALUES (6, '实验分', 0, 2, '2020-04-24 06:45:47', '2020-04-24 06:45:47');
+INSERT INTO `meta_cal_type` VALUES (7, '期末成绩', 0, 2, '2020-04-24 06:46:44', '2020-04-24 06:46:44');
 
 -- ----------------------------
 -- Table structure for migrations

@@ -45,3 +45,4 @@ Route::any('/getCreatPFormula', 'FormulaLeftController@getCreatPFormula');
 Route::any('/getEditPFormula', 'FormulaLeftController@getEditPFormula');
 Route::any('/getDesignatedMetaCalTypes', 'MetaCalTypeController@getDesignatedMetaCalTypes');
 Route::any('/getMetaCalType', 'FormulaLeftController@getMetaCalType');
+Route::any('/getPMetaCalType', 'MetaCalTypeController@getPMetaCalType');

@@ -3,7 +3,7 @@
 <!--        <h3>班级详情</h3>-->
         <el-row :gutter="12">
             <el-col :span="12">
-                <el-card shadow="always">
+                <el-card shadow="always" style="margin : 15px">
                     <div slot="header" class="clearfix">
                         <span>{{ this.singleSquad.name }}</span>
                     </div>
@@ -13,7 +13,7 @@
                 </el-card>
             </el-col>
             <el-col :span="12">
-                <el-card shadow="always">
+                <el-card shadow="always" style="margin : 15px">
                     <div slot="header" class="clearfix">
                         <span>{{ this.singlePeofession.full_name }}</span>
                     </div>

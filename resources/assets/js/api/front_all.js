@@ -43,8 +43,8 @@ export function getCoursesInfoByUser(coursePageData) {
     return fetch.post(TMPURL, params);
 }
 
-export function getFormulaLeftDatas() {
+export function getFormulaLeftDatas(fractionRequestData) {
     const TMPURL = '/front/getFormulaLeftDatas'; // url地址
-    const params = {  }; // 参数
+    const params = { fractionRequestData }; // 参数
     return fetch.post(TMPURL, params);
 }

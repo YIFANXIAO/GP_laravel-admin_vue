@@ -28,4 +28,9 @@ class MetaCalType extends Model
         return $this->hasMany(Fraction::class, 'courses_type_id', 'id');
     }
 
+    public function metaCalType()
+    {
+        return $this->belongsTo(MetaCalType::class, 'pid', 'id');
+    }
+
 }

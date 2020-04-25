@@ -17,7 +17,6 @@ class CreateFormulaLeftTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('course_id');
-            $table->integer('pid')->default(0);
             $table->timestamps();
         });
     }

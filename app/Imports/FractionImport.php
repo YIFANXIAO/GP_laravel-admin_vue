@@ -129,7 +129,8 @@ class FractionImport implements ToModel,WithHeadingRow,WithBatchInserts,WithEven
         // 对查出来的两个参数进行判空
         if ($metaCal == null) {
             throw new Exception('对应公式设置有误有误，请检查后再导入');
-        }else if ($fractions == null || $row['order'] <= $fractions->order || $fractions->order >= $metaCal->number) {
+        }else if (($fractions != null && $row['order'] <= $fractions->order) || ($fractions != null && $fractions->order >= $metaCal->number)) {
+            dump($fractions);
             throw new Exception('参数order设置有误，请检查后再导入');
         }
 

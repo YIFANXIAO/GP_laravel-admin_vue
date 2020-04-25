@@ -23,17 +23,12 @@ class FormulaLeft extends Model
                 DB::table('fraction')
                     ->where('course_id', $model->course_id)
                     ->delete();
-
-                // 删除公式左部对应的元计算项
-                DB::table('meta_cal')
-                    ->where('formula_id', $model->id)
-                    ->delete();
-
-                // 删除当前公式的所有子公式
-                DB::table('formula_left')
-                    ->where('pid', $model->id)
-                    ->delete();
             }
+
+            // 删除公式左部对应的元计算项
+            DB::table('meta_cal')
+                ->where('formula_id', $model->id)
+                ->delete();
 
         });
     }
@@ -55,11 +50,6 @@ class FormulaLeft extends Model
     public function metaCals()
     {
         return $this->hasMany(MetaCal::class, 'formula_id', 'id');
-    }
-
-    public function formulaLeft()
-    {
-        return $this->belongsTo(FormulaLeft::class, 'pid', 'id');
     }
 
 }

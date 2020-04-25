@@ -166,16 +166,34 @@ class FractionController extends AdminController
     {
         $form = new Form(new Fraction());
 
-        $form->select('course_id', __('课程'))
-            ->options('/api/getCourses')
-            ->rules('required')
-            ->loads(['student_id', 'cal_type_id'], ['/api/getDesignatedStudents', '/api/getDesignatedMetaCalTypes']);
+        if ($form->isCreating()) {
+            $form->select('course_id', __('课程'))
+                ->options('/api/getCourses')
+                ->rules('required')
+                ->loads(['student_id', 'cal_type_id'], ['/api/getDesignatedStudents', '/api/getDesignatedMetaCalTypes']);
+        }else{
+            $form->select('course_id', __('课程'))
+                ->options('/api/getCourses')
+                ->rules('required');
+        }
 
-        $form->select('student_id', __('学生'))
-            ->rules('required');
+        if ($form->isCreating()) {
+            $form->select('student_id', __('学生'))
+                ->rules('required');
+        }else{
+            $form->hidden('student_id', __('学生'))
+                ->readOnly()
+                ->rules('required');
+        }
 
-        $form->select('cal_type_id', __('分数类型'))
-            ->rules('required');
+        if ($form->isCreating()) {
+            $form->select('cal_type_id', __('分数类型'))
+                ->rules('required');
+        }else{
+            $form->hidden('cal_type_id', __('分数类型'))
+                ->readOnly()
+                ->rules('required');
+        }
 
         $form->hidden('order', __('Order'))
             ->rules('required')
@@ -187,43 +205,45 @@ class FractionController extends AdminController
         // 在表单提交前调用
         $form->submitted(function (Form $form) {
 
-            $fractions = DB::table('fraction')
-                ->where('student_id', \request('student_id'))
-                ->where('course_id', \request('course_id'))
-                ->where('cal_type_id', \request('cal_type_id'))
-                ->orderBy('order', 'desc')
-                ->first();
+            if ($form->isCreating()) {
+                $fractions = DB::table('fraction')
+                    ->where('student_id', \request('student_id'))
+                    ->where('course_id', \request('course_id'))
+                    ->where('cal_type_id', \request('cal_type_id'))
+                    ->orderBy('order', 'desc')
+                    ->first();
 
-            // 判断order的赋值是否合法，以此判定能否提交
-            $metaCal = DB::table('meta_cal')
-                ->select(DB::raw('number'))
-                ->where('cal_type_id', \request('cal_type_id'))
-                ->whereIn('formula_id', function ($query) {
-                    $query->select('id');
-                    $query->from('formula_left');
-                    $query->where('course_id', \request('course_id'));
-                    $query->where('pid', 0);
-                })
-                ->first();
+                // 判断order的赋值是否合法，以此判定能否提交
+                $metaCal = DB::table('meta_cal')
+                    ->select(DB::raw('number'))
+                    ->where('cal_type_id', \request('cal_type_id'))
+                    ->whereIn('formula_id', function ($query) {
+                        $query->select('id');
+                        $query->from('formula_left');
+                        $query->where('course_id', \request('course_id'));
+                        $query->where('pid', 0);
+                    })
+                    ->first();
 
-            // 对查出来的两个参数进行判空
-            if ($metaCal == null) {
-                $error = new MessageBag([
-                    'title'   => '出错了',
-                    'message' => '所选课程未录入根计算公式，请先录入',
-                ]);
-                return back()->with(compact('error'));
-            }else if ($fractions == null || $fractions->order >= $metaCal->number ) {
-                $error = new MessageBag([
-                    'title'   => '出错了',
-                    'message' => '当前学生的该项成绩已全部录入，请选择其他学生录入成绩',
-                ]);
-                return back()->with(compact('error'));
-            }else {
-                if ($fractions == null) {
-                    $form->order = 1;
+                // 对查出来的两个参数进行判空
+                if ($metaCal == null) {
+                    $error = new MessageBag([
+                        'title'   => '出错了',
+                        'message' => '所选课程未录入根计算公式，请先录入',
+                    ]);
+                    return back()->with(compact('error'));
+                }else if ($fractions == null || $fractions->order >= $metaCal->number ) {
+                    $error = new MessageBag([
+                        'title'   => '出错了',
+                        'message' => '当前学生的该项成绩已全部录入，请选择其他学生录入成绩',
+                    ]);
+                    return back()->with(compact('error'));
                 }else {
-                    $form->order = $fractions->order + 1;
+                    if ($fractions == null) {
+                        $form->order = 1;
+                    }else {
+                        $form->order = $fractions->order + 1;
+                    }
                 }
             }
         });

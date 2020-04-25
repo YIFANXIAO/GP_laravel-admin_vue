@@ -16,6 +16,8 @@ class CreateMetaCalTypeTable extends Migration
         Schema::create('meta_cal_type', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('pid')->nulladble();
+            $table->integer('level')->nulladble();
             $table->timestamps();
         });
     }
