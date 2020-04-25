@@ -48,3 +48,9 @@ export function getFormulaLeftDatas(fractionRequestData) {
     const params = { fractionRequestData }; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function getFractionListByUser(fractionListRequestData) {
+    const TMPURL = '/front/getFractionListByUser'; // url地址
+    const params = { fractionListRequestData }; // 参数
+    return fetch.post(TMPURL, params);
+}

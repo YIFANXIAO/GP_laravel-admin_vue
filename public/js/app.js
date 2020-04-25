@@ -1556,12 +1556,13 @@ var isInContainer = exports.isInContainer = function isInContainer(el, container
 "use strict";
 /* unused harmony export getTestList */
 /* harmony export (immutable) */ __webpack_exports__["a"] = getArticleList;
-/* harmony export (immutable) */ __webpack_exports__["e"] = getSquadByUser;
-/* harmony export (immutable) */ __webpack_exports__["f"] = getSquadInfo;
-/* harmony export (immutable) */ __webpack_exports__["d"] = getProfessionInfo;
-/* harmony export (immutable) */ __webpack_exports__["g"] = getSquadStudents;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getSquadByUser;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getSquadInfo;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getProfessionInfo;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getSquadStudents;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getCoursesInfoByUser;
 /* harmony export (immutable) */ __webpack_exports__["c"] = getFormulaLeftDatas;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getFractionListByUser;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_fetch__ = __webpack_require__(87);
 // 引入工具类-目录自定义
 
@@ -1611,6 +1612,12 @@ function getCoursesInfoByUser(coursePageData) {
 function getFormulaLeftDatas(fractionRequestData) {
     var TMPURL = '/front/getFormulaLeftDatas'; // url地址
     var params = { fractionRequestData: fractionRequestData }; // 参数
+    return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
+}
+
+function getFractionListByUser(fractionListRequestData) {
+    var TMPURL = '/front/getFractionListByUser'; // url地址
+    var params = { fractionListRequestData: fractionListRequestData }; // 参数
     return __WEBPACK_IMPORTED_MODULE_0__utils_fetch__["a" /* default */].post(TMPURL, params);
 }
 
@@ -107851,7 +107858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadData: function loadData(squadPageData) {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["e" /* getSquadByUser */])(squadPageData).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadByUser */])(squadPageData).then(function (response) {
                 _this.tableData = response.data;
                 _this.total = response.total;
                 _this.currentPage = response.current_page;
@@ -108268,21 +108275,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getSingleSquad: function getSingleSquad() {
             var _this = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["f" /* getSquadInfo */])(this.squad_id).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["g" /* getSquadInfo */])(this.squad_id).then(function (response) {
                 _this.singleSquad = response[0];
             });
         },
         getSingleProfession: function getSingleProfession() {
             var _this2 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getProfessionInfo */])(this.squad_id).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["e" /* getProfessionInfo */])(this.squad_id).then(function (response) {
                 _this2.singlePeofession = response[0];
             });
         },
         loadData: function loadData(studentPageData) {
             var _this3 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["g" /* getSquadStudents */])(studentPageData).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["h" /* getSquadStudents */])(studentPageData).then(function (response) {
                 _this3.students = response.data;
                 _this3.total = response.total;
                 _this3.currentPage = response.current_page;
@@ -109070,6 +109077,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -109077,14 +109133,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
         this.getFormulaLeftData(this.fractionRequestData);
+        this.loadData(this.fractionListRequestData);
     },
     data: function data() {
         return {
             fractionRequestData: {
                 course_id: this.$parent.course_id
             },
+            fractionListRequestData: {
+                course_id: this.$parent.course_id,
+                cal_type_name: '',
+                order: '',
+                row: 5,
+                page: 1
+            },
             course_id: this.$parent.course_id,
-            fractions: []
+            fractions: [],
+            fractionList: [],
+            currentPage: 1,
+            currentSize: 2,
+            total: null,
+            isSizeChange: false
         };
     },
 
@@ -109095,6 +109164,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getFormulaLeftDatas */])(fractionRequestData).then(function (response) {
                 _this.fractions = response;
             });
+        },
+        loadData: function loadData(fractionListRequestData) {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["d" /* getFractionListByUser */])(fractionListRequestData).then(function (response) {
+                _this2.fractionList = response.data;
+                _this2.total = response.total;
+                _this2.currentPage = response.current_page;
+            });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            this.fractionListRequestData.row = val;
+            this.fractionListRequestData.page = 1;
+            this.isSizeChange = true;
+            this.loadData(this.fractionListRequestData);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            if (!this.isSizeChange) {
+                this.fractionListRequestData.page = val;
+                this.loadData(this.fractionListRequestData);
+            } else {
+                this.fractionListRequestData.page = 1;
+                this.isSizeChange = false;
+            }
+        },
+        formSearch: function formSearch() {
+            this.fractionListRequestData.page = 1;
+            this.loadData(this.fractionListRequestData);
         }
     }
 });
@@ -109109,52 +109206,186 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.fractions, function(fraction) {
-      return _c(
-        "div",
+    [
+      _vm._l(_vm.fractions, function(fraction) {
+        return _c(
+          "div",
+          [
+            _c(
+              "el-col",
+              { attrs: { span: 12 } },
+              [
+                _c(
+                  "el-card",
+                  {
+                    staticStyle: { margin: "15px" },
+                    attrs: { shadow: "always" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "clearfix",
+                        attrs: { slot: "header" },
+                        slot: "header"
+                      },
+                      [
+                        _c("span", [
+                          _vm._v(
+                            _vm._s(fraction.name) +
+                              "：" +
+                              _vm._s(fraction.isComplete)
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text item" }, [
+                      _c("span", [_vm._v(_vm._s(fraction.fraction))])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { gutter: 40 } },
         [
+          _c("el-col", { attrs: { span: 2 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("分数类型")])
+          ]),
+          _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { span: 12 } },
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入分数类型" },
+                model: {
+                  value: _vm.fractionListRequestData.cal_type_name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.fractionListRequestData, "cal_type_name", $$v)
+                  },
+                  expression: "fractionListRequestData.cal_type_name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 1 } }, [
+            _c("span", { staticClass: "col-span" }, [_vm._v("次序")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 7 } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "请输入次序" },
+                model: {
+                  value: _vm.fractionListRequestData.order,
+                  callback: function($$v) {
+                    _vm.$set(_vm.fractionListRequestData, "order", $$v)
+                  },
+                  expression: "fractionListRequestData.order"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { span: 2 } },
             [
               _c(
-                "el-card",
+                "el-button",
                 {
-                  staticStyle: { margin: "15px" },
-                  attrs: { shadow: "always" }
+                  staticClass: "search-btn",
+                  attrs: { type: "primary" },
+                  on: { click: _vm.formSearch }
                 },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "clearfix",
-                      attrs: { slot: "header" },
-                      slot: "header"
-                    },
-                    [
-                      _c("span", [
-                        _vm._v(
-                          _vm._s(fraction.name) +
-                            "/" +
-                            _vm._s(fraction.isComplete)
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text item" }, [
-                    _c("span", [_vm._v(_vm._s(fraction.fraction))])
-                  ])
-                ]
+                [_vm._v("查询")]
               )
             ],
             1
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.fractionList, height: "280", border: "" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "user_name", label: "学生姓名", width: "180" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "full_name", label: "课程名称", width: "180" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "分数类型", width: "180" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "order", label: "次序", width: "180" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "fraction", label: "分数", width: "180" }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "block" },
+        [
+          _c("el-pagination", {
+            attrs: {
+              background: "",
+              "current-page": _vm.currentPage,
+              "page-sizes": [5, 10, 15],
+              "page-size": _vm.currentSize,
+              layout: "total, prev, pager, next,sizes, jumper",
+              total: _vm.total
+            },
+            on: {
+              "update:currentPage": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:current-page": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:pageSize": function($event) {
+                _vm.currentSize = $event
+              },
+              "update:page-size": function($event) {
+                _vm.currentSize = $event
+              },
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
+          })
+        ],
+        1
       )
-    }),
-    0
+    ],
+    2
   )
 }
 var staticRenderFns = []

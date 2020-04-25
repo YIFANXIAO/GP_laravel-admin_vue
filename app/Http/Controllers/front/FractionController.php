@@ -25,6 +25,73 @@ class FractionController extends BaseController
 
     }
 
+    public function getFractionListByUser(Request $request) {
+
+        $fractionListRequestData = $request->get('fractionListRequestData');
+
+        // 根据传参，返回指定用户、指定课程的，所有正常次序范围内的分数
+        $course_id = array_get($fractionListRequestData, 'course_id');
+        $perPage = array_get($fractionListRequestData, 'row');
+        $currentPage = array_get($fractionListRequestData, 'page');
+
+        $cal_type_name = array_get($fractionListRequestData, 'cal_type_name');
+        $order = array_get($fractionListRequestData, 'order');
+
+//        dump($cal_type_name);
+//        dump($order);
+
+        $metaCals = DB::table('meta_cal')
+            ->select('meta_cal.cal_type_id', 'meta_cal.number')
+            ->where('formula_id', function ($query) use ($course_id) {
+                $query->select('id');
+                $query->from('formula_left');
+                $query->where('course_id', $course_id);
+            })
+            ->get();
+
+        $allFractionList = collect();
+        foreach ($metaCals as $key => $value) {
+            $fractionList = DB::table('fraction')
+                ->leftJoin('admin_users', 'admin_users.id', '=', 'fraction.student_id')
+                ->leftJoin('courses', 'courses.id', '=', 'fraction.course_id')
+                ->leftJoin('meta_cal_type', 'meta_cal_type.id', '=', 'fraction.cal_type_id')
+                ->select('admin_users.name as user_name', 'courses.full_name', 'meta_cal_type.name', 'fraction.order', 'fraction.fraction')
+                ->where('student_id', $this->getAdminIdByUserId()->id)
+                ->where('course_id', $course_id)
+                ->where('cal_type_id', $value->cal_type_id)
+                ->where('order', '<=', $value->number)
+                ->when(($cal_type_name != null && $cal_type_name != ''), function ($query) use ($cal_type_name) {
+                    return $query->where('meta_cal_type.name', 'like', "%{$cal_type_name}%");
+                })
+                ->when(($order != null), function ($query) use ($order) {
+                    return $query->where('fraction.order', 'like', "%{$order}%");
+                })
+                ->get();
+
+            $allFractionList = $fractionList->merge($allFractionList);
+        }
+
+        // 由于这里是通过合并数组，得出的最后数据，laravel内置的分页无法使用，手动进行配置分页
+        if ($perPage*$currentPage > $allFractionList->count()) {
+            $resultDataPer = $allFractionList->take(-($allFractionList->count() - $perPage * ($currentPage - 1)));
+        }else {
+            $resultDataPer = $allFractionList->take($perPage * $currentPage)->take( -$perPage );
+        }
+
+        // 转换collection的key值，否则分页不起作用
+        $resultData = collect();
+        foreach ($resultDataPer as $key => $value) {
+            $resultData->push($value);
+        }
+
+        $result = collect();
+        $result->put('data', $resultData);
+        $result->put('current_page', $currentPage);
+        $result->put('total', $allFractionList->count());
+
+        return $result;
+    }
+
     public function getFormulaLeftDatas(Request $request) {
 
         $fractionRequestData = $request->get('fractionRequestData');
