@@ -54,3 +54,15 @@ export function getFractionListByUser(fractionListRequestData) {
     const params = { fractionListRequestData }; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function getArticleById(article_request_data) {
+    const TMPURL = '/front/getArticleById'; // url地址
+    const params = { article_request_data }; // 参数
+    return fetch.post(TMPURL, params);
+}
+
+export function getArticleComments(article_request_data) {
+    const TMPURL = '/front/getArticleComments'; // url地址
+    const params = { article_request_data }; // 参数
+    return fetch.post(TMPURL, params);
+}

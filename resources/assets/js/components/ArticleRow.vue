@@ -1,66 +1,35 @@
 <template>
     <div>
-        <el-row>
-            <div class="block">
+        <el-card :body-style="{ padding: '8px' }">
+            <el-row>
                 <el-col :span="8">
-                    <div class="grid-content-article-list bg-article-list">
-                        <img src="http://127.0.0.1:8000/uploads/images/d10fb8d673e04c2bfdce01955c59bd47.png" height="240" width="292" alt="网络图片" />
-                    </div>
+                    <img v-bind:src="baseHttpUrl + '/uploads/' + this.$parent.banner" height="160" width="200" alt="网络图片" />
                 </el-col>
                 <el-col :span="16">
-                    <div class="grid-content-article-list bg-article-list">
-                        <div class="article-row">
-                            <el-row class="ArticleLable">
-                                <p>{{this.$parent.title}}/{{this.$parent.created_at}}</p>
-                            </el-row>
-                            <el-row class="ArticleTitle">
-                                <a href="http://127.0.0.1:8000/test">{{this.$parent.title}}</a>
-                            </el-row>
-                            <el-row class="ArticleIntro">
-                                <p>{{this.$parent.intro}}</p>
-                            </el-row>
-                        </div>
+                    <div style="padding: 15px;">
+                        <p>{{this.$parent.title}}/{{this.$parent.created_at}}</p>
+                        <a v-bind:href="baseHttpUrl + '/article_detail/' + this.$parent.id">{{this.$parent.title}}</a>
+                        <p>{{this.$parent.intro}}</p>
                     </div>
                 </el-col>
-            </div>
-        </el-row>
-
-<!--        <el-pagination-->
-<!--                background-->
-<!--                :page-size="1"-->
-<!--                :pager-count="11"-->
-<!--                layout="prev, pager, next">-->
-<!--                :total=this.articles.length>-->
-<!--        </el-pagination>-->
-<!--        <div class="block">-->
-<!--&lt;!&ndash;            <span class="demonstration">页数较少时的效果</span>&ndash;&gt;-->
-<!--            -->
-<!--        </div>-->
+            </el-row>
+        </el-card>
 
     </div>
 </template>
 
 <script>
-
-    import { getArticleList } from '../api/front_all'
-
     export default {
         created() {
-            this.getArticles();
+
         },
         data() {
             return {
-                articles:[],
+                baseHttpUrl : this.COMMON.httpUrl
             }
         },
         methods : {
-            getArticles() {
-                getArticleList().then(response => {
-                    this.articles = response.data;
-                }).catch(err => {
-                    console.log(err)
-                })
-            },
+
         }
     }
 </script>

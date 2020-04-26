@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/front/getCoursesInfoByUser', 'front\CourseController@getCoursesInfoByUser');
     Route::post('/front/getFormulaLeftDatas', 'front\FractionController@getFormulaLeftDatas');
     Route::post('/front/getFractionListByUser', 'front\FractionController@getFractionListByUser');
+    Route::post('/front/getArticleById', 'front\ArticleController@getArticleById');
+    Route::post('/front/getArticleComments', 'front\ArticleController@getArticleComments');
 });
 
 // laravel-admin后台使用的select框的调用函数路由

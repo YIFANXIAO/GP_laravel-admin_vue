@@ -16,6 +16,7 @@ import SquadDetail from "./components/SquadDetail";
 import CourseList from "./components/CourseList";
 import FractionDetailStudent from "./components/FractionDetailStudent";
 import FractionDetailTeacher from "./components/FractionDetailTeacher";
+import ArticleDetail from "./components/ArticleDetail";
 
 Vue.prototype.COMMON = common;
 
@@ -50,7 +51,7 @@ Vue.component('article-list', {
 });
 
 Vue.component('article-row', {
-    props: ['title', 'created_at', 'intro'],
+    props: ['title', 'created_at', 'intro', 'banner', 'id'],
     // template: '<h3>{{ title }}</h3>'
     template: '<ArticleRow/>',
     components: { ArticleRow }
@@ -82,6 +83,12 @@ Vue.component('fraction-detail-teacher', {
     props: ['course_id'],
     template: '<FractionDetailTeacher/>',
     components: { FractionDetailTeacher }
+});
+
+Vue.component('article-detail', {
+    props: ['article_id'],
+    template: '<ArticleDetail/>',
+    components: { ArticleDetail }
 });
 
 new Vue({
