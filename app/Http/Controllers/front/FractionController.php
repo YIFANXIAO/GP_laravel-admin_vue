@@ -98,83 +98,31 @@ class FractionController extends BaseController
 
         $course_id = array_get($fractionRequestData, 'course_id');
 
+        // 根据课程id查询公式左部信息
+        $formulaLeft = DB::table('formula_left')
+            ->select('formula_left.id', 'formula_left.name', 'formula_left.course_id')
+            ->where('course_id', $course_id)
+            ->get()
+            ->first();
+
+        // 根据公式左部查询公式元计算项信息
+        $metaCals = DB::table('meta_cal')
+            ->select('meta_cal.cal_type_id', 'meta_cal.number', 'meta_cal.proportion')
+            ->where('formula_id', $formulaLeft->id)
+            ->get();
+
+
         if ($this->isStudent()) {
-            // 根据课程id查询公式左部信息
-            $formulaLeft = DB::table('formula_left')
-                ->select('formula_left.id', 'formula_left.name', 'formula_left.course_id')
-                ->where('course_id', $course_id)
-                ->get()
-                ->first();
+            // 学生版成绩信息，学生可以查看总分以及该课程含有的其他父级类型分数，如平时分、实验成绩等等
+            // 根据元计算项信息，推导出其父级节点信息
+            $pMetaCalIds = StaticMethodController::getPMetaCalTypeList($metaCals);
+            // 根据元计算项信息，查询分数表，计算出各个元计算项的分数
+            $metaCalFractions = StaticMethodController::getMetaCalFractionList($metaCals, $course_id, $this->getAdminIdByUserId()->id);
 
-            // 根据公式左部查询公式元计算项信息
-            $metaCals = DB::table('meta_cal')
-                ->select('meta_cal.cal_type_id', 'meta_cal.number', 'meta_cal.proportion')
-                ->where('formula_id', $formulaLeft->id)
-                ->get();
-
-
-            $pMetaCalIds = collect();
-            $metaCalFractions = collect();
-            foreach ($metaCals as $key => $value) {
-                // 根据元计算项信息，推导出其父级节点信息
-                $pMetaCal = DB::table('meta_cal_type')
-                    ->select('meta_cal_type.id')
-                    ->whereIn('id', function ($query) use ($value) {
-                        $query->select('pid');
-                        $query->from('meta_cal_type');
-                        $query->where('id', $value->cal_type_id);
-                    })
-                    ->get()
-                    ->first();
-                if ($key == 0) {
-                    $pMetaCalIds->push($pMetaCal->id);
-                }else{
-                    if (!$pMetaCalIds->contains($pMetaCal->id)) {
-                        $pMetaCalIds->push($pMetaCal->id);
-                    }
-                }
-
-                // 根据元计算项信息，计算出所有元计算项对应的分数等信息
-                $fractions = DB::table('fraction')
-                    ->select('fraction.order', 'fraction.fraction')
-                    ->where('student_id', $this->getAdminIdByUserId()->id)
-                    ->where('course_id', $course_id)
-                    ->where('cal_type_id', $value->cal_type_id)
-                    ->orderBy('order', 'Asc')
-                    ->get();
-
-                $metaCalFraction = collect();
-                $sumFractions = 0;
-                $sumCount = 0;
-                // 对查询出来的分数进行判空
-                if ($fractions != null && $fractions->count() > 0) {
-                    foreach ($fractions as $keyFrac => $valueFrac) {
-                        // 计算该项分数总和，准备进行计算平时分
-                        // 计算次数，保障分数统计次数不超过规定
-                        if ($valueFrac->order <= $value->number) {
-                            $sumFractions += $valueFrac->fraction;
-                            $sumCount = $valueFrac->order;
-                        }
-                    }
-                    // 该项分数的最后分数
-                    $metaCalFraction->put('fraction', ($sumFractions/$sumCount)*$value->proportion);
-                    // 记录该项分数统计是否达到预定次数
-                    $metaCalFraction->put('isComplete', $sumCount == $value->number);
-                }else {
-                    // 该项分数的最后分数
-                    $metaCalFraction->put('fraction', 0);
-                    // 记录该项分数统计是否达到预定次数
-                    $metaCalFraction->put('isComplete', false);
-                }
-                $metaCalFraction->put('meta_cal_type_id', $value->cal_type_id);
-                // 存入元计算项分数集合中
-                $metaCalFractions->push($metaCalFraction);
-            }
-
-            // 计算父级分数项，并返回前端
+            // 计算所有父级分数项，并返回前端
             $results = collect();
 
-            // 先计算总分
+            // 先计算课程对应公式的分数
             $resultFraction = collect();
             $totalScore = 0;
             $totalIsComplete = true;
@@ -182,6 +130,7 @@ class FractionController extends BaseController
                 $totalScore += $value->get('fraction');
                 $totalIsComplete = $totalIsComplete && $value->get('isComplete');
             }
+
             $resultFraction->put('name', $formulaLeft->name);
             $resultFraction->put('fraction', $totalScore);
             $resultFraction->put('isComplete', $totalIsComplete);
@@ -213,16 +162,124 @@ class FractionController extends BaseController
                 $resultFraction->put('fraction', $source);
                 $resultFraction->put('isComplete', $isComplete);
                 $results->push($resultFraction);
-
             }
 
-            return $results;
-
         }elseif ($this->isTeacher()) {
+            // 教师版分数详情，可以查看课程，对应的班级，对应的平均分、最高分、及格率
+
+            $squads = DB::table('squad')
+                ->select('squad.id', 'squad.profession_id', 'squad.name', 'squad.info')
+                ->whereIn('id', function ($query) use ($course_id) {
+                    $query->select('squad_id');
+                    $query->from('squads_courses');
+                    $query->where('course_id', $course_id);
+                })
+                ->get();
+
+            $results = collect();
+
+            // 遍历班级
+            foreach ($squads as $key => $value) {
+                // 查询每个人的成绩
+                $studentIds = DB::table('student_squad')
+                    ->where('squad_id', $value->id)
+                    ->get();
+
+
+                $squTotalSource = 0;
+                $squIsComplete = true;
+                $squHighestSource = 0;
+                $passCount = 0;
+                // 每个班级学生的总分列表
+                $squadStudentsFractionList = collect();
+                foreach ($studentIds as $keyStu => $valueStu) {
+                    // 获取学生总分
+                    $stuTotalSource = StaticMethodController::getTotalSourceByUser($metaCals, $course_id, $valueStu->student_id);
+
+                    // 计算总分和是否完成
+                    $squTotalSource += $stuTotalSource->get('totalScore');
+                    $squIsComplete = $squIsComplete && $stuTotalSource->get('totalIsComplete');
+
+                    // 计算最高分
+                    if ($squHighestSource < $stuTotalSource->get('totalScore')) {
+                        $squHighestSource = $stuTotalSource->get('totalScore');
+                    }
+
+                    if ($stuTotalSource->get('totalScore') > 5) {
+                        $passCount++;
+                    }
+
+                    $stuName = DB::table('admin_users')
+                        ->where('id', $valueStu->student_id)
+                        ->get()
+                        ->first();
+
+                    // 记录单个学生分数行数据
+                    $studentFraction = collect();
+                    $studentFraction->put('stu_name', $stuName->name);
+                    $studentFraction->put('stu_ID', $stuName->username);
+                    if ($stuTotalSource->get('totalIsComplete')) {
+                        $studentFraction->put('is_complete', '最终分数');
+                    }else {
+                        $studentFraction->put('is_complete', '非最终分数');
+                    }
+
+                    $studentFraction->put('cur_fraction', $stuTotalSource->get('totalScore'));
+
+                    $squadStudentsFractionList->push($studentFraction);
+                }
+
+                // 单个班级的成绩情况
+                $squadResult = collect();
+
+                // 放入平均分
+                $squadSingleResult = collect();
+                $squadSingleResult->put('name', '平均分');
+                $squadSingleResult->put('source', round($squTotalSource/$studentIds->count(), 3));
+                if ($squIsComplete) {
+                    $squadSingleResult->put('is_complete', '最终分数');
+                }else {
+                    $squadSingleResult->put('is_complete', '非最终分数');
+                }
+                $squadResult->push($squadSingleResult);
+
+                // 最高分
+                $squadSingleResult = collect();
+                $squadSingleResult->put('name', '最高分');
+                $squadSingleResult->put('source', $squHighestSource);
+                if ($squIsComplete) {
+                    $squadSingleResult->put('is_complete', '最终分数');
+                }else {
+                    $squadSingleResult->put('is_complete', '非最终分数');
+                }
+                $squadResult->push($squadSingleResult);
+
+                // 及格率
+                $squadSingleResult = collect();
+                $squadSingleResult->put('name', '及格率');
+                $squadSingleResult->put('source', round($passCount/$studentIds->count(), 3));
+                if ($squIsComplete) {
+                    $squadSingleResult->put('is_complete', '最终分数');
+                }else {
+                    $squadSingleResult->put('is_complete', '非最终分数');
+                }
+                $squadResult->push($squadSingleResult);
+
+
+                $squadInfo = collect();
+
+                $squadInfo->put('name', $value->name);
+                $squadInfo->put('data', $squadResult);
+                $squadInfo->put('fractionLists', $squadStudentsFractionList);
+
+
+                // 添加每个班级的情况，到最后结果中
+                $results->push( $squadInfo);
+            }
 
         }else {
-
+            $results = null;
         }
-
+        return $results;
     }
 }

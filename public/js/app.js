@@ -109504,19 +109504,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {},
+    created: function created() {
+        this.getFormulaLeftData(this.fractionRequestData);
+    },
     data: function data() {
         return {
-            course_id: this.$parent.course_id
+            fractionRequestData: {
+                course_id: this.$parent.course_id
+            },
+            course_id: this.$parent.course_id,
+            activeNames: ['1'],
+            squadFractions: []
         };
     },
 
-    methods: {}
+    methods: {
+        getFormulaLeftData: function getFormulaLeftData(fractionRequestData) {
+            var _this = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_front_all__["c" /* getFormulaLeftDatas */])(fractionRequestData).then(function (response) {
+                _this.squadFractions = response;
+            });
+        },
+        handleChange: function handleChange(val) {
+            console.log(val);
+        }
+    }
 });
 
 /***/ }),
@@ -109528,9 +109595,134 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v("教师版-分数详情页")]),
-    _vm._v(" "),
-    _c("h3", [_vm._v(_vm._s(this.course_id))])
+    _c(
+      "div",
+      [
+        _c(
+          "el-collapse",
+          { staticStyle: { margin: "15px" }, attrs: { accordion: "" } },
+          _vm._l(_vm.squadFractions, function(squadFraction) {
+            return _c(
+              "div",
+              [
+                _c(
+                  "el-collapse-item",
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(squadFraction.name) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(squadFraction.data, function(fraction) {
+                      return _c(
+                        "div",
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { span: 8 } },
+                            [
+                              _c(
+                                "el-card",
+                                {
+                                  staticStyle: { margin: "15px" },
+                                  attrs: { shadow: "always" }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "clearfix",
+                                      attrs: { slot: "header" },
+                                      slot: "header"
+                                    },
+                                    [
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(fraction.name) +
+                                            "：" +
+                                            _vm._s(fraction.is_complete)
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "text item" }, [
+                                    _c("span", [
+                                      _vm._v(_vm._s(fraction.source))
+                                    ])
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      [
+                        _c(
+                          "el-table",
+                          {
+                            staticStyle: { width: "100%" },
+                            attrs: {
+                              data: squadFraction.fractionLists,
+                              height: "280",
+                              border: ""
+                            }
+                          },
+                          [
+                            _c("el-table-column", {
+                              attrs: {
+                                prop: "stu_ID",
+                                label: "学号",
+                                width: "150"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("el-table-column", {
+                              attrs: {
+                                prop: "stu_name",
+                                label: "学生姓名",
+                                width: "150"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("el-table-column", {
+                              attrs: {
+                                prop: "is_complete",
+                                label: "是否最终成绩",
+                                width: "150"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("el-table-column", {
+                              attrs: { prop: "cur_fraction", label: "当前分数" }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          }),
+          0
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
