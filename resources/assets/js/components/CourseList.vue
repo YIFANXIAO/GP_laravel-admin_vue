@@ -1,17 +1,50 @@
 <template>
     <div>
-        <el-row :gutter="40">
-            <el-col :span="2"><span class="col-span">课程全称</span></el-col>
-            <el-col :span="7"><el-input v-model="coursePageData.full_name" placeholder="请输入课程全称" /></el-col>
-            <el-col :span="2"><span class="col-span">课程属性</span></el-col>
-            <el-col :span="7"><el-input v-model="coursePageData.attribute" placeholder="请输入课程属性" /></el-col>
-            <el-col :span="2"><el-button type="primary" class="search-btn" @click="formSearch">查询</el-button></el-col>
+        <div style="font-size:25px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+            课程列表信息
+        </div>
+
+        <el-divider></el-divider>
+
+        <el-row style="margin: 0px 0px 20px 0px;">
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        课程全称：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="coursePageData.full_name" placeholder="请输入课程全称" />
+                    </div>
+                </el-col>
+
+            </el-col>
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        课程属性：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="coursePageData.attribute" placeholder="请输入课程属性" />
+                    </div>
+                </el-col>
+            </el-col>
+            <el-col :span="2">
+                <el-button type="primary" class="search-btn" @click="formSearch">
+                    查询
+                </el-button>
+            </el-col>
         </el-row>
+
+
         <el-table
                 :data="tableData"
                 stripe
                 border
-                style="width: 100%">
+                style="width: 100%;">
             <el-table-column
                     prop="full_name"
                     label="课程全称"
@@ -50,7 +83,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="block">
+        <div class="block" style="margin: 15px 0px 0px 0px;">
             <el-pagination
                     background
                     :current-page.sync="currentPage"

@@ -9,7 +9,7 @@
                     v-bind:intro="article.intro"
                     v-bind:banner="article.banner"
                     v-bind:id="article.id"
-                    style="margin : 20px"
+                    style="margin: 0px 0px 20px 0px;"
             ></article-row>
         </div>
         <div class="block">

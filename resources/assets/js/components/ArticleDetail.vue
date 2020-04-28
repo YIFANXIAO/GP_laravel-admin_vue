@@ -1,24 +1,30 @@
 <template>
     <div>
-        <div style="font-weight:bold;font-size:40px;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+        <div style="margin: 0px 0px 15px 0px;font-weight:bold;font-size:40px;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
             <span>{{ this.article_detail.title }} </span>
         </div>
-        <br/>
-
         <div>
-            <el-tag
-                    v-for="item in labels"
-                    :key="item.id"
-                    :type="'success'"
-                    effect="dark">
-                {{ item.content }}
-            </el-tag>
-            &nbsp;&nbsp;&nbsp;
-            <span
-                    style="font-size:10px;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-            >发布时间：{{ this.article_detail.created_at }} </span>
+            <el-row style = "margin: 0px 0px 15px 0px;">
+                <el-col :span="18">
+                    <el-tag
+                            v-for="item in labels"
+                            :key="item.id"
+                            :type="'info'"
+                            size="mini"
+                            effect="dark"
+                            style="margin: 0px 10px 0px 0px;">
+                        {{ item.content }}
+                    </el-tag>
+                </el-col>
+                <el-col :span="6">
+                    <span
+                            style="font-size:12px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                    >发布时间：{{ this.article_detail.created_at }} </span>
+                </el-col>
+            </el-row>
         </div>
-        <br />
+
+        <el-divider></el-divider>
 
         <div v-html="articleContent"
              style="font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
@@ -26,42 +32,50 @@
         </div>
 
         <br/>
-        <el-divider content-position="left">精彩评论</el-divider>
-        <br/>
-        <div v-for="comment in comments"
-             style="font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-        >
-            <el-col style="color: #F2F6FC">
-                <el-card shadow="always" style="margin : 10px;">
-                    <div style="margin : 10px; font-weight:normal; font-size:10px;">
+        <span
+                style="font-size:18px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+        >精彩评论</span>
+        <el-divider></el-divider>
+        <div v-for="comment in comments">
+            <el-col>
+                <el-card shadow="always" style="margin: 0px 0px 10px 0px;">
+                    <div style="margin: 0px 0px 20px 0px;">
                         <el-col span="16">
-                            <i class="el-icon-user"></i>&nbsp;<span>{{ comment.p_comment.username }}  </span>
+                            <div
+                                style="font-size:15px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                            ><i class="el-icon-user"></i>&nbsp;&nbsp;<span>{{ comment.p_comment.username }}</span></div>
                         </el-col>
                         <el-col span="8">
-                            <span>{{ comment.p_comment.created_at }}  </span>
+                            <div
+                                style="font-size:15px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                            >{{ comment.p_comment.created_at }}</div>
                         </el-col>
                     </div>
                     <br/>
-                    <div style="margin : 10px; font-weight:bold; font-size:15px;">
-                        <span>{{ comment.p_comment.content }}</span>
-                    </div>
+                    <div
+                        style="font-size:18px; font-weight:normal; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                    >{{ comment.p_comment.content }}</div>
                 </el-card>
             </el-col>
             <div v-for="childComment in comment.child_comments">
-                <el-col style="color: #F2F6FC">
-                    <el-card shadow="always" style="margin : 10px;">
-                        <div style="margin : 10px; font-weight:normal; font-size:10px;">
+                <el-col>
+                    <el-card shadow="always"  style="margin: 0px 0px 10px 0px;">
+                        <div style="margin: 0px 0px 20px 0px;">
                             <el-col span="16">
-                                <i class="el-icon-user"></i>&nbsp;<span>{{ childComment.username }}  回复：“{{ childComment.replyComment }}”</span>
+                                <div
+                                    style="font-size:15px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                                ><i class="el-icon-user"></i>&nbsp;&nbsp;<span>{{ childComment.username }}  回复：“{{ childComment.replyComment }}”</span></div>
                             </el-col>
                             <el-col span="8">
-                                <span>{{ comment.p_comment.created_at }}  </span>
+                                <div
+                                    style="font-size:15px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                                >{{ childComment.created_at }}</div>
                             </el-col>
                         </div>
                         <br/>
-                        <div style="margin : 10px; font-weight:bold; font-size:15px;">
-                            <span>{{ childComment.content }}</span>
-                        </div>
+                        <div
+                            style="font-size:18px; font-weight:normal; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                        >{{ childComment.content }}</div>
                     </el-card>
                 </el-col>
             </div>

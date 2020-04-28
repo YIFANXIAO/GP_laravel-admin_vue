@@ -133,7 +133,11 @@ class FractionController extends BaseController
 
             $resultFraction->put('name', $formulaLeft->name);
             $resultFraction->put('fraction', $totalScore);
-            $resultFraction->put('isComplete', $totalIsComplete);
+            if ($totalIsComplete) {
+                $resultFraction->put('isComplete', '最终分数');
+            }else {
+                $resultFraction->put('isComplete', '非最终分数');
+            }
             $results->push($resultFraction);
 
             // 计算父级分数
@@ -160,7 +164,13 @@ class FractionController extends BaseController
 
                 $resultFraction->put('name', $metaCal->name);
                 $resultFraction->put('fraction', $source);
-                $resultFraction->put('isComplete', $isComplete);
+
+                if ($isComplete) {
+                    $resultFraction->put('isComplete', '最终分数');
+                }else {
+                    $resultFraction->put('isComplete', '非最终分数');
+                }
+
                 $results->push($resultFraction);
             }
 

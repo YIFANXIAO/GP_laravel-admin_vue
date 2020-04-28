@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+{{--    class="container"--}}
+    <div style="margin: 20px 100px 50px 100px;">
         <div id="gp">
             <el-row class="tac">
                 {{--  添加侧边栏组件，定好页面占比  --}}
                 <el-col :span="6">
-                    <sidebar></sidebar>
+                    <sidebar
+                        style="margin-left: 50px; margin-right: 50px"
+                    ></sidebar>
                 </el-col>
                 {{--  添加每页的个性化内容  --}}
                 <el-col :span="18">

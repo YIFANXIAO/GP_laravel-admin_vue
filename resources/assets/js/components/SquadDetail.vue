@@ -1,42 +1,80 @@
 <template>
     <div>
-<!--        <h3>班级详情</h3>-->
         <el-row :gutter="12">
             <el-col :span="12">
-                <el-card shadow="always" style="margin : 15px">
+                <el-card shadow="always" style="margin: 0px 10px 15px 0px;">
                     <div slot="header" class="clearfix">
-                        <span>{{ this.singleSquad.name }}</span>
+                        <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                            {{ this.singleSquad.name }}
+                        </div>
                     </div>
                     <div class="text item">
-                        <span>{{ this.singleSquad.info }}</span>
+                        <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                            {{ this.singleSquad.info }}
+                        </div>
                     </div>
                 </el-card>
             </el-col>
             <el-col :span="12">
-                <el-card shadow="always" style="margin : 15px">
+                <el-card shadow="always" style="margin: 0px 0px 10px 10px;">
                     <div slot="header" class="clearfix">
-                        <span>{{ this.singlePeofession.full_name }}</span>
+                        <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                            {{ this.singlePeofession.full_name }}
+                        </div>
                     </div>
                     <div class="text item">
-                        <span>{{ this.singlePeofession.intro }}</span>
+                        <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                            {{ this.singlePeofession.intro }}
+                        </div>
                     </div>
                 </el-card>
             </el-col>
         </el-row>
 
-        <el-divider content-position="left">班级成员</el-divider>
+        <div style="font-size:20px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+            班级成员
+        </div>
 
-        <el-row :gutter="40">
-            <el-col :span="1"><span class="col-span">姓名</span></el-col>
-            <el-col :span="7"><el-input v-model="studentPageData.name" placeholder="请输入姓名" /></el-col>
-            <el-col :span="1"><span class="col-span">学号</span></el-col>
-            <el-col :span="7"><el-input v-model="studentPageData.username" placeholder="请输入学号" /></el-col>
-            <el-col :span="2"><el-button type="primary" class="search-btn" @click="formSearch">查询</el-button></el-col>
+        <el-divider></el-divider>
+
+        <el-row style="margin: 0px 0px 20px 0px;">
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        姓名：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="studentPageData.name" placeholder="请输入姓名" />
+                    </div>
+                </el-col>
+
+            </el-col>
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        学号：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="studentPageData.username" placeholder="请输入学号" />
+                    </div>
+                </el-col>
+            </el-col>
+            <el-col :span="2">
+                <el-button type="primary" class="search-btn" @click="formSearch">
+                    查询
+                </el-button>
+            </el-col>
         </el-row>
+
         <el-table
                 :data="students"
                 height="280"
                 border
+                stripe
                 style="width: 100%">
             <el-table-column
                     prop="squad_name"
@@ -58,7 +96,7 @@
                     label="创建日期">
             </el-table-column>
         </el-table>
-        <div class="block">
+        <div class="block" style="margin: 15px 0px 0px 0px;">
             <el-pagination
                 background
                 :current-page.sync="currentPage"

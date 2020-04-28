@@ -1,6 +1,10 @@
 <template>
     <div>
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+        <el-menu
+            default-active="1-4-1"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose">
             <el-menu-item index="1">
                 <i class="el-icon-s-data"></i>
                 <span slot="title">
@@ -31,9 +35,9 @@
 </template>
 
 <style>
-    .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 200px;
-        min-height: 400px;
+    .el-menu-vertical-demo {
+        width: 180px;
+        min-height: 700px;
     }
 </style>
 
@@ -42,7 +46,6 @@
     export default {
         data() {
             return {
-                isCollapse: false,
                 baseHttpUrl : this.COMMON.httpUrl
             }
         },

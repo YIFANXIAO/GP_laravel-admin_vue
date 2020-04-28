@@ -1,77 +1,121 @@
 <template>
     <div>
-<!--        <h3>学生版-分数详情页</h3>-->
-<!--        <h3>{{ this.course_id }}</h3>-->
-
-        <div v-for=" fraction in fractions">
-            <el-col :span="12" >
-                <el-card shadow="always" style="margin : 15px">
-                    <div slot="header" class="clearfix">
-                        <span>{{ fraction.name }}：{{fraction.isComplete}}</span>
+        <el-collapse v-model="this.activeNames" accordion>
+            <el-collapse-item name="1">
+                <template slot="title">
+                    <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        &nbsp;<i class="el-icon-data-analysis"></i>&nbsp;&nbsp;分析概况
                     </div>
-                    <div class="text item">
-                        <span>{{ fraction.fraction }}</span>
+                </template>
+                <div style="margin: 0px 10px 0px 10px;" v-for=" fraction in fractions">
+                    <el-col :span="12" >
+                        <el-card shadow="always" style="margin: 0px 10px 10px 0px;">
+                            <div slot="header" class="clearfix">
+                                <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    {{ fraction.name }}：{{fraction.isComplete}}
+                                </div>
+                            </div>
+                            <div class="text item">
+                                <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    {{ fraction.fraction }}
+                                </div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </div>
+            </el-collapse-item>
+            <el-collapse-item name="2">
+                <template slot="title">
+                    <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        &nbsp;<i class="el-icon-s-grid"></i>&nbsp;&nbsp;分数详情
                     </div>
-                </el-card>
-            </el-col>
-        </div>
-        <el-row :gutter="40">
-            <el-col :span="2"><span class="col-span">分数类型</span></el-col>
-            <el-col :span="7"><el-input v-model="fractionListRequestData.cal_type_name" placeholder="请输入分数类型" /></el-col>
-            <el-col :span="1"><span class="col-span">次序</span></el-col>
-            <el-col :span="7"><el-input v-model="fractionListRequestData.order" placeholder="请输入次序" /></el-col>
-            <el-col :span="2"><el-button type="primary" class="search-btn" @click="formSearch">查询</el-button></el-col>
-        </el-row>
-        <el-table
-                :data="fractionList"
-                height="280"
-                border
-                style="width: 100%">
-            <el-table-column
-                    prop="user_name"
-                    label="学生姓名"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="full_name"
-                    label="课程名称"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="name"
-                    label="分数类型"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="order"
-                    label="次序"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="fraction"
-                    label="分数"
-                    width="180">
-            </el-table-column>
-        </el-table>
-        <div class="block">
-            <el-pagination
-                    background
-                    :current-page.sync="currentPage"
-                    :page-sizes="[5,10,15]"
-                    :page-size.sync="currentSize"
-                    layout="total, prev, pager, next,sizes, jumper"
-                    :total="total"
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-            />
-        </div>
+                </template>
+                <div style="margin: 0px 10px 0px 10px;">
+                    <el-row style="margin: 20px 0px 20px 0px;">
+                        <el-col :span="11">
+                            <el-col :span = '6'>
+                                <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    分数类型：
+                                </div>
+                            </el-col>
+                            <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                                <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    <el-input v-model="fractionListRequestData.cal_type_name" placeholder="请输入分数类型" />
+                                </div>
+                            </el-col>
 
+                        </el-col>
+                        <el-col :span="11">
+                            <el-col :span = '6'>
+                                <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    次序：
+                                </div>
+                            </el-col>
+                            <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                                <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                                    <el-input v-model="fractionListRequestData.order" placeholder="请输入次序" />
+                                </div>
+                            </el-col>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-button type="primary" class="search-btn" @click="formSearch">
+                                查询
+                            </el-button>
+                        </el-col>
+                    </el-row>
+                    <el-table
+                            :data="fractionList"
+                            height="280"
+                            border
+                            stripe
+                            style="width: 100%">
+                        <el-table-column
+                                prop="user_name"
+                                label="学生姓名"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="full_name"
+                                label="课程名称"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="name"
+                                label="分数类型"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="order"
+                                label="次序"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="fraction"
+                                label="分数"
+                                width="180">
+                        </el-table-column>
+                    </el-table>
+                    <div class="block" style="margin: 15px 0px 0px 0px;">
+                        <el-pagination
+                                background
+                                :current-page.sync="currentPage"
+                                :page-sizes="[5,10,15]"
+                                :page-size.sync="currentSize"
+                                layout="total, prev, pager, next,sizes, jumper"
+                                :total="total"
+                                @size-change="handleSizeChange"
+                                @current-change="handleCurrentChange"
+                        />
+                    </div>
+                </div>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 
 <script>
 
-    import { getFormulaLeftDatas, getFractionListByUser } from "../api/front_all";
+    import { getFormulaLeftDatas, getFractionListByUser, backToCourseListView } from "../api/front_all";
 
     export default {
         created() {
@@ -96,10 +140,14 @@
                 currentPage: 1,
                 currentSize: 2,
                 total: null,
-                isSizeChange: false
+                isSizeChange: false,
+                activeNames: ['1']
             }
         },
         methods : {
+            goBack() {
+                backToCourseListView();
+            },
             getFormulaLeftData(fractionRequestData)
             {
                 getFormulaLeftDatas(fractionRequestData)

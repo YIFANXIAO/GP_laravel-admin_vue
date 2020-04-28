@@ -1,30 +1,34 @@
 <template>
     <div>
+        <div
+            style="font-size:25px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+        >数据统计图表</div>
+        <el-divider></el-divider>
         <el-row>
             <el-col span="12">
-                <span
-                    style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-                >课程-分数填充完成度柱状图</span>
+                <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                    课程-分数填充完成度柱状图
+                </div>
                 <ve-histogram :data="chartData" :settings="this.chartSettings"></ve-histogram>
             </el-col>
             <el-col span="12">
-                <span
-                    style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-                >课程、学生选修情况雷达图</span>
+                <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                    课程、学生选修情况雷达图
+                </div>
                 <ve-radar :data="chart2Data"></ve-radar>
             </el-col>
         </el-row>
         <el-row>
             <el-col span="12">
-                <span
-                    style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-                >平均分-年份-多课程折线图</span>
+                <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                    平均分-年份-多课程折线图
+                </div>
                 <ve-line :data="chart3Data" :settings="this.chart3Settings"></ve-line>
             </el-col>
             <el-col span="12">
-                <span
-                    style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
-                >计算机网络~分数分布漏斗图</span>
+                <div style="font-size:18px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                    计算机网络~分数分布漏斗图
+                </div>
                 <ve-funnel :data="chart4Data" :settings="this.chart4Settings"></ve-funnel>
             </el-col>
         </el-row>

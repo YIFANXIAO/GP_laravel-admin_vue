@@ -72,3 +72,9 @@ export function getArticleLabels(article_request_data) {
     const params = { article_request_data }; // 参数
     return fetch.post(TMPURL, params);
 }
+
+export function backToCourseListView() {
+    const TMPURL = '/front/backToCourseListView'; // url地址
+    const params = {}; // 参数
+    return fetch.post(TMPURL, params);
+}

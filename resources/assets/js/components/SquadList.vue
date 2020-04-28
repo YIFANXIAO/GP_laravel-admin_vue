@@ -1,12 +1,51 @@
 <template>
     <div>
-        <el-row :gutter="40">
-            <el-col :span="2"><span class="col-span">专业名称</span></el-col>
-            <el-col :span="7"><el-input v-model="squadPageData.profession_name" placeholder="请输入专业名称" /></el-col>
-            <el-col :span="2"><span class="col-span">班级名称</span></el-col>
-            <el-col :span="7"><el-input v-model="squadPageData.squad_name" placeholder="请输入班级名称" /></el-col>
-            <el-col :span="2"><el-button type="primary" class="search-btn" @click="formSearch">查询</el-button></el-col>
+        <div style="font-size:25px;font-weight:bold;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+            班级列表信息
+        </div>
+
+        <el-divider></el-divider>
+
+        <el-row style="margin: 0px 0px 20px 0px;">
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        专业名称：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="squadPageData.profession_name" placeholder="请输入专业名称" />
+                    </div>
+                </el-col>
+
+            </el-col>
+            <el-col :span="11">
+                <el-col :span = '6'>
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        班级名称：
+                    </div>
+                </el-col>
+                <el-col :span = '16' style="margin: 0px 10px 0px 0px;">
+                    <div style="font-size:18px;font-weight:normal;font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;">
+                        <el-input v-model="squadPageData.squad_name" placeholder="请输入班级名称" />
+                    </div>
+                </el-col>
+            </el-col>
+            <el-col :span="2">
+                <el-button type="primary" class="search-btn" @click="formSearch">
+                    查询
+                </el-button>
+            </el-col>
         </el-row>
+
+<!--        <el-row :gutter="40">-->
+<!--            <el-col :span="2"><span class="col-span">专业名称</span></el-col>-->
+<!--            <el-col :span="7"><el-input v-model="squadPageData.profession_name" placeholder="请输入专业名称" /></el-col>-->
+<!--            <el-col :span="2"><span class="col-span">班级名称</span></el-col>-->
+<!--            <el-col :span="7"><el-input v-model="squadPageData.squad_name" placeholder="请输入班级名称" /></el-col>-->
+<!--            <el-col :span="2"><el-button type="primary" class="search-btn" @click="formSearch">查询</el-button></el-col>-->
+<!--        </el-row>-->
         <el-table
                 :data="tableData"
                 stripe
@@ -40,7 +79,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="block">
+        <div class="block" style="margin: 15px 0px 0px 0px;">
             <el-pagination
                     background
                     :current-page.sync="currentPage"
