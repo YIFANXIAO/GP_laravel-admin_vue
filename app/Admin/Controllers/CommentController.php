@@ -6,6 +6,8 @@ use App\Models\AdminUser;
 use App\Models\Article;
 use App\Models\Comments;
 use App\Http\Controllers\Controller;
+use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Column;
@@ -16,36 +18,12 @@ use Encore\Admin\Layout\Row;
 use Encore\Admin\Show;
 use Illuminate\Support\MessageBag;
 
-class CommentController extends Controller
+class CommentController extends AdminController
 {
 
+    use HasResourceActions;
+
     protected $title = '评论管理';
-
-    use ModelForm;
-
-    public function index()
-    {
-//        return Admin::content(function (Content $content) {
-//            $content->row(function (Row $row) {
-//                $row->column(8, function (Column $column) {
-//                    $column->row(Comments::tree(function ($tree) {
-//                        $tree->branch(function ($branch) {
-//                            $content =  $branch['content'] ;
-//                            return "$content";
-//                        });
-//                    }));
-//                    $column->row(Comments::tree(function ($tree) {
-//                        $tree->branch(function ($branch) {
-//                            $content =  $branch['content'] ;
-//                            return "$content";
-//                        });
-//                    }));
-//                });
-//            });
-//
-//
-//        });
-    }
 
     protected function grid()
     {

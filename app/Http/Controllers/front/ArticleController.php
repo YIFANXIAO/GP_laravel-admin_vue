@@ -31,9 +31,18 @@ class ArticleController extends BaseController
         return view('article_detail', ['article_id' => $article_id]);
     }
 
-    public function getArticleList()
+    public function getArticleList(Request $request)
     {
-        return $this->objTest->getInfo();
+        $ArticleListRequestData = $request->get("ArticleListRequestData");
+        $perPage = array_get($ArticleListRequestData, 'row');
+        $columns = ['*'];
+        $pageName = 'page';
+        $currentPage = array_get($ArticleListRequestData, 'page');
+
+        $articles = DB::table('article')
+            ->paginate($perPage, $columns, $pageName, $currentPage);
+
+        return $articles;
     }
 
     // 文章详情页，返回文章信息
@@ -61,8 +70,10 @@ class ArticleController extends BaseController
 
         // 先查询该文章下的，一级评论
         $pComments = DB::table('comments')
-            ->where('article_id', $article_id)
-            ->where('level', 1)
+            ->leftJoin('admin_users', 'admin_users.id', '=', 'comments.user_id')
+            ->select('comments.id', 'admin_users.name as username', 'comments.content', 'comments.created_at')
+            ->where('comments.article_id', $article_id)
+            ->where('comments.level', 1)
             ->get();
 
         $result = collect();
@@ -71,7 +82,11 @@ class ArticleController extends BaseController
         foreach ($pComments as $key => $value)
         {
             $childComments = DB::table('comments')
-                ->where('pid', $value->id)
+                ->leftJoin('admin_users', 'admin_users.id', '=', 'comments.user_id')
+                ->leftJoin('comments as replyComments', 'replyComments.id', '=', 'comments.reply_comment_id')
+                ->leftJoin('admin_users as replyAdminUser', 'replyAdminUser.id', '=', 'replyComments.user_id')
+                ->select('replyComments.content as replyComment', 'comments.id', 'admin_users.name as username', 'comments.content', 'comments.created_at', 'replyAdminUser.name as replyUserName')
+                ->where('comments.pid', $value->id)
                 ->get();
 
             $singleComment = collect();
@@ -83,5 +98,21 @@ class ArticleController extends BaseController
 
         return $result;
 
+    }
+
+    public function getArticleLabels(Request $request) {
+        $article_request_data = $request->get('article_request_data');
+        $article_id = array_get($article_request_data, 'article_id');
+
+        $labels = DB::table('labels')
+            ->select('labels.id', 'labels.content')
+            ->whereIn('id', function ($query) use ($article_id) {
+                $query->select('label_id');
+                $query->from('articles_labels');
+                $query->where('article_id', $article_id);
+            })
+            ->get();
+
+        return $labels;
     }
 }

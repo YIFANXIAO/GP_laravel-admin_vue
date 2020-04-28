@@ -41,9 +41,9 @@ class ArticleController extends AdminController
         $grid->quickSearch('title', 'intro');
 
         // 当前登陆角色非超管和教师，限制显示的数据，只显示当前用户发布的
-        if( !Admin::user()->isRole('teacher ') && !Admin::user()->isAdministrator()) {
-            $grid->model()->where('user_id', Admin::user()->id);
-        }
+//        if( !Admin::user()->isRole('teacher ') && !Admin::user()->isAdministrator()) {
+//            $grid->model()->where('user_id', Admin::user()->id);
+//        }
 
         $grid->column('id', __('ID'))->hide();
         $grid->column('adminUser.name', __('创建人'));
@@ -82,24 +82,24 @@ class ArticleController extends AdminController
         return $grid;
     }
 
-    public function show($id, Content $content)
-    {
-        return Admin::content(function (Content $content) use ($id) {
-            $content->row(function (Row $row) use ($id) {
-                $row->column(12, function (Column $column) use ($id) {
-                    $column->row($this->detail($id));
-//                    $column->row(Comments::tree(function ($tree) {
-//                        $tree->branch(function ($branch) {
-//                            $content =  $branch['content'] ;
-//                            return "$content";
-//                        });
-//                    }));
-                });
-            });
-
-
-        });
-    }
+//    public function show($id, Content $content)
+//    {
+//        return Admin::content(function (Content $content) use ($id) {
+//            $content->row(function (Row $row) use ($id) {
+//                $row->column(12, function (Column $column) use ($id) {
+//                    $column->row($this->detail($id));
+////                    $column->row(Comments::tree(function ($tree) {
+////                        $tree->branch(function ($branch) {
+////                            $content =  $branch['content'] ;
+////                            return "$content";
+////                        });
+////                    }));
+//                });
+//            });
+//
+//
+//        });
+//    }
 
     /**
      * Make a show builder.
@@ -122,18 +122,7 @@ class ArticleController extends AdminController
 
         $show->comments('评论', function ($comments) use ($id) {
 
-//            return Admin::content(function (Content $content) {
-//                $content->header('树状模型');
-//                $content->body(Comments::tree(function ($tree) {
-//                    $tree->branch(function ($branch) {
-//                        $content =  $branch['content'] ;
-//                        return "$content";
-//                    });
-//                }));
-//            });
-
             $comments->resource('/admin/comments');
-
             $comments->user()->name("发布用户");
             $comments->reply_comment()->content("回复评论")->replace([null => '回复文章']);
             $comments->content('评论内容')->limit(50);
@@ -153,7 +142,6 @@ class ArticleController extends AdminController
                 $actions->disableView();
                 $actions->disableEdit();
                 $actions->add(new replyComment());
-//                $actions->disableDelete();
             });
 
             $comments->perPages([10, 20, 30]);

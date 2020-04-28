@@ -5,7 +5,10 @@ require('./bootstrap');
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import VCharts from 'v-charts'
+
 Vue.use(ElementUI);
+Vue.use(VCharts);
 
 import ArticleRow from "./components/ArticleRow";
 import Sidebar from "./components/Sidebar";
@@ -17,6 +20,9 @@ import CourseList from "./components/CourseList";
 import FractionDetailStudent from "./components/FractionDetailStudent";
 import FractionDetailTeacher from "./components/FractionDetailTeacher";
 import ArticleDetail from "./components/ArticleDetail";
+import ChartBoard from "./components/ChartBoard";
+
+
 
 Vue.prototype.COMMON = common;
 
@@ -34,11 +40,6 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
-
-// Vue.component('common', {
-//     template: '<common/>',
-//     components: { common }
-// });
 
 Vue.component('sidebar', {
     template: '<Sidebar/>',
@@ -89,6 +90,11 @@ Vue.component('article-detail', {
     props: ['article_id'],
     template: '<ArticleDetail/>',
     components: { ArticleDetail }
+});
+
+Vue.component('chart-board', {
+    template: '<ChartBoard/>',
+    components: { ChartBoard }
 });
 
 new Vue({

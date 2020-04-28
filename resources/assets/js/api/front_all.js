@@ -7,9 +7,9 @@ export function getTestList() {
     return fetch.post(TMPURL, params);
 }
 
-export function getArticleList() {
+export function getArticleList(ArticleListRequestData) {
     const TMPURL = '/front/getArticleList'; // url地址
-    const params = {}; // 参数
+    const params = { ArticleListRequestData }; // 参数
     return fetch.post(TMPURL, params);
 }
 
@@ -63,6 +63,12 @@ export function getArticleById(article_request_data) {
 
 export function getArticleComments(article_request_data) {
     const TMPURL = '/front/getArticleComments'; // url地址
+    const params = { article_request_data }; // 参数
+    return fetch.post(TMPURL, params);
+}
+
+export function getArticleLabels(article_request_data) {
+    const TMPURL = '/front/getArticleLabels'; // url地址
     const params = { article_request_data }; // 参数
     return fetch.post(TMPURL, params);
 }
