@@ -5,7 +5,7 @@
         </div>
         <div>
             <el-row style = "margin: 0px 0px 15px 0px;">
-                <el-col :span="18">
+                <el-col :span="8">
                     <el-tag
                             v-for="item in labels"
                             :key="item.id"
@@ -16,7 +16,12 @@
                         {{ item.content }}
                     </el-tag>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span="8">
+                    <span
+                            style="font-size:12px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
+                    >作者：{{ this.article_detail.user_name }} </span>
+                </el-col>
+                <el-col :span="8">
                     <span
                             style="font-size:12px; font-weight:bold; font-family: 'Helvetica Neue',Helvetica,'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;"
                     >发布时间：{{ this.article_detail.created_at }} </span>

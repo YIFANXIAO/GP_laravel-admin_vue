@@ -74,7 +74,7 @@ class FormulaLeftController extends AdminController
             $metaCal->resource('/admin/meta-cals');
 
 //            $metaCal->column('formulaLeft.name', __('公式名称'));
-            $metaCal->column('metaCalType.name', __('元计算项类型名'))->label();
+            $metaCal->column('metaCalType.name', __('元计算项类型名'))->label()->copyable();
             $metaCal->column('number', __('计数次数'))->editable();
             $metaCal->column('proportion', __('总分占比'))->editable();
 

@@ -3,11 +3,13 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Course;
+use App\Models\Squad;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends AdminController
 {
@@ -27,7 +29,7 @@ class CourseController extends AdminController
     {
         $grid = new Grid(new Course());
 
-        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+        if( !Admin::user()->isRole(config('admin.database.role_teacher')) && !Admin::user()->isAdministrator()) {
             $grid->model()
                 ->whereIn('id', function ($query) {
                     $query->select('course_id');
@@ -41,13 +43,13 @@ class CourseController extends AdminController
         }
 
         $grid->column('id', __('Id'))->hide();
-        $grid->column('full_name', __('课程全称'));
+        $grid->column('full_name', __('课程全称'))->copyable();
         $grid->column('attribute', __('属性'));
         $grid->column('credit', __('学分'))->label();
         $grid->column('course_type.name', __('课程类型'))->label();
         $grid->column('teachers', __('授课教师'))->pluck('name')->label();
         $grid->column('location', __('授课地点'))->label();
-        $grid->column('squads', __('教授班级'))->pluck('name')->label();
+        $grid->column('squads', __('选修班级'))->pluck('name')->label();
         $grid->column('Schedule_text', __('时间安排'));
         $grid->column('Schedule_image', __('课程表'))->hide();
         $grid->column('created_at', __('创建日期'))->hide();
@@ -150,7 +152,7 @@ class CourseController extends AdminController
 
         });
 
-        $show->squads('教授班级', function ($squads) {
+        $show->squads('选修班级', function ($squads) {
 
             $squads->column('profession.full_name', __('专业'));
             $squads->name('班级名称')->label();
@@ -205,10 +207,22 @@ class CourseController extends AdminController
             ->options('/api/getCourseTypes')
             ->rules('required');
         $form->multipleSelect('teachers', __('授课教师'))
-            ->options('/api/getTeachers')
+//            ->options('/api/getTeachers')
+            ->options(DB::table('admin_users')
+                ->whereIn('id', function ($query) {
+                    $query->select('user_id');
+                    $query->from('admin_role_users');
+                    $query->where('role_id', function ($query) {
+                        $query->select('id');
+                        $query->from('admin_roles');
+                        $query->where('slug', config('admin.database.role_teacher'));
+                    });
+                })
+                ->pluck('name', 'id'))
             ->rules('required');
-        $form->multipleSelect('squads', __('教授班级'))
-            ->options('/api/getSquads')
+        $form->multipleSelect('squads', __('选修班级'))
+//            ->options('/api/getSquads')
+            ->options(Squad::all()->pluck('name', 'id'))
             ->rules('required');
 
         $form->divider();

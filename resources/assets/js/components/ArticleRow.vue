@@ -3,7 +3,7 @@
         <el-card :body-style="{ padding: '8px' }">
             <el-row>
                 <el-col :span="9">
-                    <img v-bind:src="baseHttpUrl + '/uploads/' + this.$parent.banner" height="160" width="220" alt="网络图片" />
+                    <img v-bind:src="baseHttpUrl + '/uploads/' + this.$parent.banner" height="160" width="260" alt="网络图片" />
                 </el-col>
                 <el-col :span="15">
                     <div style="padding: 15px;">

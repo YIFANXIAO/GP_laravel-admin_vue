@@ -122,7 +122,6 @@ class FractionImport implements ToModel,WithHeadingRow,WithBatchInserts,WithEven
                 $query->select('id');
                 $query->from('formula_left');
                 $query->where('course_id', $course->id);
-                $query->where('pid', 0);
             })
             ->first();
 

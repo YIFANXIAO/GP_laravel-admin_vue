@@ -30,7 +30,7 @@ class FractionController extends AdminController
     {
         $grid = new Grid(new Fraction());
 
-        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+        if( !Admin::user()->isRole(config('admin.database.role_teacher')) && !Admin::user()->isAdministrator()) {
             $grid->model()
                 ->where('student_id', Admin::user()->id);
         }
@@ -221,7 +221,6 @@ class FractionController extends AdminController
                         $query->select('id');
                         $query->from('formula_left');
                         $query->where('course_id', \request('course_id'));
-                        $query->where('pid', 0);
                     })
                     ->first();
 

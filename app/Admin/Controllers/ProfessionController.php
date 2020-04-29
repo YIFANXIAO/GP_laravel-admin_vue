@@ -31,7 +31,7 @@ class ProfessionController extends AdminController
 
 
         // 当前登陆角色非超管和教师，限制显示的数据，只显示当前用户发布的
-        if( !Admin::user()->isRole('teacher ') && !Admin::user()->isAdministrator()) {
+        if( !Admin::user()->isRole(config('admin.database.role_teacher')) && !Admin::user()->isAdministrator()) {
             $grid->model()
                 ->whereIn('id', function ($query) {
                     $query->select('profession_id');

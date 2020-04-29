@@ -52,7 +52,9 @@ class ArticleController extends BaseController
         $article_id = array_get($article_request_data, 'article_id');
 
         $article = DB::table('article')
-            ->where('id', $article_id)
+            ->leftJoin('admin_users', 'admin_users.id', '=', 'article.user_id')
+            ->select('admin_users.name as user_name', 'article.banner', 'article.content', 'article.created_at', 'article.id', 'article.intro', 'article.title', 'article.updated_at')
+            ->where('article.id', $article_id)
             ->get()
             ->first();
 

@@ -37,9 +37,6 @@ class FractionController extends BaseController
         $cal_type_name = array_get($fractionListRequestData, 'cal_type_name');
         $order = array_get($fractionListRequestData, 'order');
 
-//        dump($cal_type_name);
-//        dump($order);
-
         $metaCals = DB::table('meta_cal')
             ->select('meta_cal.cal_type_id', 'meta_cal.number')
             ->where('formula_id', function ($query) use ($course_id) {
@@ -132,7 +129,7 @@ class FractionController extends BaseController
             }
 
             $resultFraction->put('name', $formulaLeft->name);
-            $resultFraction->put('fraction', $totalScore);
+            $resultFraction->put('fraction', round($totalScore, 3));
             if ($totalIsComplete) {
                 $resultFraction->put('isComplete', '最终分数');
             }else {
@@ -163,7 +160,7 @@ class FractionController extends BaseController
                 }
 
                 $resultFraction->put('name', $metaCal->name);
-                $resultFraction->put('fraction', $source);
+                $resultFraction->put('fraction', round($source, 3));
 
                 if ($isComplete) {
                     $resultFraction->put('isComplete', '最终分数');
@@ -189,102 +186,128 @@ class FractionController extends BaseController
             $results = collect();
 
             // 遍历班级
-            foreach ($squads as $key => $value) {
-                // 查询每个人的成绩
-                $studentIds = DB::table('student_squad')
-                    ->where('squad_id', $value->id)
-                    ->get();
+            if ($squads->count() > 0) {
+                foreach ($squads as $key => $value) {
+                    // 查询每个人的成绩
+                    $studentIds = DB::table('student_squad')
+                        ->where('squad_id', $value->id)
+                        ->get();
 
+                    // 单个班级的成绩情况
+                    $squadResult = collect();
 
-                $squTotalSource = 0;
-                $squIsComplete = true;
-                $squHighestSource = 0;
-                $passCount = 0;
-                // 每个班级学生的总分列表
-                $squadStudentsFractionList = collect();
-                foreach ($studentIds as $keyStu => $valueStu) {
-                    // 获取学生总分
-                    $stuTotalSource = StaticMethodController::getTotalSourceByUser($metaCals, $course_id, $valueStu->student_id);
+                    if ($studentIds->count() > 0) {
+                        $squTotalSource = 0;
+                        $squIsComplete = true;
+                        $squHighestSource = 0;
+                        $passCount = 0;
+                        // 每个班级学生的总分列表
+                        $squadStudentsFractionList = collect();
+                        foreach ($studentIds as $keyStu => $valueStu) {
+                            // 获取学生总分
+                            $stuTotalSource = StaticMethodController::getTotalSourceByUser($metaCals, $course_id, $valueStu->student_id);
 
-                    // 计算总分和是否完成
-                    $squTotalSource += $stuTotalSource->get('totalScore');
-                    $squIsComplete = $squIsComplete && $stuTotalSource->get('totalIsComplete');
+                            // 计算总分和是否完成
+                            $squTotalSource += $stuTotalSource->get('totalScore');
+                            $squIsComplete = $squIsComplete && $stuTotalSource->get('totalIsComplete');
 
-                    // 计算最高分
-                    if ($squHighestSource < $stuTotalSource->get('totalScore')) {
-                        $squHighestSource = $stuTotalSource->get('totalScore');
-                    }
+                            // 计算最高分
+                            if ($squHighestSource < $stuTotalSource->get('totalScore')) {
+                                $squHighestSource = $stuTotalSource->get('totalScore');
+                            }
 
-                    if ($stuTotalSource->get('totalScore') > 5) {
-                        $passCount++;
-                    }
+                            if ($stuTotalSource->get('totalScore') > 60) {
+                                $passCount++;
+                            }
 
-                    $stuName = DB::table('admin_users')
-                        ->where('id', $valueStu->student_id)
-                        ->get()
-                        ->first();
+                            $stuName = DB::table('admin_users')
+                                ->where('id', $valueStu->student_id)
+                                ->get()
+                                ->first();
 
-                    // 记录单个学生分数行数据
-                    $studentFraction = collect();
-                    $studentFraction->put('stu_name', $stuName->name);
-                    $studentFraction->put('stu_ID', $stuName->username);
-                    if ($stuTotalSource->get('totalIsComplete')) {
-                        $studentFraction->put('is_complete', '最终分数');
+                            // 记录单个学生分数行数据
+                            $studentFraction = collect();
+                            $studentFraction->put('stu_name', $stuName->name);
+                            $studentFraction->put('stu_ID', $stuName->username);
+                            if ($stuTotalSource->get('totalIsComplete')) {
+                                $studentFraction->put('is_complete', '最终分数');
+                            }else {
+                                $studentFraction->put('is_complete', '非最终分数');
+                            }
+
+                            $studentFraction->put('cur_fraction', round($stuTotalSource->get('totalScore'), 3));
+
+                            $squadStudentsFractionList->push($studentFraction);
+                        }
+
+                        // 单个班级的成绩情况
+                        $squadResult = collect();
+
+                        // 放入平均分
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '平均分');
+                        $squadSingleResult->put('source', round($squTotalSource/$studentIds->count(), 3));
+                        if ($squIsComplete) {
+                            $squadSingleResult->put('is_complete', '最终分数');
+                        }else {
+                            $squadSingleResult->put('is_complete', '非最终分数');
+                        }
+                        $squadResult->push($squadSingleResult);
+
+                        // 最高分
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '最高分');
+                        $squadSingleResult->put('source', $squHighestSource);
+                        if ($squIsComplete) {
+                            $squadSingleResult->put('is_complete', '最终分数');
+                        }else {
+                            $squadSingleResult->put('is_complete', '非最终分数');
+                        }
+                        $squadResult->push($squadSingleResult);
+
+                        // 及格率
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '及格率');
+                        $squadSingleResult->put('source', round($passCount/$studentIds->count(), 3));
+                        if ($squIsComplete) {
+                            $squadSingleResult->put('is_complete', '最终分数');
+                        }else {
+                            $squadSingleResult->put('is_complete', '非最终分数');
+                        }
+                        $squadResult->push($squadSingleResult);
                     }else {
-                        $studentFraction->put('is_complete', '非最终分数');
+                        // 放入平均分
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '平均分');
+                        $squadSingleResult->put('source', 0);
+                        $squadSingleResult->put('is_complete', '非最终分数');
+                        $squadResult->push($squadSingleResult);
+
+                        // 最高分
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '最高分');
+                        $squadSingleResult->put('source', 0);
+                        $squadSingleResult->put('is_complete', '非最终分数');
+                        $squadResult->push($squadSingleResult);
+
+                        // 及格率
+                        $squadSingleResult = collect();
+                        $squadSingleResult->put('name', '及格率');
+                        $squadSingleResult->put('source', 0);
+                        $squadSingleResult->put('is_complete', '非最终分数');
+                        $squadResult->push($squadSingleResult);
+
+                        $squadStudentsFractionList = collect();
                     }
 
-                    $studentFraction->put('cur_fraction', $stuTotalSource->get('totalScore'));
+                    $squadInfo = collect();
+                    $squadInfo->put('name', $value->name);
+                    $squadInfo->put('data', $squadResult);
+                    $squadInfo->put('fractionLists', $squadStudentsFractionList);
 
-                    $squadStudentsFractionList->push($studentFraction);
+                    // 添加每个班级的情况，到最后结果中
+                    $results->push( $squadInfo);
                 }
-
-                // 单个班级的成绩情况
-                $squadResult = collect();
-
-                // 放入平均分
-                $squadSingleResult = collect();
-                $squadSingleResult->put('name', '平均分');
-                $squadSingleResult->put('source', round($squTotalSource/$studentIds->count(), 3));
-                if ($squIsComplete) {
-                    $squadSingleResult->put('is_complete', '最终分数');
-                }else {
-                    $squadSingleResult->put('is_complete', '非最终分数');
-                }
-                $squadResult->push($squadSingleResult);
-
-                // 最高分
-                $squadSingleResult = collect();
-                $squadSingleResult->put('name', '最高分');
-                $squadSingleResult->put('source', $squHighestSource);
-                if ($squIsComplete) {
-                    $squadSingleResult->put('is_complete', '最终分数');
-                }else {
-                    $squadSingleResult->put('is_complete', '非最终分数');
-                }
-                $squadResult->push($squadSingleResult);
-
-                // 及格率
-                $squadSingleResult = collect();
-                $squadSingleResult->put('name', '及格率');
-                $squadSingleResult->put('source', round($passCount/$studentIds->count(), 3));
-                if ($squIsComplete) {
-                    $squadSingleResult->put('is_complete', '最终分数');
-                }else {
-                    $squadSingleResult->put('is_complete', '非最终分数');
-                }
-                $squadResult->push($squadSingleResult);
-
-
-                $squadInfo = collect();
-
-                $squadInfo->put('name', $value->name);
-                $squadInfo->put('data', $squadResult);
-                $squadInfo->put('fractionLists', $squadStudentsFractionList);
-
-
-                // 添加每个班级的情况，到最后结果中
-                $results->push( $squadInfo);
             }
 
         }else {

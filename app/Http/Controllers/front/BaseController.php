@@ -41,7 +41,7 @@ class BaseController extends Controller
                 $query->whereIn('role_id', function ($query) {
                     $query->select('id');
                     $query->from('admin_roles');
-                    $query->where('slug', 'teacher');
+                    $query->where('slug', config('admin.database.role_teacher'));
                 });
             })
             ->first();

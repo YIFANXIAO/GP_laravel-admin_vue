@@ -28,7 +28,7 @@ class SquadController extends AdminController
     {
         $grid = new Grid(new Squad());
 
-        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+        if( !Admin::user()->isRole(config('admin.database.role_teacher')) && !Admin::user()->isAdministrator()) {
             $grid->model()
                 ->whereIn('id', function ($query) {
                     $query->select('squad_id');
@@ -90,7 +90,7 @@ class SquadController extends AdminController
     {
         $show = new Show(Squad::findOrFail($id));
 
-        if( Admin::user()->isRole('teacher') || Admin::user()->isAdministrator()) {
+        if( Admin::user()->isRole(config('admin.database.role_teacher')) || Admin::user()->isAdministrator()) {
             $show->field('id', __('ID'));
         }
         $show->field('name', __('班级名称'));

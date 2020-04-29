@@ -83,16 +83,13 @@
                     《计算机网络》课程建设网站
                 </div>
 
+                <br/>
+
                 <div class="links">
-                    <a href="https://laravel.com/docs">首页</a>
-                    <a href="https://laravel.com/docs">浏览文章</a>
-                    <a href="https://laravel.com/docs">课程信息</a>
-                    <a href="https://laravel.com/docs">查看分数</a>
-{{--                    <a href="https://laravel.com/docs">Documentation</a>--}}
-{{--                    <a href="https://laracasts.com">Laracasts</a>--}}
-{{--                    <a href="https://laravel-news.com">News</a>--}}
-{{--                    <a href="https://forge.laravel.com">Forge</a>--}}
-{{--                    <a href="https://github.com/laravel/laravel">GitHub</a>--}}
+                    <a href="http://127.0.0.1:8000/home">首页</a>
+                    <a href="http://127.0.0.1:8000/articles">博文随笔</a>
+                    <a href="http://127.0.0.1:8000/courses">课程信息</a>
+                    <a href="http://127.0.0.1:8000/squads">班级信息</a>
                 </div>
             </div>
         </div>

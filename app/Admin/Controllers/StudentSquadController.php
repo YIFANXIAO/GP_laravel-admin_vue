@@ -71,7 +71,22 @@ class StudentSquadController extends AdminController
             ->readOnly();
         $form->multipleSelect('student_id', __('学生'))
             ->rules('required')
-            ->options('/api/getAllocatedStudents');
+//            ->options('/api/getAllocatedStudents');
+            ->options(DB::table('admin_users')
+                ->whereIn('id', function ($query) {
+                    $query->select('user_id');
+                    $query->from('admin_role_users');
+                    $query->where('role_id', function ($query) {
+                        $query->select('id');
+                        $query->from('admin_roles');
+                        $query->where('slug', config('admin.database.role_student'));
+                    });
+                })
+                ->whereNotIn('id', function ($query) {
+                    $query->select('student_id');
+                    $query->from('student_squad');
+                })
+                ->pluck('name', 'id'));
 
         $form->tools(function (Form\Tools $tools) {
             // 去掉`列表`按钮

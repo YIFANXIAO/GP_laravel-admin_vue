@@ -28,7 +28,7 @@ class UserController extends AdminController
     {
         $grid = new Grid(new User());
 
-        if( !Admin::user()->isRole('teacher') && !Admin::user()->isAdministrator()) {
+        if( !Admin::user()->isRole(config('admin.database.role_teacher')) && !Admin::user()->isAdministrator()) {
             $grid->model()
                 ->whereIn('email', function ($query) {
                     $query->select('username');

@@ -36,7 +36,7 @@ class AdminUserController extends UserController
 //        $userModel = config('admin.database.users_model');
         $grid = new Grid(new AdminUser());
         $grid->column('id', 'ID')->sortable()->hide();
-        $grid->column('username', trans('用户登录标识'))->help('用户登录名，最好是英文或数字');
+        $grid->column('username', trans('用户登录标识'))->help('用户登录名，最好是英文或数字')->copyable();
         $grid->column('name', trans('用户名称'))->help('用于展示的用户名称，随意')->copyable();
 
 //        $grid->column('squads', __('所属班级'))->pluck('name')->label();
