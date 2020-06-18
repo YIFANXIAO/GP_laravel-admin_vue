@@ -14,7 +14,7 @@
             <el-menu-item index="2">
                 <i class="el-icon-reading"></i>
                 <span slot="title">
-                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/articles'">博文随笔</a>
+                    <a style="color:#606266; text-decoration: none" v-bind:href="baseHttpUrl + '/articles'">课程资源</a>
                 </span>
             </el-menu-item>
             <el-menu-item index="3">

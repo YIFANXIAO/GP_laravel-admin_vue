@@ -87,7 +87,7 @@
 
                 <div class="links">
                     <a href="http://127.0.0.1:8000/home">首页</a>
-                    <a href="http://127.0.0.1:8000/articles">博文随笔</a>
+                    <a href="http://127.0.0.1:8000/articles">课程资源</a>
                     <a href="http://127.0.0.1:8000/courses">课程信息</a>
                     <a href="http://127.0.0.1:8000/squads">班级信息</a>
                 </div>
